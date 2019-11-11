@@ -19,6 +19,7 @@
 -->
 
 ## Upcoming Release
+* Fix issue of leading slash in test cases
 
 ## Version 0.1.0
 * Create cmdlets for Az.ManagedNetwork.
