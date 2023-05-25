@@ -1,0 +1,86 @@
+{
+  "Get-AzRecoveryServicesReplicationPolicy+[NoContext]+List+$GET+https://management.azure.com/subscriptions/7c943c1b-5122-4097-90c8-861411bdd574/resourceGroups/a2arecoveryrg/providers/Microsoft.RecoveryServices/vaults/a2arecoveryvault/replicationPolicies?api-version=2023-02-01+1": {
+    "Request": {
+      "Method": "GET",
+      "RequestUri": "https://management.azure.com/subscriptions/7c943c1b-5122-4097-90c8-861411bdd574/resourceGroups/a2arecoveryrg/providers/Microsoft.RecoveryServices/vaults/a2arecoveryvault/replicationPolicies?api-version=2023-02-01",
+      "Content": null,
+      "isContentBase64": false,
+      "Headers": {
+        "x-ms-unique-id": [ "1" ],
+        "x-ms-client-request-id": [ "dc1f52f7-5f32-4e47-879d-cc88b984ebf1" ],
+        "CommandName": [ "Get-AzRecoveryServicesReplicationPolicy" ],
+        "FullCommandName": [ "Get-AzRecoveryServicesReplicationPolicy_List" ],
+        "ParameterSetName": [ "__AllParameterSets" ],
+        "User-Agent": [ "AzurePowershell/v0.0.0", "PSVersion/v7.3.4", "Az.RecoveryServices/0.1.0" ],
+        "Authorization": [ "[Filtered]" ]
+      },
+      "ContentHeaders": {
+      }
+    },
+    "Response": {
+      "StatusCode": 200,
+      "Headers": {
+        "Cache-Control": [ "no-cache" ],
+        "Pragma": [ "no-cache" ],
+        "Strict-Transport-Security": [ "max-age=31536000; includeSubDomains" ],
+        "x-ms-request-id": [ "dc1f52f7-5f32-4e47-879d-cc88b984ebf1 5/30/2023 7:03:21 AM" ],
+        "X-Content-Type-Options": [ "nosniff" ],
+        "x-ms-client-request-id": [ "dc1f52f7-5f32-4e47-879d-cc88b984ebf1" ],
+        "Server": [ "Kestrel" ],
+        "x-ms-ratelimit-remaining-subscription-reads": [ "11999" ],
+        "x-ms-correlation-request-id": [ "5e52f069-739c-4dab-9a62-794c1b6fadd0" ],
+        "x-ms-routing-request-id": [ "JAPANEAST:20230530T070321Z:5e52f069-739c-4dab-9a62-794c1b6fadd0" ],
+        "Date": [ "Tue, 30 May 2023 07:03:20 GMT" ]
+      },
+      "ContentHeaders": {
+        "Content-Length": [ "2670" ],
+        "Content-Type": [ "application/json; charset=utf-8" ],
+        "Expires": [ "-1" ]
+      },
+      "Content": "{\"value\":[{\"id\":\"/Subscriptions/7c943c1b-5122-4097-90c8-861411bdd574/resourceGroups/a2arecoveryrg/providers/Microsoft.RecoveryServices/vaults/a2arecoveryvault/replicationPolicies/demopolicy4\",\"name\":\"demopolicy4\",\"type\":\"Microsoft.RecoveryServices/vaults/replicationPolicies\",\"properties\":{\"friendlyName\":\"demopolicy4\",\"providerSpecificDetails\":{\"instanceType\":\"A2A\",\"recoveryPointThresholdInMinutes\":0,\"recoveryPointHistory\":0,\"appConsistentFrequencyInMinutes\":0,\"multiVmSyncStatus\":\"Enabled\",\"crashConsistentFrequencyInMinutes\":5}}},{\"id\":\"/Subscriptions/7c943c1b-5122-4097-90c8-861411bdd574/resourceGroups/a2arecoveryrg/providers/Microsoft.RecoveryServices/vaults/a2arecoveryvault/replicationPolicies/demopolicy3\",\"name\":\"demopolicy3\",\"type\":\"Microsoft.RecoveryServices/vaults/replicationPolicies\",\"properties\":{\"friendlyName\":\"demopolicy3\",\"providerSpecificDetails\":{\"instanceType\":\"A2A\",\"recoveryPointThresholdInMinutes\":0,\"recoveryPointHistory\":4320,\"appConsistentFrequencyInMinutes\":240,\"multiVmSyncStatus\":\"Enabled\",\"crashConsistentFrequencyInMinutes\":60}}},{\"id\":\"/Subscriptions/7c943c1b-5122-4097-90c8-861411bdd574/resourceGroups/a2arecoveryrg/providers/Microsoft.RecoveryServices/vaults/a2arecoveryvault/replicationPolicies/TestPolicy\",\"name\":\"TestPolicy\",\"type\":\"Microsoft.RecoveryServices/vaults/replicationPolicies\",\"properties\":{\"friendlyName\":\"TestPolicy\",\"providerSpecificDetails\":{\"instanceType\":\"A2A\",\"recoveryPointThresholdInMinutes\":0,\"recoveryPointHistory\":1440,\"appConsistentFrequencyInMinutes\":240,\"multiVmSyncStatus\":\"Enabled\",\"crashConsistentFrequencyInMinutes\":5}}},{\"id\":\"/Subscriptions/7c943c1b-5122-4097-90c8-861411bdd574/resourceGroups/a2arecoveryrg/providers/Microsoft.RecoveryServices/vaults/a2arecoveryvault/replicationPolicies/demopolicy2\",\"name\":\"demopolicy2\",\"type\":\"Microsoft.RecoveryServices/vaults/replicationPolicies\",\"properties\":{\"friendlyName\":\"demopolicy2\",\"providerSpecificDetails\":{\"instanceType\":\"A2A\",\"recoveryPointThresholdInMinutes\":0,\"recoveryPointHistory\":1440,\"appConsistentFrequencyInMinutes\":240,\"multiVmSyncStatus\":\"Enabled\",\"crashConsistentFrequencyInMinutes\":5}}},{\"id\":\"/Subscriptions/7c943c1b-5122-4097-90c8-861411bdd574/resourceGroups/a2arecoveryrg/providers/Microsoft.RecoveryServices/vaults/a2arecoveryvault/replicationPolicies/demopolicy1\",\"name\":\"demopolicy1\",\"type\":\"Microsoft.RecoveryServices/vaults/replicationPolicies\",\"properties\":{\"friendlyName\":\"demopolicy1\",\"providerSpecificDetails\":{\"instanceType\":\"A2A\",\"recoveryPointThresholdInMinutes\":0,\"recoveryPointHistory\":1440,\"appConsistentFrequencyInMinutes\":240,\"multiVmSyncStatus\":\"Enabled\",\"crashConsistentFrequencyInMinutes\":5}}}],\"nextLink\":null}",
+      "isContentBase64": false
+    }
+  },
+  "Get-AzRecoveryServicesReplicationPolicy+[NoContext]+Get+$GET+https://management.azure.com/subscriptions/7c943c1b-5122-4097-90c8-861411bdd574/resourceGroups/a2arecoveryrg/providers/Microsoft.RecoveryServices/vaults/a2arecoveryvault/replicationPolicies/demopolicy1?api-version=2023-02-01+1": {
+    "Request": {
+      "Method": "GET",
+      "RequestUri": "https://management.azure.com/subscriptions/7c943c1b-5122-4097-90c8-861411bdd574/resourceGroups/a2arecoveryrg/providers/Microsoft.RecoveryServices/vaults/a2arecoveryvault/replicationPolicies/demopolicy1?api-version=2023-02-01",
+      "Content": null,
+      "isContentBase64": false,
+      "Headers": {
+        "x-ms-unique-id": [ "2" ],
+        "x-ms-client-request-id": [ "4e8e0caf-0760-42ee-b707-2b9335c4d01f" ],
+        "CommandName": [ "Get-AzRecoveryServicesReplicationPolicy" ],
+        "FullCommandName": [ "Get-AzRecoveryServicesReplicationPolicy_Get" ],
+        "ParameterSetName": [ "__AllParameterSets" ],
+        "User-Agent": [ "AzurePowershell/v0.0.0", "PSVersion/v7.3.4", "Az.RecoveryServices/0.1.0" ],
+        "Authorization": [ "[Filtered]" ]
+      },
+      "ContentHeaders": {
+      }
+    },
+    "Response": {
+      "StatusCode": 200,
+      "Headers": {
+        "Cache-Control": [ "no-cache" ],
+        "Pragma": [ "no-cache" ],
+        "Strict-Transport-Security": [ "max-age=31536000; includeSubDomains" ],
+        "x-ms-request-id": [ "4e8e0caf-0760-42ee-b707-2b9335c4d01f 5/30/2023 7:03:22 AM" ],
+        "X-Content-Type-Options": [ "nosniff" ],
+        "x-ms-client-request-id": [ "4e8e0caf-0760-42ee-b707-2b9335c4d01f" ],
+        "Server": [ "Kestrel" ],
+        "x-ms-ratelimit-remaining-subscription-reads": [ "11998" ],
+        "x-ms-correlation-request-id": [ "6435fd0e-808b-4517-9a4b-b8f0fc2df579" ],
+        "x-ms-routing-request-id": [ "JAPANEAST:20230530T070322Z:6435fd0e-808b-4517-9a4b-b8f0fc2df579" ],
+        "Date": [ "Tue, 30 May 2023 07:03:22 GMT" ]
+      },
+      "ContentHeaders": {
+        "Content-Length": [ "529" ],
+        "Content-Type": [ "application/json; charset=utf-8" ],
+        "Expires": [ "-1" ]
+      },
+      "Content": "{\"id\":\"/Subscriptions/7c943c1b-5122-4097-90c8-861411bdd574/resourceGroups/a2arecoveryrg/providers/Microsoft.RecoveryServices/vaults/a2arecoveryvault/replicationPolicies/demopolicy1\",\"name\":\"demopolicy1\",\"type\":\"Microsoft.RecoveryServices/vaults/replicationPolicies\",\"properties\":{\"friendlyName\":\"demopolicy1\",\"providerSpecificDetails\":{\"instanceType\":\"A2A\",\"recoveryPointThresholdInMinutes\":0,\"recoveryPointHistory\":1440,\"appConsistentFrequencyInMinutes\":240,\"multiVmSyncStatus\":\"Enabled\",\"crashConsistentFrequencyInMinutes\":5}}}",
+      "isContentBase64": false
+    }
+  }
+}
