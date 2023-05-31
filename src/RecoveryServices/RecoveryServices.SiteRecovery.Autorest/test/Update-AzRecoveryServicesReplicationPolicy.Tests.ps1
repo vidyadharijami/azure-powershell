@@ -15,6 +15,7 @@ if(($null -eq $TestName) -or ($TestName -contains 'Update-AzRecoveryServicesRepl
 }
 
 Describe 'Update-AzRecoveryServicesReplicationPolicy' {
+<<<<<<< HEAD
     It 'UpdateExpanded' {
         $policyDesc=Get-AzRecoveryServicesReplicationPolicy -ResourceGroupName $env.a2aResourceGroupName -ResourceName $env.a2aVaultName -SubscriptionId $env.a2aSubscriptionId -PolicyName $env.a2aPolicyName
         $policy = [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.A2APolicyCreationInput]::new()
@@ -25,6 +26,10 @@ Describe 'Update-AzRecoveryServicesReplicationPolicy' {
         $policy.ReplicationScenario="ReplicateAzureToAzure"
         $output=Update-AzRecoveryServicesReplicationPolicy -Policy $policyDesc -ResourceGroupName $env.a2aResourceGroupName -ResourceName $env.a2aVaultName -SubscriptionId $env.a2aSubscriptionId -ReplicationProviderSetting $policy
         $output.Count | Should Not BeNullOrEmpty
+=======
+    It 'UpdateExpanded' -skip {
+        { throw [System.NotImplementedException] } | Should -Not -Throw
+>>>>>>> 9c081c4212d626ff5bb34be7af9539ac02be1b04
     }
 
     It 'Update' -skip {

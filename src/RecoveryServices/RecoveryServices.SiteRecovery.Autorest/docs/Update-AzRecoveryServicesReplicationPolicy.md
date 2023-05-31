@@ -12,18 +12,35 @@ The operation to update a replication policy.
 
 ## SYNTAX
 
+<<<<<<< HEAD
 ```
 Update-AzRecoveryServicesReplicationPolicy -Policy <IPolicy> -ResourceGroupName <String>
+=======
+### UpdateExpanded (Default)
+```
+Update-AzRecoveryServicesReplicationPolicy -PolicyName <String> -ResourceGroupName <String>
+>>>>>>> 9c081c4212d626ff5bb34be7af9539ac02be1b04
  -ResourceName <String> [-SubscriptionId <String>]
  [-ReplicationProviderSetting <IPolicyProviderSpecificInput>] [-DefaultProfile <PSObject>] [-AsJob] [-NoWait]
  [-Confirm] [-WhatIf] [<CommonParameters>]
 ```
 
+<<<<<<< HEAD
+=======
+### Update
+```
+Update-AzRecoveryServicesReplicationPolicy -PolicyName <String> -ResourceGroupName <String>
+ -ResourceName <String> -Input <IUpdatePolicyInput> [-SubscriptionId <String>] [-DefaultProfile <PSObject>]
+ [-AsJob] [-NoWait] [-Confirm] [-WhatIf] [<CommonParameters>]
+```
+
+>>>>>>> 9c081c4212d626ff5bb34be7af9539ac02be1b04
 ## DESCRIPTION
 The operation to update a replication policy.
 
 ## EXAMPLES
 
+<<<<<<< HEAD
 ### Example 1: Update an Azure-To-Azure replication policy in a recovery services vault
 ```powershell
 $policyDesc=Get-AzRecoveryServicesReplicationPolicy -ResourceGroupName "a2arecoveryrg" -ResourceName "a2arecoveryvault" -PolicyName "demoPolicy"
@@ -43,6 +60,29 @@ Location Name       Type
 ```
 
 Updates an Azure-To-Azure replication policy in the specified vault in the specified resource group.
+=======
+### Example 1: {{ Add title here }}
+```powershell
+{{ Add code here }}
+```
+
+```output
+{{ Add output here }}
+```
+
+{{ Add description here }}
+
+### Example 2: {{ Add title here }}
+```powershell
+{{ Add code here }}
+```
+
+```output
+{{ Add output here }}
+```
+
+{{ Add description here }}
+>>>>>>> 9c081c4212d626ff5bb34be7af9539ac02be1b04
 
 ## PARAMETERS
 
@@ -76,6 +116,25 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+<<<<<<< HEAD
+=======
+### -Input
+Update policy input.
+To construct, see NOTES section for INPUT properties and create a hash table.
+
+```yaml
+Type: Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IUpdatePolicyInput
+Parameter Sets: Update
+Aliases:
+
+Required: True
+Position: Named
+Default value: None
+Accept pipeline input: True (ByValue)
+Accept wildcard characters: False
+```
+
+>>>>>>> 9c081c4212d626ff5bb34be7af9539ac02be1b04
 ### -NoWait
 Run the command asynchronously
 
@@ -91,12 +150,20 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+<<<<<<< HEAD
 ### -Policy
 Specific replication policy object.
 To construct, see NOTES section for POLICY properties and create a hash table.
 
 ```yaml
 Type: Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IPolicy
+=======
+### -PolicyName
+Policy Id.
+
+```yaml
+Type: System.String
+>>>>>>> 9c081c4212d626ff5bb34be7af9539ac02be1b04
 Parameter Sets: (All)
 Aliases:
 
@@ -113,7 +180,11 @@ To construct, see NOTES section for REPLICATIONPROVIDERSETTING properties and cr
 
 ```yaml
 Type: Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IPolicyProviderSpecificInput
+<<<<<<< HEAD
 Parameter Sets: (All)
+=======
+Parameter Sets: UpdateExpanded
+>>>>>>> 9c081c4212d626ff5bb34be7af9539ac02be1b04
 Aliases:
 
 Required: False
@@ -204,6 +275,11 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## INPUTS
 
+<<<<<<< HEAD
+=======
+### Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IUpdatePolicyInput
+
+>>>>>>> 9c081c4212d626ff5bb34be7af9539ac02be1b04
 ## OUTPUTS
 
 ### Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IPolicy
@@ -217,10 +293,16 @@ COMPLEX PARAMETER PROPERTIES
 To create the parameters described below, construct a hash table containing the appropriate properties. For information on hash tables, run Get-Help about_Hash_Tables.
 
 
+<<<<<<< HEAD
 POLICY <IPolicy>: Specific replication policy object.
   - `[Location <String>]`: Resource Location
   - `[FriendlyName <String>]`: The FriendlyName.
   - `[ProviderSpecificDetailInstanceType <String>]`: Gets the class type. Overridden in derived classes.
+=======
+INPUT <IUpdatePolicyInput>: Update policy input.
+  - `[ReplicationProviderSetting <IPolicyProviderSpecificInput>]`: The ReplicationProviderSettings.
+    - `ReplicationScenario <String>`: The class type.
+>>>>>>> 9c081c4212d626ff5bb34be7af9539ac02be1b04
 
 REPLICATIONPROVIDERSETTING <IPolicyProviderSpecificInput>: The ReplicationProviderSettings.
   - `ReplicationScenario <String>`: The class type.
