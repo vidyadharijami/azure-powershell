@@ -23,11 +23,7 @@ function setupEnv() {
     $env.a2aVaultName = "a2arecoveryvault"
     $env.a2aResourceGroupName = "a2arecoveryrg"
     $env.a2aPolicyName = "demopolicy1"
-<<<<<<< HEAD
     $env.a2aCreateRemovePolicy = "a2ademoPolicy"
-=======
-    $env.a2aCreateRemovePolicy = "demoPolicy"
->>>>>>> 9c081c4212d626ff5bb34be7af9539ac02be1b04
 
     $envFile = 'env.json'
     if ($TestMode -eq 'live') {

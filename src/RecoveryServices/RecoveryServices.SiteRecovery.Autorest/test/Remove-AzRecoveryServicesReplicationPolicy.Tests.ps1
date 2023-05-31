@@ -17,12 +17,7 @@ if(($null -eq $TestName) -or ($TestName -contains 'Remove-AzRecoveryServicesRepl
 Describe 'Remove-AzRecoveryServicesReplicationPolicy' {
     It 'Delete' {
         $obj = Get-AzRecoveryServicesReplicationPolicy -PolicyName $env.a2aCreateRemovePolicy -ResourceName $env.a2aVaultName -ResourceGroupName $env.a2aResourceGroupName -SubscriptionId $env.a2aSubscriptionId
-<<<<<<< HEAD
         $obj.Count | Should Not BeNullOrEmpty
         {Remove-AzRecoveryServicesReplicationPolicy -Policy $obj -ResourceName $env.a2aVaultName -ResourceGroupName $env.a2aResourceGroupName -SubscriptionId $env.a2aSubscriptionId} | Should Not Throw
-=======
-        $obj.Count | Should -BeGreaterOrEqual 1
-        {Remove-AzRecoveryServicesReplicationPolicy -Policy $obj -ResourceName $env.a2aVaultName -ResourceGroupName $env.a2aResourceGroupName -SubscriptionId $env.a2aSubscriptionId} | Should -Not -Throw
->>>>>>> 9c081c4212d626ff5bb34be7af9539ac02be1b04
     }
 }

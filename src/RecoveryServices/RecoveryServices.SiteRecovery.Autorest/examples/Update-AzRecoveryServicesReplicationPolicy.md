@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 ### Example 1: Update an Azure-To-Azure replication policy in a recovery services vault
 ```powershell
 $policyDesc=Get-AzRecoveryServicesReplicationPolicy -ResourceGroupName "a2arecoveryrg" -ResourceName "a2arecoveryvault" -PolicyName "demoPolicy"
@@ -18,27 +17,4 @@ Location Name       Type
 ```
 
 Updates an Azure-To-Azure replication policy in the specified vault in the specified resource group.
-=======
-### Example 1: {{ Add title here }}
-```powershell
-{{ Add code here }}
-```
-
-```output
-{{ Add output here }}
-```
-
-{{ Add description here }}
-
-### Example 2: {{ Add title here }}
-```powershell
-{{ Add code here }}
-```
-
-```output
-{{ Add output here }}
-```
-
-{{ Add description here }}
->>>>>>> 9c081c4212d626ff5bb34be7af9539ac02be1b04
 

@@ -23,11 +23,7 @@ Describe 'New-AzRecoveryServicesReplicationPolicy' {
         $policy.RecoveryPointHistory = 4320
         $policy.ReplicationScenario = "ReplicateAzureToAzure"
         $output = New-AzRecoveryServicesReplicationPolicy -PolicyName $env.a2aCreateRemovePolicy -ResourceName $env.a2aVaultName -ResourceGroupName $env.a2aResourceGroupName -SubscriptionId $env.a2aSubscriptionId -ProviderSpecificInput $policy
-<<<<<<< HEAD
         $output.Count | Should Not BeNullOrEmpty
-=======
-        $output.Count | Should -BeGreaterOrEqual 1
->>>>>>> 9c081c4212d626ff5bb34be7af9539ac02be1b04
     }
 
     It 'Create' -skip {

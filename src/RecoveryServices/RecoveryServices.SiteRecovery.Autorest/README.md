@@ -86,15 +86,9 @@ directive:
       variant: ^CreateViaIdentity$|^CreateViaIdentityExpanded$
     remove: true
   - where:
-<<<<<<< HEAD
       verb: ^New$|^Update$
       subject: ReplicationPolicy
       variant: ^Create$|^Update$
-=======
-      verb: New
-      subject: ReplicationPolicy
-      variant: Create
->>>>>>> 9c081c4212d626ff5bb34be7af9539ac02be1b04
     remove: true
   - where:
       verb: Remove
@@ -148,11 +142,7 @@ directive:
     remove: true
   # Hide some commands that require some edits
   - where:
-<<<<<<< HEAD
       verb: ^Remove$|^New$|^Update$
-=======
-      verb: ^Remove$|^New$
->>>>>>> 9c081c4212d626ff5bb34be7af9539ac02be1b04
       subject: ReplicationPolicy
     hide: true
   # Rename some model properties
