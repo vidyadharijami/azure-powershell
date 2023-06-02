@@ -15,49 +15,32 @@
 
 <#
 .Synopsis
-Operation to create a protection container.
+The operation to purge(force delete) a protection container mapping.
 .Description
-Operation to create a protection container.
+The operation to purge(force delete) a protection container mapping.
 
 .Outputs
-Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IProtectionContainer
-.Notes
-COMPLEX PARAMETER PROPERTIES
-
-To create the parameters described below, construct a hash table containing the appropriate properties. For information on hash tables, run Get-Help about_Hash_Tables.
-
-PROVIDERSPECIFICINPUT <IReplicationProviderSpecificContainerCreationInput[]>: Provider specific inputs for container creation.
-  InstanceType <String>: The class type.
+System.Boolean
 .Link
-https://docs.microsoft.com/powershell/module/az.recoveryservices/new-azrecoveryservicesreplicationprotectioncontainer
+https://docs.microsoft.com/powershell/module/az.recoveryservices/clear-azrecoveryservicesreplicationprotectioncontainermapping
 #>
-function New-AzRecoveryServicesReplicationProtectionContainer {
-    [OutputType([Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IProtectionContainer])]
-    [CmdletBinding(DefaultParameterSetName='CreateExpanded', PositionalBinding=$false, SupportsShouldProcess, ConfirmImpact='Medium')]
+function Clear-AzRecoveryServicesReplicationProtectionContainerMapping {
+    [OutputType([System.Boolean])]
+    [CmdletBinding(DefaultParameterSetName='Purge', PositionalBinding=$false, SupportsShouldProcess, ConfirmImpact='Medium')]
     param(
         [Parameter(Mandatory)]
-        [ValidateNotNull()]
         [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Category('Path')]
-        [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IFabric]
-        # Fabric Object.
-        ${Fabric},
+        [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IProtectionContainerMapping]
+        # Protection container mapping object.
+        ${InputObject},
 
         [Parameter(Mandatory)]
-        [ValidateNotNullOrEmpty()]
-        [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Category('Path')]
-        [System.String]
-        # Unique protection container ARM name.
-        ${ProtectionContainerName},
-
-        [Parameter(Mandatory)]
-        [ValidateNotNullOrEmpty()]
         [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Category('Path')]
         [System.String]
         # The name of the resource group where the recovery services vault is present.
         ${ResourceGroupName},
 
         [Parameter(Mandatory)]
-        [ValidateNotNullOrEmpty()]
         [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Category('Path')]
         [System.String]
         # The name of the recovery services vault.
@@ -69,14 +52,6 @@ function New-AzRecoveryServicesReplicationProtectionContainer {
         [System.String]
         # The subscription Id.
         ${SubscriptionId},
-
-        [Parameter(Mandatory)]
-        [ValidateNotNull()]
-        [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Category('Body')]
-        [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IReplicationProviderSpecificContainerCreationInput]
-        # Provider specific inputs for container creation.
-        # To construct, see NOTES section for PROVIDERSPECIFICINPUT properties and create a hash table.
-        ${ProviderSpecificInput},
 
         [Parameter()]
         [Alias('AzureRMContext', 'AzureCredential')]
@@ -118,6 +93,12 @@ function New-AzRecoveryServicesReplicationProtectionContainer {
         # Run the command asynchronously
         ${NoWait},
 
+        [Parameter()]
+        [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Category('Runtime')]
+        [System.Management.Automation.SwitchParameter]
+        # Returns true when the command succeeds
+        ${PassThru},
+
         [Parameter(DontShow)]
         [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Category('Runtime')]
         [System.Uri]
@@ -140,20 +121,17 @@ function New-AzRecoveryServicesReplicationProtectionContainer {
 
     process {
         try {
-            $replicationscenario = $ProviderSpecificInput.ReplicationScenario
-            if($replicationscenario -eq "ReplicateAzureToAzure") {
-                $ProviderSpecificInput.ReplicationScenario = "A2A"
-            }
-            else {
-                throw "Provided replication scenario is not supported. Only ReplicateAzureToAzure is supported."
-            }
+            $mappingName = $InputObject.Name
+            $protectionContainermapString = $InputObject.id.Split("/")
+            $protectionContainerName = $protectionContainermapString[-3]
+            $fabricName = $protectionContainermapString[-5]
 
-            $fabricName = $Fabric.Name
-        
-            $null = $PSBoundParameters.Remove("Fabric")
+            $null = $PSBoundParameters.Remove("InputObject")
+            $null = $PSBoundParameters.Add("MappingName", $mappingName)
             $null = $PSBoundParameters.Add("FabricName", $fabricName)
+            $null = $PSBoundParameters.Add("ProtectionContainerName", $protectionContainerName)
 
-            return Az.RecoveryServices.internal\New-AzRecoveryServicesReplicationProtectionContainer @PSBoundParameters
+            return Az.RecoveryServices.internal\Clear-AzRecoveryServicesReplicationProtectionContainerMapping @PSBoundParameters
         } catch {
             throw
         }
