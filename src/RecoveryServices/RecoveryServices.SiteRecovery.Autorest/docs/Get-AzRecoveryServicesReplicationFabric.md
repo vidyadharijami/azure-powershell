@@ -25,32 +25,57 @@ Get-AzRecoveryServicesReplicationFabric -FabricName <String> -ResourceGroupName 
  [<CommonParameters>]
 ```
 
+### GetByName
+```
+Get-AzRecoveryServicesReplicationFabric -FriendlyName <String> -ResourceGroupName <String>
+ -ResourceName <String> [-SubscriptionId <String[]>] [-Filter <String>] [-DefaultProfile <PSObject>]
+ [<CommonParameters>]
+```
+
 ## DESCRIPTION
 Gets the details of an Azure Site Recovery fabric.
 
 ## EXAMPLES
 
-### Example 1: {{ Add title here }}
+### Example 1: List all the replication fabrics in a specified recovery services vault
 ```powershell
-{{ Add code here }}
+Get-AzRecoveryServicesReplicationFabric -ResourceGroupName "a2arecoveryrg" -ResourceName "a2arecoveryvault"
 ```
 
 ```output
-{{ Add output here }}
+Location Name             Type
+-------- ----             ----
+         A2Ademo-EastUS   Microsoft.RecoveryServices/vaults/replicationFabrics
+         A2Aprimaryfabric Microsoft.RecoveryServices/vaults/replicationFabrics
 ```
 
-{{ Add description here }}
+Lists details of all the replication fabrics in a specific recovery servivces vault.
 
-### Example 2: {{ Add title here }}
+### Example 2: Get a replication fabric using a fabric name
 ```powershell
-{{ Add code here }}
+Get-AzRecoveryServicesReplicationFabric -ResourceGroupName "a2arecoveryrg" -ResourceName "a2arecoveryvault" -FabricName "A2Aprimaryfabric"
 ```
 
 ```output
-{{ Add output here }}
+Location Name             Type
+-------- ----             ----
+         A2Aprimaryfabric Microsoft.RecoveryServices/vaults/replicationFabrics
 ```
 
-{{ Add description here }}
+Gets details of a replication fabric using fabric name in a specific recovery services vault.
+
+### Example 2: Get a replication fabric using FriendlyName property of a fabric.
+```powershell
+Get-AzRecoveryServicesReplicationFabric -ResourceGroupName "a2arecoveryrg" -ResourceName "a2arecoveryvault" -FriendlyName "East US"
+```
+
+```output
+Location Name           Type
+-------- ----           ----
+         A2Ademo-EastUS Microsoft.RecoveryServices/vaults/replicationFabrics
+```
+
+Gets details of a replication fabric using FriendlyName property of a fabric in a specific recovery services vault.
 
 ## PARAMETERS
 
@@ -89,10 +114,25 @@ OData filter options.
 
 ```yaml
 Type: System.String
-Parameter Sets: Get
+Parameter Sets: Get, GetByName
 Aliases:
 
 Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -FriendlyName
+Friendly name.
+
+```yaml
+Type: System.String
+Parameter Sets: GetByName
+Aliases:
+
+Required: True
 Position: Named
 Default value: None
 Accept pipeline input: False

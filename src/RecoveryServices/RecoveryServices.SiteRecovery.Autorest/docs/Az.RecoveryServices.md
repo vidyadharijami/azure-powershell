@@ -83,10 +83,10 @@ The operation to get the details of a protectable item.
 Gets the details of an ASR replication protected item.
 
 ### [Get-AzRecoveryServicesReplicationProtectionContainer](Get-AzRecoveryServicesReplicationProtectionContainer.md)
-Gets the details of a protection container.
+Lists the protection containers in a vault.
 
 ### [Get-AzRecoveryServicesReplicationProtectionContainerMapping](Get-AzRecoveryServicesReplicationProtectionContainerMapping.md)
-Gets the details of a protection container mapping.
+Lists the protection container mappings in the vault.
 
 ### [Get-AzRecoveryServicesReplicationProtectionIntent](Get-AzRecoveryServicesReplicationProtectionIntent.md)
 Gets the details of an ASR replication protection intent.

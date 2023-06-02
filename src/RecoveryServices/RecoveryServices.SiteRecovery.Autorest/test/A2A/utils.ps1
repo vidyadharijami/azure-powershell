@@ -24,6 +24,16 @@ function setupEnv() {
     $env.a2aResourceGroupName = "a2arecoveryrg"
     $env.a2aPolicyName = "demopolicy1"
     $env.a2aCreateRemovePolicy = "a2ademoPolicy"
+    $env.a2aFabricName = "A2Aprimaryfabric"
+    $env.a2aFabricFriendlyName = "West US 2"
+    $env.a2ademofabric = "a2ademofabric"
+    $env.a2aProtectionContainerName = "A2AEastUSProtectionContainer2"
+    $env.a2apcName = "demoProtectionContainer"
+    $env.a2ampfabricname = "A2Ademo-EastUS"
+    $env.a2amppcname = "A2AEastUSProtectionContainer"
+    $env.mappingName = "demomap"
+    $env.getmappingName = "A2AprimaryToRecovery"
+    $env.mapPolicy = "A2APolicy"
 
     $envFile = 'env.json'
     if ($TestMode -eq 'live') {
