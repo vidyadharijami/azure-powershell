@@ -15,7 +15,9 @@ if(($null -eq $TestName) -or ($TestName -contains 'Remove-AzRecoveryServicesRepl
 }
 
 Describe 'Remove-AzRecoveryServicesReplicationFabric' {
-    It 'Delete' -skip {
-        { throw [System.NotImplementedException] } | Should -Not -Throw
+    It 'Delete' {
+        $obj = Get-AzRecoveryServicesReplicationFabric -ResourceName $env.a2aVaultName -ResourceGroupName $env.a2aResourceGroupName -SubscriptionId $env.a2aSubscriptionId -FabricName $env.a2ademofabric
+        $obj.Count | Should Not BeNullOrEmpty
+        {Remove-AzRecoveryServicesReplicationFabric -Fabric $obj -ResourceName $env.a2aVaultName -ResourceGroupName $env.a2aResourceGroupName -SubscriptionId $env.a2aSubscriptionId} | Should Not Throw
     }
 }

@@ -15,8 +15,12 @@ if(($null -eq $TestName) -or ($TestName -contains 'New-AzRecoveryServicesReplica
 }
 
 Describe 'New-AzRecoveryServicesReplicationFabric' {
-    It 'CreateExpanded' -skip {
-        { throw [System.NotImplementedException] } | Should -Not -Throw
+    It 'CreateExpanded' {
+        $fabric = [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.AzureFabricCreationInput]::new()
+        $fabric.InstanceType="Azure"
+        $fabric.Location="East US 2"
+        $output = New-AzRecoveryServicesReplicationFabric -ResourceGroupName $env.a2aResourceGroupName -ResourceName $env.a2aVaultName -SubscriptionId $env.a2aSubscriptionId -FabricName $env.a2ademofabric -CustomDetail $fabric
+        $output.Count | Should Not BeNullOrEmpty
     }
 
     It 'Create' -skip {
