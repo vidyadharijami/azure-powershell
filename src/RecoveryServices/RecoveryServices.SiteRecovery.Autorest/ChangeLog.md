@@ -1,0 +1,31 @@
+<!--
+    Please leave this section at the top of the change log.
+
+    Changes for the upcoming release should go under the section titled "Upcoming Release", and should adhere to the following format:
+
+    ## Upcoming Release
+    * Overview of change #1
+        - Additional information about change #1
+    * Overview of change #2
+        - Additional information about change #2
+        - Additional information about change #2
+    * Overview of change #3
+    * Overview of change #4
+        - Additional information about change #4
+
+    ## YYYY.MM.DD - Version X.Y.Z (Previous Release)
+    * Overview of change #1
+        - Additional information about change #1
+-->
+## Upcoming Release
+
+## Version 2.0.0
+* Added a feature of remove and update replication policy using a policy object.
+* Fixed the ICreatePolicyInput object to receive Policy specifications using an object.
+* Changed the Input InstanceType to ReplicationScenario for better understanding of the user.
+* Added help examples and test recordings
+  * `Get-AzRecoveryServicesReplicationPolicy`
+  * `New-AzRecoveryServicesReplicationPolicy`
+  * `Remove-AzRecoveryServicesReplicationPolicy`
+  * `Update-AzRecoveryServicesReplicationPolicy`
+* First preview release for module Az.RecoveryServices. The cmdlets to support common scenarios of RecoveryServices like policies, fabrics, protection container, protection container mapping, enable replication and test failover have been exposed.
