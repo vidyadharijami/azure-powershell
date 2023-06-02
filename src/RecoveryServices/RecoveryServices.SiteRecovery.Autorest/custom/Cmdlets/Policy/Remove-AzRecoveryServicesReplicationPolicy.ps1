@@ -1,6 +1,6 @@
 function Remove-AzRecoveryServicesReplicationPolicy
 {
-	[OutputType([Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IJob])]
+	[OutputType([System.Boolean])]
     [CmdletBinding(PositionalBinding=$false, SupportsShouldProcess)]
     [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Description('Removes a given replication policy in a given recovery services vault')]
 

@@ -13,10 +13,9 @@ The operation to purge(force delete) a protection container mapping.
 ## SYNTAX
 
 ```
-Clear-AzRecoveryServicesReplicationProtectionContainerMapping -FabricName <String> -MappingName <String>
- -ProtectionContainerName <String> -ResourceGroupName <String> -ResourceName <String>
- [-SubscriptionId <String>] [-DefaultProfile <PSObject>] [-AsJob] [-NoWait] [-PassThru] [-Confirm] [-WhatIf]
- [<CommonParameters>]
+Clear-AzRecoveryServicesReplicationProtectionContainerMapping -InputObject <IProtectionContainerMapping>
+ -ResourceGroupName <String> -ResourceName <String> [-SubscriptionId <String>] [-DefaultProfile <PSObject>]
+ [-AsJob] [-NoWait] [-PassThru] [-Confirm] [-WhatIf] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -24,27 +23,15 @@ The operation to purge(force delete) a protection container mapping.
 
 ## EXAMPLES
 
-### Example 1: {{ Add title here }}
+### Example 1: Remove a replication protection container mapping
 ```powershell
-{{ Add code here }}
+$fabric=Get-AzRecoveryServicesReplicationFabric -ResourceGroupName "a2arecoveryrg" -ResourceName "a2arecoveryvault" -FabricName "A2Aprimaryfabric"
+$protectioncontainer=Get-AzRecoveryServicesReplicationProtectionContainer -ResourceGroupName "a2arecoveryrg" -ResourceName "a2arecoveryvault" -Fabric $fabric -ProtectionContainer "demoprotectioncontainerA2A"
+$pcmapping=Get-AzRecoveryServicesReplicationProtectionContainerMapping -ResourceGroupName "a2arecoveryrg" -ResourceName "a2arecoveryvault" -ProtectionContainer $protectioncontainer -MappingName "A2ARecoveryToPrimary"
+Clear-AzRecoveryServicesReplicationProtectionContainerMapping -InputObject $pcmapping -ResourceGroupName "a2arecoveryrg" -ResourceName "a2arecoveryvault"
 ```
 
-```output
-{{ Add output here }}
-```
-
-{{ Add description here }}
-
-### Example 2: {{ Add title here }}
-```powershell
-{{ Add code here }}
-```
-
-```output
-{{ Add output here }}
-```
-
-{{ Add description here }}
+Removes a replication protection container mapping in a recovery services vault.
 
 ## PARAMETERS
 
@@ -78,26 +65,12 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -FabricName
-Fabric name.
+### -InputObject
+Protection container mapping object.
+To construct, see NOTES section for INPUTOBJECT properties and create a hash table.
 
 ```yaml
-Type: System.String
-Parameter Sets: (All)
-Aliases:
-
-Required: True
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -MappingName
-Protection container mapping name.
-
-```yaml
-Type: System.String
+Type: Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IProtectionContainerMapping
 Parameter Sets: (All)
 Aliases:
 
@@ -132,21 +105,6 @@ Parameter Sets: (All)
 Aliases:
 
 Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -ProtectionContainerName
-Protection container name.
-
-```yaml
-Type: System.String
-Parameter Sets: (All)
-Aliases:
-
-Required: True
 Position: Named
 Default value: None
 Accept pipeline input: False
@@ -241,6 +199,54 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## NOTES
 
 ALIASES
+
+COMPLEX PARAMETER PROPERTIES
+
+To create the parameters described below, construct a hash table containing the appropriate properties. For information on hash tables, run Get-Help about_Hash_Tables.
+
+
+INPUTOBJECT <IProtectionContainerMapping>: Protection container mapping object.
+  - `[Location <String>]`: Resource Location
+  - `[Health <String>]`: Health of pairing.
+  - `[HealthErrorDetail <IHealthError[]>]`: Health error.
+    - `[CreationTimeUtc <DateTime?>]`: Error creation time (UTC).
+    - `[CustomerResolvability <HealthErrorCustomerResolvability?>]`: Value indicating whether the health error is customer resolvable.
+    - `[EntityId <String>]`: ID of the entity.
+    - `[ErrorCategory <String>]`: Category of error.
+    - `[ErrorCode <String>]`: Error code.
+    - `[ErrorId <String>]`: The health error unique id.
+    - `[ErrorLevel <String>]`: Level of error.
+    - `[ErrorMessage <String>]`: Error message.
+    - `[ErrorSource <String>]`: Source of error.
+    - `[ErrorType <String>]`: Type of error.
+    - `[InnerHealthError <IInnerHealthError[]>]`: The inner health errors. HealthError having a list of HealthError as child errors is problematic. InnerHealthError is used because this will prevent an infinite loop of structures when Hydra tries to auto-generate the contract. We are exposing the related health errors as inner health errors and all API consumers can utilize this in the same fashion as Exception -&gt; InnerException.
+      - `[CreationTimeUtc <DateTime?>]`: Error creation time (UTC).
+      - `[CustomerResolvability <HealthErrorCustomerResolvability?>]`: Value indicating whether the health error is customer resolvable.
+      - `[EntityId <String>]`: ID of the entity.
+      - `[ErrorCategory <String>]`: Category of error.
+      - `[ErrorCode <String>]`: Error code.
+      - `[ErrorId <String>]`: The health error unique id.
+      - `[ErrorLevel <String>]`: Level of error.
+      - `[ErrorMessage <String>]`: Error message.
+      - `[ErrorSource <String>]`: Source of error.
+      - `[ErrorType <String>]`: Type of error.
+      - `[PossibleCaus <String>]`: Possible causes of error.
+      - `[RecommendedAction <String>]`: Recommended action to resolve error.
+      - `[RecoveryProviderErrorMessage <String>]`: DRA error message.
+      - `[SummaryMessage <String>]`: Summary message of the entity.
+    - `[PossibleCaus <String>]`: Possible causes of error.
+    - `[RecommendedAction <String>]`: Recommended action to resolve error.
+    - `[RecoveryProviderErrorMessage <String>]`: DRA error message.
+    - `[SummaryMessage <String>]`: Summary message of the entity.
+  - `[PolicyFriendlyName <String>]`: Friendly name of replication policy.
+  - `[PolicyId <String>]`: Policy ARM Id.
+  - `[ProviderSpecificDetailInstanceType <String>]`: Gets the class type. Overridden in derived classes.
+  - `[SourceFabricFriendlyName <String>]`: Friendly name of source fabric.
+  - `[SourceProtectionContainerFriendlyName <String>]`: Friendly name of source protection container.
+  - `[State <String>]`: Association Status.
+  - `[TargetFabricFriendlyName <String>]`: Friendly name of target fabric.
+  - `[TargetProtectionContainerFriendlyName <String>]`: Friendly name of paired container.
+  - `[TargetProtectionContainerId <String>]`: Paired protection container ARM ID.
 
 ## RELATED LINKS
 

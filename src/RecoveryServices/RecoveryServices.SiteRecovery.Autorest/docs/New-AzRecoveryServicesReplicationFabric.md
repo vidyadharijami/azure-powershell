@@ -13,18 +13,10 @@ Hyper-V site).
 
 ## SYNTAX
 
-### CreateExpanded (Default)
 ```
 New-AzRecoveryServicesReplicationFabric -FabricName <String> -ResourceGroupName <String>
- -ResourceName <String> [-SubscriptionId <String>] [-CustomDetailInstanceType <String>]
+ -ResourceName <String> [-SubscriptionId <String>] [-CustomDetail <IFabricSpecificCreationInput>]
  [-DefaultProfile <PSObject>] [-AsJob] [-NoWait] [-Confirm] [-WhatIf] [<CommonParameters>]
-```
-
-### Create
-```
-New-AzRecoveryServicesReplicationFabric -FabricName <String> -ResourceGroupName <String>
- -ResourceName <String> -Input <IFabricCreationInput> [-SubscriptionId <String>] [-DefaultProfile <PSObject>]
- [-AsJob] [-NoWait] [-Confirm] [-WhatIf] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -33,27 +25,21 @@ Hyper-V site).
 
 ## EXAMPLES
 
-### Example 1: {{ Add title here }}
+### Example 1: Create a new replication fabric in a specific recovery services vault
 ```powershell
-{{ Add code here }}
+$fabric = [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.AzureFabricCreationInput]::new()
+$fabric.InstanceType="Azure"
+$fabric.Location="East US"
+New-AzRecoveryServicesReplicationFabric -ResourceGroupName "a2arecoveryrg" -ResourceName "a2arecoveryvault" -FabricName "demofabric" -CustomDetail $fabric
 ```
 
 ```output
-{{ Add output here }}
+Location Name       Type
+-------- ----       ----
+         demofabric Microsoft.RecoveryServices/vaults/replicationFabrics
 ```
 
-{{ Add description here }}
-
-### Example 2: {{ Add title here }}
-```powershell
-{{ Add code here }}
-```
-
-```output
-{{ Add output here }}
-```
-
-{{ Add description here }}
+Creates a new replication fabric in a specified recovery services vault for a replicateAzuretoAzure instance type.
 
 ## PARAMETERS
 
@@ -72,12 +58,13 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -CustomDetailInstanceType
-Gets the class type.
+### -CustomDetail
+Fabric provider specific creation input.
+To construct, see NOTES section for CUSTOMDETAIL properties and create a hash table.
 
 ```yaml
-Type: System.String
-Parameter Sets: CreateExpanded
+Type: Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IFabricSpecificCreationInput
+Parameter Sets: (All)
 Aliases:
 
 Required: False
@@ -114,22 +101,6 @@ Required: True
 Position: Named
 Default value: None
 Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -Input
-Site details provided during the time of site creation.
-To construct, see NOTES section for INPUT properties and create a hash table.
-
-```yaml
-Type: Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IFabricCreationInput
-Parameter Sets: Create
-Aliases:
-
-Required: True
-Position: Named
-Default value: None
-Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
 
@@ -229,8 +200,6 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## INPUTS
 
-### Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IFabricCreationInput
-
 ## OUTPUTS
 
 ### Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IFabric
@@ -244,8 +213,8 @@ COMPLEX PARAMETER PROPERTIES
 To create the parameters described below, construct a hash table containing the appropriate properties. For information on hash tables, run Get-Help about_Hash_Tables.
 
 
-INPUT <IFabricCreationInput>: Site details provided during the time of site creation.
-  - `[CustomDetailInstanceType <String>]`: Gets the class type.
+CUSTOMDETAIL <IFabricSpecificCreationInput>: Fabric provider specific creation input.
+  - `InstanceType <String>`: Gets the class type.
 
 ## RELATED LINKS
 

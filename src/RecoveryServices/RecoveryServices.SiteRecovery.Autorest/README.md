@@ -44,6 +44,9 @@ directive:
   # Correct some generated models
   - no-inline:
     - PolicyProviderSpecificInput
+    - FabricSpecificCreationInput
+    - ReplicationProviderSpecificContainerMappingInput
+    - ReplicationProviderSpecificUpdateContainerMappingInput
   # Remove variants not in scope
   - where:
       verb: Add
@@ -87,7 +90,7 @@ directive:
     remove: true
   - where:
       verb: ^New$|^Update$
-      subject: ReplicationPolicy
+      subject: ^ReplicationPolicy$|^ReplicationFabric$|^ReplicationProtectionContainer$|^ReplicationProtectionContainerMapping$
       variant: ^Create$|^Update$
     remove: true
   - where:
@@ -143,7 +146,20 @@ directive:
   # Hide some commands that require some edits
   - where:
       verb: ^Remove$|^New$|^Update$
-      subject: ReplicationPolicy
+      subject: ^ReplicationPolicy$|^ReplicationProtectionContainer$
+    hide: true
+  - where:
+      verb: Remove
+      subject: ReplicationFabric
+    hide: true
+  - where:
+      verb: ^Clear$|^New$|^Update$
+      subject: ReplicationProtectionContainerMapping
+    hide: true
+  - where:
+      verb: Get
+      subject: ^ReplicationProtectionContainer$|^ReplicationProtectionContainerMapping$
+      variant: ^Get$|^List$
     hide: true
   # Rename some model properties
   - where:
