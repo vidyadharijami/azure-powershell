@@ -36,8 +36,8 @@ REPLICATIONPROVIDERSETTING <IPolicyProviderSpecificInput>: The ReplicationProvid
 https://docs.microsoft.com/powershell/module/az.recoveryservices/update-azrecoveryservicesreplicationpolicy
 #>
 function Update-AzRecoveryServicesReplicationPolicy {
-[OutputType([Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IPolicy])]
-[CmdletBinding(DefaultParameterSetName='UpdateExpanded', PositionalBinding=$false, SupportsShouldProcess, ConfirmImpact='Medium')]
+    [OutputType([Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IPolicy])]
+    [CmdletBinding(DefaultParameterSetName='UpdateExpanded', PositionalBinding=$false, SupportsShouldProcess, ConfirmImpact='Medium')]
     param(
         [Parameter(Mandatory)]
         [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Category('Path')]
@@ -134,7 +134,7 @@ function Update-AzRecoveryServicesReplicationPolicy {
     process {
         try {
             $policyName = $Policy.FriendlyName
-            $replicationscenario=$ReplicationProviderSetting.ReplicationScenario
+            $replicationscenario = $ReplicationProviderSetting.ReplicationScenario
 
             $null = $PSBoundParameters.Remove("Policy")
             $null = $PSBoundParameters.Add("PolicyName", $policyName)
@@ -143,7 +143,7 @@ function Update-AzRecoveryServicesReplicationPolicy {
                 $ReplicationProviderSetting.ReplicationScenario = "A2A"
             }
             else {
-                throw "For now we just support ReplicateAzureToAzure scenario, working on other scenarios"
+                throw "Provided replication scenario is not supported. Only ReplicateAzureToAzure is applicable."
             }
 
             return Az.RecoveryServices.internal\Update-AzRecoveryServicesReplicationPolicy @PSBoundParameters

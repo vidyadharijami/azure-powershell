@@ -64,16 +64,13 @@ function Remove-AzRecoveryServicesReplicationPolicy
     )
 
     process
-    {
-        # RsvRef
-        # public string[] ResourceGuardOperationRequest --- this should be a parameter (check in SDK code) ? If yes, optional parameters ? 
+    { 
         try {
             $policyName = $Policy.FriendlyName
         
             $null = $PSBoundParameters.Remove("Policy")
             $null = $PSBoundParameters.Add("PolicyName", $policyName)
 
-            # RsvRef : change command name while taking a pull or modify the directive
             return Az.RecoveryServices.internal\Remove-AzRecoveryServicesReplicationPolicy @PSBoundParameters
         } catch {
             throw

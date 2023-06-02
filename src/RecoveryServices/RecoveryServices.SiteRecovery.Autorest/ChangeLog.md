@@ -24,8 +24,4 @@
 * Fixed the ICreatePolicyInput object to receive Policy specifications using an object.
 * Changed the Input InstanceType to ReplicationScenario for better understanding of the user.
 * Added help examples and test recordings
-  * `Get-AzRecoveryServicesReplicationPolicy`
-  * `New-AzRecoveryServicesReplicationPolicy`
-  * `Remove-AzRecoveryServicesReplicationPolicy`
-  * `Update-AzRecoveryServicesReplicationPolicy`
-* First preview release for module Az.RecoveryServices. The cmdlets to support common scenarios of RecoveryServices like policies, fabrics, protection container, protection container mapping, enable replication and test failover have been exposed.
+  * `AzRecoveryServicesReplicationPolicy`

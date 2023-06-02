@@ -117,7 +117,7 @@ function New-AzRecoveryServicesReplicationPolicy {
                 $ProviderSpecificInput.ReplicationScenario = "A2A"
             }
             else {
-                throw "For now we just support ReplicateAzureToAzure scenario, working on other scenarios"
+                throw "Provided replication scenario is not supported. Only ReplicateAzureToAzure is applicable."
             }
 
             return Az.RecoveryServices.internal\New-AzRecoveryServicesReplicationPolicy @PSBoundParameters
