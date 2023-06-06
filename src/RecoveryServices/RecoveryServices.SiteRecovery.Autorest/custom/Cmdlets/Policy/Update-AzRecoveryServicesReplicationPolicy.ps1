@@ -135,12 +135,15 @@ function Update-AzRecoveryServicesReplicationPolicy {
         try {
             $policyName = $Policy.FriendlyName
             $replicationscenario = $ReplicationProviderSetting.ReplicationScenario
-
             $null = $PSBoundParameters.Remove("Policy")
             $null = $PSBoundParameters.Add("PolicyName", $policyName)
 
             if($replicationscenario -eq "ReplicateAzureToAzure") {
                 $ReplicationProviderSetting.ReplicationScenario = "A2A"
+            }
+            elseif ($replicationscenario -eq "ReplicateHyperVToAzure") {
+                $ReplicationProviderSetting.ReplicationScenario = "HyperVReplicaAzure"
+                return Az.RecoveryServices.internal\Update-AzRecoveryServicesReplicationPolicy @PSBoundParameters
             }
             else {
                 throw "Provided replication scenario is not supported. Only ReplicateAzureToAzure is applicable."

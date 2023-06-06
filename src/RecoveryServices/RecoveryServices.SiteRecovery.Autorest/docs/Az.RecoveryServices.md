@@ -175,7 +175,7 @@ The operation to create an ASR migration item (enable migration).
 The operation to create an ASR network mapping.
 
 ### [New-AzRecoveryServicesReplicationPolicy](New-AzRecoveryServicesReplicationPolicy.md)
-The operation to create a replication policy.
+
 
 ### [New-AzRecoveryServicesReplicationProtectedItem](New-AzRecoveryServicesReplicationProtectedItem.md)
 The operation to create an ASR replication protected item (Enable replication).

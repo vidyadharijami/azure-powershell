@@ -1,3 +1,17 @@
+
+# ----------------------------------------------------------------------------------
+#
+# Copyright Microsoft Corporation
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+# http://www.apache.org/licenses/LICENSE-2.0
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+# ----------------------------------------------------------------------------------
 <#
 .Synopsis
 The operation to create a replication policy.
@@ -7,7 +21,6 @@ The operation to create a replication policy.
 {{ Add code here }}
 .Example
 {{ Add code here }}
-
 .Outputs
 Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IPolicy
 .Notes
@@ -112,15 +125,18 @@ function New-AzRecoveryServicesReplicationPolicy {
 
     process {
         try {
-            $replicationscenario=$ProviderSpecificInput.ReplicationScenario
+            $replicationscenario = $ProviderSpecificInput.ReplicationScenario
             if($replicationscenario -eq "ReplicateAzureToAzure") {
                 $ProviderSpecificInput.ReplicationScenario = "A2A"
+                return Az.RecoveryServices.internal\New-AzRecoveryServicesReplicationPolicy @PSBoundParameters
+            }
+            elseif ($replicationscenario -eq "ReplicateHyperVToAzure") {
+                $ProviderSpecificInput.ReplicationScenario = "HyperVReplicaAzure"
+                return Az.RecoveryServices.internal\New-AzRecoveryServicesReplicationPolicy @PSBoundParameters
             }
             else {
-                throw "Provided replication scenario is not supported. Only ReplicateAzureToAzure is applicable."
+                throw "Provided replication scenario is not supported. Only ReplicateAzureToAzure and ReplicateHyperVToAzure are supported."
             }
-
-            return Az.RecoveryServices.internal\New-AzRecoveryServicesReplicationPolicy @PSBoundParameters
         } catch {
             throw
         }
