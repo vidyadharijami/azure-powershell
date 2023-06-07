@@ -143,7 +143,6 @@ function Update-AzRecoveryServicesReplicationPolicy {
             }
             elseif ($replicationscenario -eq "ReplicateHyperVToAzure") {
                 $ReplicationProviderSetting.ReplicationScenario = "HyperVReplicaAzure"
-                return Az.RecoveryServices.internal\Update-AzRecoveryServicesReplicationPolicy @PSBoundParameters
             }
             else {
                 throw "Provided replication scenario is not supported. Only ReplicateAzureToAzure is applicable."

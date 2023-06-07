@@ -128,15 +128,14 @@ function New-AzRecoveryServicesReplicationPolicy {
             $replicationscenario = $ProviderSpecificInput.ReplicationScenario
             if($replicationscenario -eq "ReplicateAzureToAzure") {
                 $ProviderSpecificInput.ReplicationScenario = "A2A"
-                return Az.RecoveryServices.internal\New-AzRecoveryServicesReplicationPolicy @PSBoundParameters
             }
             elseif ($replicationscenario -eq "ReplicateHyperVToAzure") {
                 $ProviderSpecificInput.ReplicationScenario = "HyperVReplicaAzure"
-                return Az.RecoveryServices.internal\New-AzRecoveryServicesReplicationPolicy @PSBoundParameters
             }
             else {
                 throw "Provided replication scenario is not supported. Only ReplicateAzureToAzure and ReplicateHyperVToAzure are supported."
             }
+            return Az.RecoveryServices.internal\New-AzRecoveryServicesReplicationPolicy @PSBoundParameters
         } catch {
             throw
         }

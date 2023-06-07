@@ -1,4 +1,4 @@
-### Example 1: Get all replication policies in a recovery services vault(Azure to Azure)
+### Example 1: List all replication policies in a recovery services vault(Azure to Azure)
 ```powershell
 Get-AzRecoveryServicesReplicationPolicy -ResourceGroupName "a2arecoveryrg" -ResourceName "a2arecoveryvault"
 ```
@@ -27,7 +27,7 @@ Id                                                                              
 
 Gets info for a specific replication policy by its name in the specified vault in the specified resource group.
 
-### Example 3: Get all replication policies in a recovery services vault (Hyper-V to Azure)
+### Example 3: List all replication policies in a recovery services vault (Hyper-V to Azure)
 ```powershell
 Get-AzRecoveryServicesReplicationPolicy -ResourceGroupName "ASRTesting" -ResourceName "HyperV2AzureVault"
 ```

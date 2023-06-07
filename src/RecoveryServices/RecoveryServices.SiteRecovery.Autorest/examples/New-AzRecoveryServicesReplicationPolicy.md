@@ -19,7 +19,7 @@ Creates an Azure-To-Azure replication policy in the specified vault in the speci
 
 ### Example 2: Create an HyperV-To-Azure replication policy in a recovery services vault
 ```powershell
-$providerSpecificPolicy = [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.HyperVReplicaAzurePolicyInput]::new()xf
+$providerSpecificPolicy = [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.HyperVReplicaAzurePolicyInput]::new()
 $providerSpecificPolicy.ApplicationConsistentSnapshotFrequencyInHour = 3
 $providerSpecificPolicy.RecoveryPointHistoryDuration = 10
 $providerSpecificPolicy.ReplicationScenario = "ReplicateHyperVToAzure"
