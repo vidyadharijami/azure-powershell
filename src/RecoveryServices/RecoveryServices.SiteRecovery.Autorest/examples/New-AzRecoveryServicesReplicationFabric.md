@@ -12,14 +12,4 @@ Id                                                                              
 /Subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/a2arecoveryrg/providers/Microsoft.RecoveryServices/vaults/a2arecoveryvault/replicationFabrics/testfabriccmd          testfabriccmd Microsoft.RecoveryServices/vaults/replicationFabrics
 ```
 
-Creates a new replication fabric in a specified recovery services vault for a replicateAzuretoAzure instance type.### Example 2: {{ Add title here }}
-```powershell
-{{ Add code here }}
-```
-
-```output
-{{ Add output here }}
-```
-
-{{ Add description here }}
-
+Creates a new replication fabric in a specified recovery services vault for a replicateAzuretoAzure instance type.

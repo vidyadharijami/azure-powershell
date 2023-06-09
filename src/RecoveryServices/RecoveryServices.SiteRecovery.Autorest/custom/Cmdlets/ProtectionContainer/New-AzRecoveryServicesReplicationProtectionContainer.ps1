@@ -149,7 +149,7 @@ function New-AzRecoveryServicesReplicationProtectionContainer {
             }
 
             $fabricName = $Fabric.Name
-        
+
             $null = $PSBoundParameters.Remove("Fabric")
             $null = $PSBoundParameters.Add("FabricName", $fabricName)
 
