@@ -29,11 +29,17 @@ function setupEnv() {
     $env.a2ademofabric = "a2ademofabric"
     $env.a2aProtectionContainerName = "A2AEastUSProtectionContainer2"
     $env.a2apcName = "demoProtectionContainer"
+    $env.dela2apcName = "demoProtectionContainer1"
     $env.a2ampfabricname = "A2Ademo-EastUS"
     $env.a2amppcname = "A2AEastUSProtectionContainer"
     $env.mappingName = "demomap"
+    $env.delcreatemap = "A2ARecoveryToPrimary"
     $env.getmappingName = "A2AprimaryToRecovery"
     $env.mapPolicy = "A2APolicy"
+    $env.replicatedProtectedItem = "replicatedvmtest"
+    $env.protectedItemtemp = "replicatedvmtest3"
+    $env.protectedItemtest = "replicatedvmtest2"
+    $env.testNetworkType = "VmNetworkAsInput"
 
     $envFile = 'env.json'
     if ($TestMode -eq 'live') {

@@ -23,6 +23,7 @@ Describe 'Update-AzRecoveryServicesReplicationProtectionContainerMapping' {
         $mappingInput.AgentAutoUpdateStatus='Enabled'
         $mappingInput.AutomationAccountArmId="/subscriptions/7c943c1b-5122-4097-90c8-861411bdd574/resourceGroups/a2arecoveryrg/providers/Microsoft.Automation/automationAccounts/testAutomation"
         $output = Update-AzRecoveryServicesReplicationProtectionContainerMapping -MappingName $env.mappingName -PrimaryProtectionContainer $primaryprotectioncontainer -ResourceName $env.a2aVaultName -ResourceGroupName $env.a2aResourceGroupName -SubscriptionId $env.a2aSubscriptionId -ProviderSpecificinput $mappingInput
+        $output.Count | Should -Not -BeNullOrEmpty
     }
 
     It 'Update' -skip {
