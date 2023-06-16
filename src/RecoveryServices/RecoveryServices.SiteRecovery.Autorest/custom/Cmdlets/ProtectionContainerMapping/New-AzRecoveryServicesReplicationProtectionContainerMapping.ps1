@@ -36,24 +36,28 @@ function New-AzRecoveryServicesReplicationProtectionContainerMapping {
     [CmdletBinding(DefaultParameterSetName='CreateExpanded', PositionalBinding=$false, SupportsShouldProcess, ConfirmImpact='Medium')]
     param(
         [Parameter(Mandatory)]
+        [ValidateNotNullOrEmpty()]
         [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Category('Path')]
         [System.String]
         # Protection container mapping name.
         ${MappingName},
 
         [Parameter(Mandatory)]
+        [ValidateNotNullOrEmpty()]
         [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Category('Path')]
         [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IProtectionContainer]
         # Primary protection container object.
         ${PrimaryProtectionContainer},
 
         [Parameter(Mandatory)]
+        [ValidateNotNullOrEmpty()]
         [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Category('Path')]
         [System.String]
         # The name of the resource group where the recovery services vault is present.
         ${ResourceGroupName},
 
         [Parameter(Mandatory)]
+        [ValidateNotNullOrEmpty()]
         [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Category('Path')]
         [System.String]
         # The name of the recovery services vault.
@@ -67,12 +71,14 @@ function New-AzRecoveryServicesReplicationProtectionContainerMapping {
         ${SubscriptionId},
 
         [Parameter(Mandatory)]
+        [ValidateNotNullOrEmpty()]
         [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Category('Body')]
         [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IPolicy]
         # Applicable policy object.
         ${Policy},
 
         [Parameter(Mandatory)]
+        [ValidateNotNullOrEmpty()]
         [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Category('Body')]
         [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IReplicationProviderSpecificContainerMappingInput]
         # Provider specific input for pairing.
@@ -80,6 +86,7 @@ function New-AzRecoveryServicesReplicationProtectionContainerMapping {
         ${ProviderSpecificInput},
 
         [Parameter(Mandatory)]
+        [ValidateNotNullOrEmpty()]
         [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Category('Body')]
         [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IProtectionContainer]
         # The target unique protection container object.
@@ -147,6 +154,14 @@ function New-AzRecoveryServicesReplicationProtectionContainerMapping {
 
     process {
         try {
+            $replicationscenario = $ProviderSpecificInput.ReplicationScenario
+            if($replicationscenario -eq "ReplicateAzureToAzure") {
+                $ProviderSpecificInput.ReplicationScenario = "A2A"
+            }
+            else {
+                throw "Provided replication scenario is not supported. Only ReplicateAzureToAzure is supported."
+            }
+
             $TargetProtectionContainerId = $RecoveryProtectionContainer.Id
             $PolicyId = $Policy.Id
             $protectionContainerString = $PrimaryProtectionContainer.id.Split("/")

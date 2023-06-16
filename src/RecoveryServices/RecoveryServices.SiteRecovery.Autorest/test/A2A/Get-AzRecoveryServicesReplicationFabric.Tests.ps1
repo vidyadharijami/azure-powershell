@@ -24,9 +24,4 @@ Describe 'Get-AzRecoveryServicesReplicationFabric' {
         $output = Get-AzRecoveryServicesReplicationFabric -ResourceName $env.a2aVaultName -ResourceGroupName $env.a2aResourceGroupName -SubscriptionId $env.a2aSubscriptionId -FabricName $env.a2aFabricName
         $output.Count | Should Not BeNullOrEmpty
     }
-
-    It 'GetByName' {
-        $output = Get-AzRecoveryServicesReplicationFabric -ResourceName $env.a2aVaultName -ResourceGroupName $env.a2aResourceGroupName -SubscriptionId $env.a2aSubscriptionId -FriendlyName $env.a2aFabricFriendlyName
-        $output.Count | Should Not BeNullOrEmpty
-    }
 }

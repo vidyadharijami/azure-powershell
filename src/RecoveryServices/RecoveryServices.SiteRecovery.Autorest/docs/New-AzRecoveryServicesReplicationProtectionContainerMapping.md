@@ -29,7 +29,7 @@ The operation to create a protection container mapping.
 ```powershell
 $policy=Get-AzRecoveryServicesReplicationPolicy -ResourceGroupName "a2arecoveryrg" -ResourceName "a2arecoveryvault" -PolicyName "A2APolicy"
 $mappingInput=[Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.A2AContainerMappingInput]::new()
-$mappingInput.InstanceType="A2A"
+$mappingInput.ReplicationScenario="ReplicateAzureToAzure"
 $primaryfabric=Get-AzRecoveryServicesReplicationFabric -ResourceGroupName "a2arecoveryrg" -ResourceName "a2arecoveryvault" -FabricName "A2Ademo-EastUS"
 $primaryprotectioncontainer=Get-AzRecoveryServicesReplicationProtectionContainer -ResourceGroupName "a2arecoveryrg" -ResourceName "a2arecoveryvault" -Fabric $primaryfabric -ProtectionContainer "A2AEastUSProtectionContainer"
 $recoveryfabric=Get-AzRecoveryServicesReplicationFabric -ResourceGroupName "a2arecoveryrg" -ResourceName "a2arecoveryvault" -FabricName "A2Aprimaryfabric"
@@ -38,9 +38,9 @@ New-AzRecoveryServicesReplicationProtectionContainerMapping -MappingName "demoma
 ```
 
 ```output
-Location Name    Type
--------- ----    ----
-         demomap Microsoft.RecoveryServices/vaults/replicationFabrics/replicationProtectionContainers/replicationProtectionContainerMappings
+Id                                                                                                                                                                                                                                                                                                 Location Name    Type
+--                                                                                                                                                                                                                                                                                                 -------- ----    ----
+/Subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/a2arecoveryrg/providers/Microsoft.RecoveryServices/vaults/a2arecoveryvault/replicationFabrics/A2Ademo-EastUS/replicationProtectionContainers/A2AEastUSProtectionContainer/replicationProtectionContainerMappings/testmappingcmd			demomap	Microsoft.RecoveryServices/vaults/replicationFabrics/replicationProtectionContainers/replicationProtectionContainerMappings
 ```
 
 Creates a New azure protection container mapping in a recovery services vault.
@@ -265,12 +265,12 @@ COMPLEX PARAMETER PROPERTIES
 To create the parameters described below, construct a hash table containing the appropriate properties. For information on hash tables, run Get-Help about_Hash_Tables.
 
 
-POLICY <IPolicy>: Applicable policy object.
+`POLICY <IPolicy>`: Applicable policy object.
   - `[Location <String>]`: Resource Location
   - `[FriendlyName <String>]`: The FriendlyName.
   - `[ProviderSpecificDetailInstanceType <String>]`: Gets the class type. Overridden in derived classes.
 
-PRIMARYPROTECTIONCONTAINER <IProtectionContainer>: Primary protection container object.
+`PRIMARYPROTECTIONCONTAINER <IProtectionContainer>`: Primary protection container object.
   - `[Location <String>]`: Resource Location
   - `[FabricFriendlyName <String>]`: Fabric friendly name.
   - `[FabricType <String>]`: The fabric type.
@@ -279,10 +279,10 @@ PRIMARYPROTECTIONCONTAINER <IProtectionContainer>: Primary protection container 
   - `[ProtectedItemCount <Int32?>]`: Number of protected PEs.
   - `[Role <String>]`: The role of this cloud.
 
-PROVIDERSPECIFICINPUT <IReplicationProviderSpecificContainerMappingInput>: Provider specific input for pairing.
-  - `InstanceType <String>`: The class type.
+`PROVIDERSPECIFICINPUT <IReplicationProviderSpecificContainerMappingInput>`: Provider specific input for pairing.
+  - `ReplicationScenario <String>`: The class type.
 
-RECOVERYPROTECTIONCONTAINER <IProtectionContainer>: The target unique protection container object.
+`RECOVERYPROTECTIONCONTAINER <IProtectionContainer>`: The target unique protection container object.
   - `[Location <String>]`: Resource Location
   - `[FabricFriendlyName <String>]`: Fabric friendly name.
   - `[FabricType <String>]`: The fabric type.

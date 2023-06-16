@@ -18,10 +18,6 @@
 Gets the details of a protection container.
 .Description
 Gets the details of a protection container.
-.Example
-{{ Add code here }}
-.Example
-{{ Add code here }}
 
 .Outputs
 Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IProtectionContainer
@@ -34,24 +30,28 @@ function Get-AzRecoveryServicesReplicationProtectionContainer {
     param(
         [Parameter(ParameterSetName='List',Mandatory)]
         [Parameter(ParameterSetName='Get',Mandatory)]
+        [ValidateNotNullOrEmpty()]
         [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Category('Path')]
         [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IFabric]
         # Fabric Object.
         ${Fabric},
 
         [Parameter(Mandatory)]
+        [ValidateNotNullOrEmpty()]
         [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Category('Path')]
         [System.String]
         # The name of the resource group where the recovery services vault is present.
         ${ResourceGroupName},
 
         [Parameter(Mandatory)]
+        [ValidateNotNullOrEmpty()]
         [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Category('Path')]
         [System.String]
         # The name of the recovery services vault.
         ${ResourceName},
 
         [Parameter(ParameterSetName='Get', Mandatory)]
+        [ValidateNotNullOrEmpty()]
         [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Category('Path')]
         [System.String]
         # Protection container name.

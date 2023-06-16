@@ -15,8 +15,11 @@ if(($null -eq $TestName) -or ($TestName -contains 'Remove-AzRecoveryServicesRepl
 }
 
 Describe 'Remove-AzRecoveryServicesReplicationProtectionContainerMapping' {
-    It 'DeleteExpanded' -skip {
-        { throw [System.NotImplementedException] } | Should -Not -Throw
+    It 'DeleteExpanded' {
+        $fabric = Get-AzRecoveryServicesReplicationFabric -ResourceGroupName $env.a2aResourceGroupName -ResourceName $env.a2aVaultName -FabricName $env.a2ampfabricname -SubscriptionId $env.a2aSubscriptionId
+        $protectioncontainer = Get-AzRecoveryServicesReplicationProtectionContainer -ResourceGroupName $env.a2aResourceGroupName -ResourceName $env.a2aVaultName -Fabric $fabric -ProtectionContainer $env.a2amppcname -SubscriptionId $env.a2aSubscriptionId
+        $pcmapping = Get-AzRecoveryServicesReplicationProtectionContainerMapping -ResourceGroupName $env.a2aResourceGroupName -ResourceName $env.a2aVaultName -ProtectionContainer $protectioncontainer -MappingName $env.mappingName -SubscriptionId $env.a2aSubscriptionId
+        {Remove-AzRecoveryServicesReplicationProtectionContainerMapping -ProtectionContainerMapping $pcmapping -ResourceGroupName $env.a2aResourceGroupName -ResourceName $env.a2aVaultName -SubscriptionId $env.a2aSubscriptionId} | Should Not Throw
     }
 
     It 'Delete' -skip {

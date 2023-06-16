@@ -18,7 +18,7 @@ Describe 'New-AzRecoveryServicesReplicationProtectionContainerMapping' {
     It 'CreateExpanded' {
         $policy = Get-AzRecoveryServicesReplicationPolicy -ResourceName $env.a2aVaultName -ResourceGroupName $env.a2aResourceGroupName -SubscriptionId $env.a2aSubscriptionId -PolicyName $env.mapPolicy
         $mappingInput = [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.A2AContainerMappingInput]::new()
-        $mappingInput.InstanceType="A2A"
+        $protectioncontainer.ReplicationScenario = "ReplicateAzureToAzure"
         $primaryfabric = Get-AzRecoveryServicesReplicationFabric -ResourceName $env.a2aVaultName -ResourceGroupName $env.a2aResourceGroupName -SubscriptionId $env.a2aSubscriptionId -FabricName $env.a2ampfabricname
         $primaryprotectioncontainer = Get-AzRecoveryServicesReplicationProtectionContainer -ResourceName $env.a2aVaultName -ResourceGroupName $env.a2aResourceGroupName -SubscriptionId $env.a2aSubscriptionId -Fabric $primaryfabric -ProtectionContainer $env.a2amppcname
         $recoveryfabric = Get-AzRecoveryServicesReplicationFabric -ResourceName $env.a2aVaultName -ResourceGroupName $env.a2aResourceGroupName -SubscriptionId $env.a2aSubscriptionId -FabricName $env.a2aFabricName

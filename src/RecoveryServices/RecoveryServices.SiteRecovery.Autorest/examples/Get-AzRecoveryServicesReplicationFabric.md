@@ -25,16 +25,3 @@ Location Name             Type
 
 Gets details of a replication fabric using fabric name in a specific recovery services vault.
 
-### Example 2: Get a replication fabric using FriendlyName property of a fabric.
-```powershell
-Get-AzRecoveryServicesReplicationFabric -ResourceGroupName "a2arecoveryrg" -ResourceName "a2arecoveryvault" -FriendlyName "East US"
-```
-
-```output
-Location Name           Type
--------- ----           ----
-         A2Ademo-EastUS Microsoft.RecoveryServices/vaults/replicationFabrics
-```
-
-Gets details of a replication fabric using FriendlyName property of a fabric in a specific recovery services vault.
-

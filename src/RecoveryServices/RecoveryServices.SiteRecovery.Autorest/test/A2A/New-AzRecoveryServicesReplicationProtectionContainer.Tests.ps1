@@ -17,8 +17,8 @@ if(($null -eq $TestName) -or ($TestName -contains 'New-AzRecoveryServicesReplica
 Describe 'New-AzRecoveryServicesReplicationProtectionContainer' {
     It 'CreateExpanded' {
         $fabric = Get-AzRecoveryServicesReplicationFabric -ResourceGroupName $env.a2aResourceGroupName -ResourceName $env.a2aVaultName -SubscriptionId $env.a2aSubscriptionId -FabricName $env.a2aFabricName
-        $protectionContainer=[Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.A2AContainerCreationInput]::new()
-        $protectionContainer.InstanceType="A2A"
+        $protectionContainer = [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.A2AContainerCreationInput]::new()
+        $protectioncontainer.ReplicationScenario = "ReplicateAzureToAzure"
         $output = New-AzRecoveryServicesReplicationProtectionContainer -Fabric $fabric -ProtectionContainerName $env.a2apcName -ResourceGroupName $env.a2aResourceGroupName -ResourceName $env.a2aVaultName -ProviderSpecificInput $protectionContainer
         $output.Count | Should Not BeNullOrEmpty
     }

@@ -211,7 +211,7 @@ COMPLEX PARAMETER PROPERTIES
 To create the parameters described below, construct a hash table containing the appropriate properties. For information on hash tables, run Get-Help about_Hash_Tables.
 
 
-FABRIC <IFabric>: ASR fabric to delete.
+`FABRIC <IFabric>`: ASR fabric to delete.
   - `[Location <String>]`: Resource Location
   - `[BcdrState <String>]`: BCDR state of the fabric.
   - `[CustomDetailInstanceType <String>]`: Gets the class type. Overridden in derived classes.

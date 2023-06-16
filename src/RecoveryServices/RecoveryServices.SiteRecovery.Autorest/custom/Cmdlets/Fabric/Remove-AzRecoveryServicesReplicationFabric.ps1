@@ -18,10 +18,6 @@
 The operation to delete or remove an Azure Site Recovery fabric.
 .Description
 The operation to delete or remove an Azure Site Recovery fabric.
-.Example
-{{ Add code here }}
-.Example
-{{ Add code here }}
 
 .Outputs
 System.Boolean
@@ -33,18 +29,21 @@ function Remove-AzRecoveryServicesReplicationFabric {
     [CmdletBinding(DefaultParameterSetName='Delete', PositionalBinding=$false, SupportsShouldProcess, ConfirmImpact='Medium')]
     param(
         [Parameter(Mandatory)]
+        [ValidateNotNullOrEmpty()]
         [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Category('Path')]
         [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IFabric]
         # ASR fabric to delete.
         ${Fabric},
 
         [Parameter(Mandatory)]
+        [ValidateNotNullOrEmpty()]
         [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Category('Path')]
         [System.String]
         # The name of the resource group where the recovery services vault is present.
         ${ResourceGroupName},
 
         [Parameter(Mandatory)]
+        [ValidateNotNullOrEmpty()]
         [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Category('Path')]
         [System.String]
         # The name of the recovery services vault.

@@ -14,9 +14,9 @@ Operation to create a protection container.
 
 ```
 New-AzRecoveryServicesReplicationProtectionContainer -Fabric <IFabric> -ProtectionContainerName <String>
- -ResourceGroupName <String> -ResourceName <String> [-SubscriptionId <String>]
- [-ProviderSpecificInput <IReplicationProviderSpecificContainerCreationInput[]>] [-DefaultProfile <PSObject>]
- [-AsJob] [-NoWait] [-Confirm] [-WhatIf] [<CommonParameters>]
+ -ResourceGroupName <String> -ResourceName <String>
+ -ProviderSpecificInput <IReplicationProviderSpecificContainerCreationInput> [-SubscriptionId <String>]
+ [-DefaultProfile <PSObject>] [-AsJob] [-NoWait] [-Confirm] [-WhatIf] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -28,14 +28,14 @@ Operation to create a protection container.
 ```powershell
 $fabric=Get-AzRecoveryServicesReplicationFabric -ResourceGroupName "a2arecoveryrg" -ResourceName "a2arecoveryvault" -FabricName "A2Aprimaryfabric"
 $protectioncontainer=[Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.A2AContainerCreationInput]::new()
-$protectioncontainer.InstanceType="A2A"
-New-AzRecoveryServicesReplicationProtectionContainer -Fabric $fabric -ProtectionContainerName "demoProtectionContainerA2A" -ResourceGroupName "a2arecoveryrg" -ResourceName "a2arecoveryvault" -ProviderSpecificInput $protectioncontainer
+$protectioncontainer.ReplicationScenario="ReplicateAzureToAzure"
+New-AzRecoveryServicesReplicationProtectionContainer -Fabric $fabric -ProtectionContainerName "testcontainercmd" -ResourceGroupName "a2arecoveryrg" -ResourceName "a2arecoveryvault" -ProviderSpecificInput $protectioncontainer
 ```
 
 ```output
-Location Name                       Type
--------- ----                       ----
-         demoProtectionContainerA2A Microsoft.RecoveryServices/vaults/replicationFabrics/replicationProtectionContainers
+Id                                                                                                                                                                                                                                 Location Name             Type
+--                                                                                                                                                                                                                                 -------- ----             ----
+/Subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/a2arecoveryrg/providers/Microsoft.RecoveryServices/vaults/a2arecoveryvault/replicationFabrics/A2Aprimaryfabric/replicationProtectionContainers/testcontainercmd          testcontainercmd Microsoft.RecoveryServices/vaults/replicationFabrics/replicationProtectionContainers
 ```
 
 Creates a replication protection container in a fabric in a specific recovery services vault.
@@ -123,11 +123,11 @@ Provider specific inputs for container creation.
 To construct, see NOTES section for PROVIDERSPECIFICINPUT properties and create a hash table.
 
 ```yaml
-Type: Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IReplicationProviderSpecificContainerCreationInput[]
+Type: Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IReplicationProviderSpecificContainerCreationInput
 Parameter Sets: (All)
 Aliases:
 
-Required: False
+Required: True
 Position: Named
 Default value: None
 Accept pipeline input: False
@@ -228,7 +228,7 @@ COMPLEX PARAMETER PROPERTIES
 To create the parameters described below, construct a hash table containing the appropriate properties. For information on hash tables, run Get-Help about_Hash_Tables.
 
 
-FABRIC <IFabric>: Fabric Object.
+`FABRIC <IFabric>`: Fabric Object.
   - `[Location <String>]`: Resource Location
   - `[BcdrState <String>]`: BCDR state of the fabric.
   - `[CustomDetailInstanceType <String>]`: Gets the class type. Overridden in derived classes.
@@ -272,8 +272,8 @@ FABRIC <IFabric>: Fabric Object.
   - `[RolloverEncryptionDetailKekCertThumbprint <String>]`: The key encryption key certificate thumbprint.
   - `[RolloverEncryptionDetailKekState <String>]`: The key encryption key state for the Vmm.
 
-PROVIDERSPECIFICINPUT <IReplicationProviderSpecificContainerCreationInput[]>: Provider specific inputs for container creation.
-  - `InstanceType <String>`: The class type.
+`PROVIDERSPECIFICINPUT <IReplicationProviderSpecificContainerCreationInput>`: Provider specific inputs for container creation.
+  - `ReplicationScenario <String>`: The class type.
 
 ## RELATED LINKS
 

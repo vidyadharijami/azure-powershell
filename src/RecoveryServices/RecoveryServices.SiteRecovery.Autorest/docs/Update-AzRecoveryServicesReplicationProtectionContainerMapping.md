@@ -15,7 +15,7 @@ The operation to update protection container mapping.
 ```
 Update-AzRecoveryServicesReplicationProtectionContainerMapping -MappingName <String>
  -PrimaryProtectionContainer <IProtectionContainer> -ResourceGroupName <String> -ResourceName <String>
- [-SubscriptionId <String>] [-ProviderSpecificInput <IReplicationProviderSpecificUpdateContainerMappingInput>]
+ -ProviderSpecificInput <IReplicationProviderSpecificUpdateContainerMappingInput> [-SubscriptionId <String>]
  [-DefaultProfile <PSObject>] [-AsJob] [-NoWait] [-Confirm] [-WhatIf] [<CommonParameters>]
 ```
 
@@ -25,7 +25,6 @@ The operation to update protection container mapping.
 ## EXAMPLES
 
 ### Example 1: Update a replocation protection container mapping
-
 ```powershell
 $fabric=Get-AzRecoveryServicesReplicationFabric -ResourceGroupName "a2arecoveryrg" -ResourceName "a2arecoveryvault" -FabricName "A2Ademo-EastUS"
 $protectioncontainer=Get-AzRecoveryServicesReplicationProtectionContainer -ResourceGroupName "a2arecoveryrg" -ResourceName "a2arecoveryvault" -Fabric $fabric -ProtectionContainer "A2AEastUSProtectionContainer"
@@ -131,7 +130,7 @@ Type: Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IRe
 Parameter Sets: (All)
 Aliases:
 
-Required: False
+Required: True
 Position: Named
 Default value: None
 Accept pipeline input: False
@@ -232,7 +231,7 @@ COMPLEX PARAMETER PROPERTIES
 To create the parameters described below, construct a hash table containing the appropriate properties. For information on hash tables, run Get-Help about_Hash_Tables.
 
 
-PRIMARYPROTECTIONCONTAINER <IProtectionContainer>: Primary protection container object.
+`PRIMARYPROTECTIONCONTAINER <IProtectionContainer>`: Primary protection container object.
   - `[Location <String>]`: Resource Location
   - `[FabricFriendlyName <String>]`: Fabric friendly name.
   - `[FabricType <String>]`: The fabric type.
@@ -241,7 +240,7 @@ PRIMARYPROTECTIONCONTAINER <IProtectionContainer>: Primary protection container 
   - `[ProtectedItemCount <Int32?>]`: Number of protected PEs.
   - `[Role <String>]`: The role of this cloud.
 
-PROVIDERSPECIFICINPUT <IReplicationProviderSpecificUpdateContainerMappingInput>: Provider specific input for updating protection container mapping.
+`PROVIDERSPECIFICINPUT <IReplicationProviderSpecificUpdateContainerMappingInput>`: Provider specific input for updating protection container mapping.
   - `InstanceType <String>`: The class type.
 
 ## RELATED LINKS

@@ -36,24 +36,28 @@ function New-AzRecoveryServicesReplicationProtectionContainer {
     [CmdletBinding(DefaultParameterSetName='CreateExpanded', PositionalBinding=$false, SupportsShouldProcess, ConfirmImpact='Medium')]
     param(
         [Parameter(Mandatory)]
+        [ValidateNotNullOrEmpty()]
         [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Category('Path')]
         [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IFabric]
         # Fabric Object.
         ${Fabric},
 
         [Parameter(Mandatory)]
+        [ValidateNotNullOrEmpty()]
         [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Category('Path')]
         [System.String]
         # Unique protection container ARM name.
         ${ProtectionContainerName},
 
         [Parameter(Mandatory)]
+        [ValidateNotNullOrEmpty()]
         [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Category('Path')]
         [System.String]
         # The name of the resource group where the recovery services vault is present.
         ${ResourceGroupName},
 
         [Parameter(Mandatory)]
+        [ValidateNotNullOrEmpty()]
         [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Category('Path')]
         [System.String]
         # The name of the recovery services vault.
@@ -66,9 +70,10 @@ function New-AzRecoveryServicesReplicationProtectionContainer {
         # The subscription Id.
         ${SubscriptionId},
 
-        [Parameter()]
+        [Parameter(Mandatory)]
+        [ValidateNotNullOrEmpty()]
         [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Category('Body')]
-        [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IReplicationProviderSpecificContainerCreationInput[]]
+        [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IReplicationProviderSpecificContainerCreationInput]
         # Provider specific inputs for container creation.
         # To construct, see NOTES section for PROVIDERSPECIFICINPUT properties and create a hash table.
         ${ProviderSpecificInput},
@@ -135,8 +140,16 @@ function New-AzRecoveryServicesReplicationProtectionContainer {
 
     process {
         try {
+            $replicationscenario = $ProviderSpecificInput.ReplicationScenario
+            if($replicationscenario -eq "ReplicateAzureToAzure") {
+                $ProviderSpecificInput.ReplicationScenario = "A2A"
+            }
+            else {
+                throw "Provided replication scenario is not supported. Only ReplicateAzureToAzure is supported."
+            }
+
             $fabricName = $Fabric.Name
-        
+
             $null = $PSBoundParameters.Remove("Fabric")
             $null = $PSBoundParameters.Add("FabricName", $fabricName)
 
