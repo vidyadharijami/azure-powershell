@@ -30,7 +30,7 @@ function Get-AzRecoveryServicesReplicationProtectionContainerMapping {
     param(
         [Parameter(ParameterSetName='Get', Mandatory)]
         [Parameter(ParameterSetName='List', Mandatory)]
-        [ValidateNotNullOrEmpty()]
+        [ValidateNotNull()]
         [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Category('Path')]
         [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IProtectionContainer]
         # Unique Protection Container Object

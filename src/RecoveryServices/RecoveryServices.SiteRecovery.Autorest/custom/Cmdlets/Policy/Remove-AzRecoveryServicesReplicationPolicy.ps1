@@ -21,7 +21,7 @@ function Remove-AzRecoveryServicesReplicationPolicy
         ${ResourceName},
 
         [Parameter(Mandatory, HelpMessage='Specific replication policy object.')]
-        [ValidateNotNullOrEmpty()]
+        [ValidateNotNull()]
         [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IPolicy]
         ${Policy},
 

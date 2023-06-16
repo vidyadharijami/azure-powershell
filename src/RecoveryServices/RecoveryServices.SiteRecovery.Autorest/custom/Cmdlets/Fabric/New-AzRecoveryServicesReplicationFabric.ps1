@@ -59,7 +59,7 @@ function New-AzRecoveryServicesReplicationFabric {
         ${SubscriptionId},
 
         [Parameter(Mandatory)]
-        [ValidateNotNullOrEmpty()]
+        [ValidateNotNull()]
         [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Category('Body')]
         [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IFabricSpecificCreationInput]
         # Fabric provider specific creation input.

@@ -43,7 +43,7 @@ function Update-AzRecoveryServicesReplicationProtectionContainerMapping {
         ${MappingName},
 
         [Parameter(Mandatory)]
-        [ValidateNotNullOrEmpty()]
+        [ValidateNotNull()]
         [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Category('Path')]
         [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IProtectionContainer]
         # Primary protection container object.
@@ -71,7 +71,7 @@ function Update-AzRecoveryServicesReplicationProtectionContainerMapping {
         ${SubscriptionId},
 
         [Parameter(Mandatory)]
-        [ValidateNotNullOrEmpty()]
+        [ValidateNotNull()]
         [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Category('Body')]
         [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IReplicationProviderSpecificUpdateContainerMappingInput]
         # Provider specific input for updating protection container mapping.

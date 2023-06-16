@@ -30,7 +30,7 @@ function Get-AzRecoveryServicesReplicationProtectionContainer {
     param(
         [Parameter(ParameterSetName='List',Mandatory)]
         [Parameter(ParameterSetName='Get',Mandatory)]
-        [ValidateNotNullOrEmpty()]
+        [ValidateNotNull()]
         [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Category('Path')]
         [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IFabric]
         # Fabric Object.
