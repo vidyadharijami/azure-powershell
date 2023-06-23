@@ -14,7 +14,7 @@ schema: 2.0.0
 
 ```
 New-AzRecoveryServicesReplicationPolicy -PolicyName <String> -ResourceGroupName <String>
- -ResourceName <String> -ProviderSpecificInput <IPolicyProviderSpecificInput> [-SubscriptionId <String>]
+ -ResourceName <String> [-SubscriptionId <String>] [-ProviderSpecificInput <IPolicyProviderSpecificInput>]
  [-DefaultProfile <PSObject>] [-AsJob] [-NoWait] [-Confirm] [-WhatIf] [<CommonParameters>]
 ```
 
@@ -130,7 +130,7 @@ Type: Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IPo
 Parameter Sets: (All)
 Aliases:
 
-Required: True
+Required: False
 Position: Named
 Default value: None
 Accept pipeline input: False

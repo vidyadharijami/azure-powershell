@@ -1,27 +1,42 @@
-### Example 1: List all the replication fabrics in a specified recovery services vault
+### Example 1: List all replication fabrics in a recovery services vault.
 ```powershell
-Get-AzRecoveryServicesReplicationFabric -ResourceGroupName "a2arecoveryrg" -ResourceName "a2arecoveryvault"
+Get-AzRecoveryServicesReplicationFabric -ResourceGroupName "ASRTesting" -ResourceName "HyperV2AzureVault"
+```
+
+```output
+Location Name                     Type
+-------- ----                     ----
+         HyperV2AzureSite         Microsoft.RecoveryServices/vaults/replicationFabrics
+         HyperV2AzureSiteFriendly Microsoft.RecoveryServices/vaults/replicationFabrics
+```
+
+Gets all the replication fabrics in the specified vault in the specified resource group.
+
+### Example 2: Get the details of a replication fabric using the fabric name.
+```powershell
+Get-AzRecoveryServicesReplicationFabric -ResourceGroupName "ASRTesting" -ResourceName "HyperV2AzureVault" -FabricName "HyperV2AzureSite"
 ```
 
 ```output
 Location Name             Type
 -------- ----             ----
-         A2Ademo-EastUS   Microsoft.RecoveryServices/vaults/replicationFabrics
-         A2Aprimaryfabric Microsoft.RecoveryServices/vaults/replicationFabrics
+         HyperV2AzureSite Microsoft.RecoveryServices/vaults/replicationFabrics
 ```
 
-Lists details of all the replication fabrics in a specific recovery servivces vault.
+Gets info for a specific replication fabric by its name in the specified vault in the specified resource group.
 
-### Example 2: Get a replication fabric using a fabric name
+
+### Example 3: Get the details of a replication fabric using the friendly name of the fabric.
 ```powershell
-Get-AzRecoveryServicesReplicationFabric -ResourceGroupName "a2arecoveryrg" -ResourceName "a2arecoveryvault" -FabricName "A2Aprimaryfabric"
+Get-AzRecoveryServicesReplicationFabric -ResourceGroupName "ASRTesting" -ResourceName "HyperV2AzureVault" -FriendlyName "HyperV2AzureSiteFriendly"
 ```
 
 ```output
-Location Name             Type
--------- ----             ----
-         A2Aprimaryfabric Microsoft.RecoveryServices/vaults/replicationFabrics
+Location Name                     Type
+-------- ----                     ----
+         HyperV2AzureSiteFriendly Microsoft.RecoveryServices/vaults/replicationFabrics
 ```
 
-Gets details of a replication fabric using fabric name in a specific recovery services vault.
+Gets info for a specific replication policy by its friendly name in the specified vault in the specified resource group.
+
 

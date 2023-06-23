@@ -82,7 +82,7 @@ namespace Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201
                 }
                 case "HyperVReplicaAzure":
                 {
-                    return new HyperVReplicaAzurePolicyInput(json);
+                    return new H2APolicyCreationInput(json);
                 }
                 case "HyperVReplica2012":
                 {

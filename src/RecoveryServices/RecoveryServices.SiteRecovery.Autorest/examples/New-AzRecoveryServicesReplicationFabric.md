@@ -1,4 +1,4 @@
-### Example 1: Create a new replication fabric in a specific recovery services vault
+### Example 1: Create a new Azure to Azure replication fabric in a specific recovery services vault
 ```powershell
 $fabric = [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.AzureFabricCreationInput]::new()
 $fabric.ReplicationScenario="ReplicateAzureToAzure"
@@ -13,3 +13,18 @@ Id                                                                              
 ```
 
 Creates a new replication fabric in a specified recovery services vault for a replicateAzuretoAzure instance type.
+
+### Example 2: Create a new HyperV to Azure replication fabric in a specific recovery services vault
+```powershell
+$fabric = [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.FabricSpecificCreationInput]::new()
+$fabric.instanceType = "HyperVSite"
+New-AzRecoveryServicesReplicationFabric -FabricName "hyperv2azurereplicafabric" -ResourceGroupName "ASRTesting" -ResourceName "HyperV2AzureVault" -CustomDetail $fabric
+```
+
+```output
+Location Name                      Type
+-------- ----                      ----
+         hyperv2azurereplicafabric Microsoft.RecoveryServices/vaults/replicationFabrics
+```
+
+Creates a new replication fabric in a specified recovery services vault for a replicate HyperV to Azure instance type.

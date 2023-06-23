@@ -13,12 +13,12 @@ namespace Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201
         Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IFabricSpecificCreationInputInternal
     {
 
-        /// <summary>Backing field for <see cref="ReplicationScenario" /> property.</summary>
-        private string _replicationScenario;
+        /// <summary>Backing field for <see cref="InstanceType" /> property.</summary>
+        private string _instanceType;
 
         /// <summary>Gets the class type.</summary>
         [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Origin(Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.PropertyOrigin.Owned)]
-        public string ReplicationScenario { get => this._replicationScenario; set => this._replicationScenario = value; }
+        public string InstanceType { get => this._instanceType; set => this._instanceType = value; }
 
         /// <summary>Creates an new <see cref="FabricSpecificCreationInput" /> instance.</summary>
         public FabricSpecificCreationInput()
@@ -37,7 +37,7 @@ namespace Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201
         Description = @"Gets the class type.",
         SerializedName = @"instanceType",
         PossibleTypes = new [] { typeof(string) })]
-        string ReplicationScenario { get; set; }
+        string InstanceType { get; set; }
 
     }
     /// Fabric provider specific settings.
@@ -45,7 +45,7 @@ namespace Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201
 
     {
         /// <summary>Gets the class type.</summary>
-        string ReplicationScenario { get; set; }
+        string InstanceType { get; set; }
 
     }
 }

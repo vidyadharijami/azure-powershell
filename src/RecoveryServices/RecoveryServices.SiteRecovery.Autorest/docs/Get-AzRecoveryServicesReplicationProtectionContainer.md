@@ -20,15 +20,9 @@ Get-AzRecoveryServicesReplicationProtectionContainer -ResourceGroupName <String>
 
 ### Get
 ```
-Get-AzRecoveryServicesReplicationProtectionContainer -Fabric <IFabric> -ProtectionContainerName <String>
- -ResourceGroupName <String> -ResourceName <String> [-SubscriptionId <String[]>] [-DefaultProfile <PSObject>]
- [<CommonParameters>]
-```
-
-### List
-```
 Get-AzRecoveryServicesReplicationProtectionContainer -Fabric <IFabric> -ResourceGroupName <String>
- -ResourceName <String> [-SubscriptionId <String[]>] [-DefaultProfile <PSObject>] [<CommonParameters>]
+ -ResourceName <String> [-ProtectionContainerName <String>] [-SubscriptionId <String[]>]
+ [-DefaultProfile <PSObject>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -36,49 +30,47 @@ Lists the protection containers in a vault.
 
 ## EXAMPLES
 
-### Example 1: List all the protection containers in a recovery services vault
+### Example 1:  List all replication protection containers in a recovery services vault.
 ```powershell
-Get-AzRecoveryServicesReplicationProtectionContainer -ResourceGroupName "a2arecoveryrg" -ResourceName "a2arecoveryvault"
+Get-AzRecoveryServicesReplicationProtectionContainer -ResourceGroupName "ASRTesting" -ResourceName "HyperV2AzureVault"
 ```
 
 ```output
-Location Name                          Type
--------- ----                          ----
-         A2AWestUSProtectionContainer  Microsoft.RecoveryServices/vaults/replicationFabrics/replicationProtectionContainers
-         A2AEastUSProtectionContainer  Microsoft.RecoveryServices/vaults/replicationFabrics/replicationProtectionContainers
-         A2AEastUSProtectionContainer2 Microsoft.RecoveryServices/vaults/replicationFabrics/replicationProtectionContainers
+Location Name                                       Type
+-------- ----                                       ----
+         cloud_50c02c4e-3f5a-5e54-a971-8874f186019b Microsoft.RecoveryServices/vaults/replicationFabrics/replicationProtectionContainers
+         HyperV2AzureContainer                      Microsoft.RecoveryServices/vaults/replicationFabrics/replicationProtectionContainers
 ```
 
-Lists all the protection containers in a specific recovery services vault
+Gets all the replication protection containers in the specified vault in the specified resource group.
 
-### Example 2: List all the protection container in a specific fabric in a recovery services vault
+### Example 2: List all replication protection containers in a recovery services vault associated to a fabric.
 ```powershell
-$fabric=Get-AzRecoveryServicesReplicationFabric -ResourceGroupName "a2arecoveryrg" -ResourceName "a2arecoveryvault" -FabricName "A2Aprimaryfabric"
-Get-AzRecoveryServicesReplicationProtectionContainer -ResourceGroupName "a2arecoveryrg" -ResourceName "a2arecoveryvault" -Fabric $fabric
+$fab = Get-AzRecoveryServicesReplicationFabric -ResourceGroupName "ASRTesting" -ResourceName "HyperV2AzureVault" -FabricName "HyperV2AzureSite"
+Get-AzRecoveryServicesReplicationProtectionContainer -ResourceGroupName "ASRTesting" -ResourceName "HyperV2AzureVault" -Fabric $fab
 ```
 
 ```output
-Location Name                          Type
--------- ----                          ----
-         A2AEastUSProtectionContainer  Microsoft.RecoveryServices/vaults/replicationFabrics/replicationProtectionContainers
-         A2AEastUSProtectionContainer2 Microsoft.RecoveryServices/vaults/replicationFabrics/replicationProtectionContainers
+Location Name                                       Type
+-------- ----                                       ----
+         cloud_50c02c4e-3f5a-5e54-a971-8874f186019b Microsoft.RecoveryServices/vaults/replicationFabrics/replicationProtectionContainers
 ```
 
-Lists all the protection container in a specific fabric in a specific recovery services vault
+Gets all the replication protection containers in the specified vault in the specified resource group associated to specified fabric.
 
-### Example 3: Get a protection conatiner in a specific fabric in a recovery services vault
+### Example 3: Get the details of a replication protection container using the fabric and protection container name.
 ```powershell
-$fabric=Get-AzRecoveryServicesReplicationFabric -ResourceGroupName "a2arecoveryrg" -ResourceName "a2arecoveryvault" -FabricName "A2Aprimaryfabric"
-Get-AzRecoveryServicesReplicationProtectionContainer -ResourceGroupName "a2arecoveryrg" -ResourceName "a2arecoveryvault" -Fabric $fabric -ProtectionContainer "A2AEastUSProtectionContainer2"
+$fab = Get-AzRecoveryServicesReplicationFabric -ResourceGroupName "ASRTesting" -ResourceName "HyperV2AzureVault" -FabricName "HyperV2AzureSite"
+Get-AzRecoveryServicesReplicationProtectionContainer -ResourceGroupName "ASRTesting" -ResourceName "HyperV2AzureVault" -Fabric $fab -ProtectionContainerName "cloud_50c02c4e-3f5a-5e54-a971-8874f186019b"
 ```
 
 ```output
-Location Name                          Type
--------- ----                          ----
-         A2AEastUSProtectionContainer2 Microsoft.RecoveryServices/vaults/replicationFabrics/replicationProtectionContainers
+Location Name                                       Type
+-------- ----                                       ----
+         cloud_50c02c4e-3f5a-5e54-a971-8874f186019b Microsoft.RecoveryServices/vaults/replicationFabrics/replicationProtectionContainers
 ```
 
-Gets a specific protection conatiner in a specific fabric in a recovery services vault
+Get all the details of specified replication protection container.
 
 ## PARAMETERS
 
@@ -99,12 +91,11 @@ Accept wildcard characters: False
 ```
 
 ### -Fabric
-Fabric Object.
 To construct, see NOTES section for FABRIC properties and create a hash table.
 
 ```yaml
 Type: Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IFabric
-Parameter Sets: Get, List
+Parameter Sets: Get
 Aliases:
 
 Required: True
@@ -115,14 +106,14 @@ Accept wildcard characters: False
 ```
 
 ### -ProtectionContainerName
-Protection container name.
+
 
 ```yaml
 Type: System.String
 Parameter Sets: Get
 Aliases:
 
-Required: True
+Required: False
 Position: Named
 Default value: None
 Accept pipeline input: False
@@ -192,7 +183,7 @@ COMPLEX PARAMETER PROPERTIES
 To create the parameters described below, construct a hash table containing the appropriate properties. For information on hash tables, run Get-Help about_Hash_Tables.
 
 
-`FABRIC <IFabric>`: Fabric Object.
+`FABRIC <IFabric>`: 
   - `[Location <String>]`: Resource Location
   - `[BcdrState <String>]`: BCDR state of the fabric.
   - `[CustomDetailInstanceType <String>]`: Gets the class type. Overridden in derived classes.

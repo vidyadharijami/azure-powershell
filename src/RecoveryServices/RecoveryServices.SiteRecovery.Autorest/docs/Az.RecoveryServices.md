@@ -14,9 +14,6 @@ Microsoft Azure PowerShell: RecoveryServices cmdlets
 ### [Add-AzRecoveryServicesReplicationProtectedItemDisk](Add-AzRecoveryServicesReplicationProtectedItemDisk.md)
 Operation to add disks(s) to the replication protected item.
 
-### [Add-AzRecoveryServicesReplicationProtectedItemRecoveryPoint](Add-AzRecoveryServicesReplicationProtectedItemRecoveryPoint.md)
-The operation to change the recovery point of a failed over replication protected item.
-
 ### [Clear-AzRecoveryServicesReplicationFabric](Clear-AzRecoveryServicesReplicationFabric.md)
 The operation to purge(force delete) an Azure Site Recovery fabric.
 
@@ -24,6 +21,9 @@ The operation to purge(force delete) an Azure Site Recovery fabric.
 The operation to delete or purge a replication protected item.
 This operation will force delete the replication protected item.
 Use the remove operation on replication protected item to perform a clean disable replication for the item.
+
+### [Clear-AzRecoveryServicesReplicationProtectionContainerMapping](Clear-AzRecoveryServicesReplicationProtectionContainerMapping.md)
+The operation to purge(force delete) a protection container mapping.
 
 ### [Clear-AzRecoveryServicesReplicationRecoveryServicesProvider](Clear-AzRecoveryServicesReplicationRecoveryServicesProvider.md)
 The operation to purge(force delete) a recovery services provider from the vault.
@@ -77,7 +77,7 @@ Gets the details of a replication policy.
 The operation to get the details of a protectable item.
 
 ### [Get-AzRecoveryServicesReplicationProtectedItem](Get-AzRecoveryServicesReplicationProtectedItem.md)
-Gets the details of an ASR replication protected item.
+
 
 ### [Get-AzRecoveryServicesReplicationProtectionContainer](Get-AzRecoveryServicesReplicationProtectionContainer.md)
 Lists the protection containers in a vault.
@@ -133,6 +133,9 @@ The operation to start the planned failover of a recovery plan.
 
 ### [Invoke-AzRecoveryServicesRenewReplicationFabricCertificate](Invoke-AzRecoveryServicesRenewReplicationFabricCertificate.md)
 Renews the connection certificate for the ASR replication fabric.
+
+### [Invoke-AzRecoveryServicesReplicationProtectedItemApplyRecoveryPoint](Invoke-AzRecoveryServicesReplicationProtectedItemApplyRecoveryPoint.md)
+The operation to change the recovery point of a failed over replication protected item.
 
 ### [Invoke-AzRecoveryServicesReprotectReplicationProtectedItem](Invoke-AzRecoveryServicesReprotectReplicationProtectedItem.md)
 Operation to reprotect or reverse replicate a failed over replication protected item.
@@ -202,7 +205,7 @@ The operation to configure vault setting.
 The operation to create a vCenter object..
 
 ### [Remove-AzRecoveryServicesReplicationFabric](Remove-AzRecoveryServicesReplicationFabric.md)
-The operation to delete or remove an Azure Site Recovery fabric.
+
 
 ### [Remove-AzRecoveryServicesReplicationMigrationItem](Remove-AzRecoveryServicesReplicationMigrationItem.md)
 The operation to delete an ASR migration item.

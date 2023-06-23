@@ -8,63 +8,104 @@ schema: 2.0.0
 # Get-AzRecoveryServicesReplicationProtectedItem
 
 ## SYNOPSIS
-Gets the details of an ASR replication protected item.
+
 
 ## SYNTAX
 
-### List1 (Default)
 ```
-Get-AzRecoveryServicesReplicationProtectedItem -ResourceGroupName <String> -ResourceName <String>
- [-SubscriptionId <String[]>] [-Filter <String>] [-SkipToken <String>] [-DefaultProfile <PSObject>]
- [<CommonParameters>]
-```
-
-### Get
-```
-Get-AzRecoveryServicesReplicationProtectedItem -FabricName <String> -ProtectionContainerName <String>
- -ReplicatedProtectedItemName <String> -ResourceGroupName <String> -ResourceName <String>
+Get-AzRecoveryServicesReplicationProtectedItem -ProtectionContainer <IProtectionContainer>
+ -ResourceGroupName <String> -ResourceName <String> [-ReplicatedProtectedItemName <String>]
  [-SubscriptionId <String[]>] [-DefaultProfile <PSObject>] [<CommonParameters>]
 ```
 
-### List
-```
-Get-AzRecoveryServicesReplicationProtectedItem -FabricName <String> -ProtectionContainerName <String>
- -ResourceGroupName <String> -ResourceName <String> [-SubscriptionId <String[]>] [-DefaultProfile <PSObject>]
- [<CommonParameters>]
-```
-
 ## DESCRIPTION
-Gets the details of an ASR replication protected item.
+
 
 ## EXAMPLES
 
-### Example 1: {{ Add title here }}
+### Example 1: List all the replication protected item
 ```powershell
-{{ Add code here }}
+Get-AzRecoveryServicesReplicationProtectedItem -ResourceGroupName "a2arecoveryrg" -ResourceName "a2arecoveryvault"
 ```
 
 ```output
-{{ Add output here }}
+Location Name              Type
+-------- ----              ----
+         replicatedvmtest  Microsoft.RecoveryServices/vaults/replicationFabrics/replicationProtectionContainers/replicationProtectedItems
+         replicatedvmtest2 Microsoft.RecoveryServices/vaults/replicationFabrics/replicationProtectionContainers/replicationProtectedItems
 ```
 
-{{ Add description here }}
+Lists all the Azure to Azure replication protected item in a recovery services vault.
+
+### Example 2: List all the replication protected item linked with a protection container
+```powershell
+$fabric=Get-AzRecoveryServicesReplicationFabric -ResourceGroupName "a2arecoveryrg" -ResourceName "a2arecoveryvault" -FabricName "A2Ademo-EastUS"
+$protectioncontainer=Get-AzRecoveryServicesReplicationProtectionContainer -ResourceGroupName "a2arecoveryrg" -ResourceName "a2arecoveryvault" -Fabric $fabric -ProtectionContainer "A2AEastUSProtectionContainer"
+Get-AzRecoveryServicesReplicationProtectedItem -ResourceGroupName "a2arecoveryrg" -ResourceName "a2arecoveryvault" -ProtectionContainer $protectioncontainer
+```
+
+```output
+Location Name              Type
+-------- ----              ----
+         replicatedvmtest  Microsoft.RecoveryServices/vaults/replicationFabrics/replicationProtectionContainers/replicationProtectedItems
+         replicatedvmtest2 Microsoft.RecoveryServices/vaults/replicationFabrics/replicationProtectionContainers/replicationProtectedItems
+```
+
+Lists all the replication protected item linked with a protection container in a recovery services vault
+
+### Example 3: Get a replication protected item linked with a protection container with a replicated protected item name
+```powershell
+$fabric=Get-AzRecoveryServicesReplicationFabric -ResourceGroupName "a2arecoveryrg" -ResourceName "a2arecoveryvault" -FabricName "A2Ademo-EastUS"
+$protectioncontainer=Get-AzRecoveryServicesReplicationProtectionContainer -ResourceGroupName "a2arecoveryrg" -ResourceName "a2arecoveryvault" -Fabric $fabric -ProtectionContainer "A2AEastUSProtectionContainer"
+Get-AzRecoveryServicesReplicationProtectedItem -ResourceGroupName "a2arecoveryrg" -ResourceName "a2arecoveryvault" -ProtectionContainer $protectioncontainer -ReplicatedProtectedItemName "replicatedvmtest"
+```
+
+```output
+Location Name              Type
+-------- ----              ----
+         replicatedvmtest  Microsoft.RecoveryServices/vaults/replicationFabrics/replicationProtectionContainers/replicationProtectedItems
+```
+
+Gets a replication protected item linked with a protection container with a replicated protected item name in a recovery services vault
+
+### Example 1: List all the replication protected item
+```powershell
+$pc = Get-AzRecoveryServicesReplicationProtectionContainer -ResourceGroupName "ASRTesting" -ResourceName "HyperV2AzureVault" -Fabric $fab -ProtectionContainerName "cloud_50c02c4e-3f5a-5e54-a971-8874f186019b"
+Get-AzRecoveryServicesReplicationProtectedItem -ProtectionContainer $pc  -ResourceGroupName "ASRTesting" -ResourceName "HyperV2AzureVault"
+```
+
+```output
+Id
+--                                                                                                                                                                                                                 
+/Subscriptions/7c943c1b-5122-4097-90c8-861411bdd574/resourceGroups/ASRTesting/providers/Microsoft.RecoveryServices/vaults/HyperV2AzureVault/replicationFabrics/HyperV2AzureSite/replicationProtectionContainers/cl…
+/Subscriptions/7c943c1b-5122-4097-90c8-861411bdd574/resourceGroups/ASRTesting/providers/Microsoft.RecoveryServices/vaults/HyperV2AzureVault/replicationFabrics/HyperV2AzureSite/replicationProtectionContainers/cl…
+/Subscriptions/7c943c1b-5122-4097-90c8-861411bdd574/resourceGroups/ASRTesting/providers/Microsoft.RecoveryServices/vaults/HyperV2AzureVault/replicationFabrics/HyperV2AzureSite/replicationProtectionContainers/cl…
+/Subscriptions/7c943c1b-5122-4097-90c8-861411bdd574/resourceGroups/ASRTesting/providers/Microsoft.RecoveryServices/vaults/HyperV2AzureVault/replicationFabrics/HyperV2AzureSite/replicationProtectionContainers/cl…
+/Subscriptions/7c943c1b-5122-4097-90c8-861411bdd574/resourceGroups/ASRTesting/providers/Microsoft.RecoveryServices/vaults/HyperV2AzureVault/replicationFabrics/HyperV2AzureSite/replicationProtectionContainers/cl…
+/Subscriptions/7c943c1b-5122-4097-90c8-861411bdd574/resourceGroups/ASRTesting/providers/Microsoft.RecoveryServices/vaults/HyperV2AzureVault/replicationFabrics/HyperV2AzureSite/replicationProtectionContainers/cl…
+/Subscriptions/7c943c1b-5122-4097-90c8-861411bdd574/resourceGroups/ASRTesting/providers/Microsoft.RecoveryServices/vaults/HyperV2AzureVault/replicationFabrics/HyperV2AzureSite/replicationProtectionContainers/cl…
+```
+
+Gets all the HyperV to Azure protected items.
 
 ### Example 2: {{ Add title here }}
 ```powershell
-{{ Add code here }}
+$pc = Get-AzRecoveryServicesReplicationProtectionContainer -ResourceGroupName "ASRTesting" -ResourceName "HyperV2AzureVault" -Fabric $fab -ProtectionContainerName "cloud_50c02c4e-3f5a-5e54-a971-8874f186019b" 
+Get-AzRecoveryServicesReplicationProtectedItem -ProtectionContainer $pc  -ResourceGroupName "ASRTesting" -ResourceName "HyperV2AzureVault" -ReplicatedProtectedItemName "14f0d8bf-5804-407b-b1e1-c7a224c1010a"
 ```
 
 ```output
-{{ Add output here }}
+Id
+--
+/Subscriptions/7c943c1b-5122-4097-90c8-861411bdd574/resourceGroups/ASRTesting/providers/Microsoft.RecoveryServices/vaults/HyperV2AzureVault/replicationFabrics/HyperV2AzureSite/replicationProtectionContainers/c…
 ```
 
-{{ Add description here }}
+Gets the HyperV to Azure protected item with given specifications.
 
 ## PARAMETERS
 
 ### -DefaultProfile
-The DefaultProfile parameter is not functional.
-Use the SubscriptionId parameter when available if executing the cmdlet against a different subscription.
+
 
 ```yaml
 Type: System.Management.Automation.PSObject
@@ -78,42 +119,12 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -FabricName
-Fabric unique name.
+### -ProtectionContainer
+To construct, see NOTES section for PROTECTIONCONTAINER properties and create a hash table.
 
 ```yaml
-Type: System.String
-Parameter Sets: Get, List
-Aliases:
-
-Required: True
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -Filter
-OData filter options.
-
-```yaml
-Type: System.String
-Parameter Sets: List1
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -ProtectionContainerName
-Protection container name.
-
-```yaml
-Type: System.String
-Parameter Sets: Get, List
+Type: Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IProtectionContainer
+Parameter Sets: (All)
 Aliases:
 
 Required: True
@@ -124,14 +135,14 @@ Accept wildcard characters: False
 ```
 
 ### -ReplicatedProtectedItemName
-Replication protected item name.
+
 
 ```yaml
 Type: System.String
-Parameter Sets: Get
+Parameter Sets: (All)
 Aliases:
 
-Required: True
+Required: False
 Position: Named
 Default value: None
 Accept pipeline input: False
@@ -139,7 +150,7 @@ Accept wildcard characters: False
 ```
 
 ### -ResourceGroupName
-The name of the resource group where the recovery services vault is present.
+
 
 ```yaml
 Type: System.String
@@ -154,7 +165,7 @@ Accept wildcard characters: False
 ```
 
 ### -ResourceName
-The name of the recovery services vault.
+
 
 ```yaml
 Type: System.String
@@ -168,24 +179,8 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -SkipToken
-The pagination token.
-Possible values: "FabricId" or "FabricId_CloudId" or null.
-
-```yaml
-Type: System.String
-Parameter Sets: List1
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### -SubscriptionId
-The subscription Id.
+
 
 ```yaml
 Type: System.String[]
@@ -206,11 +201,25 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
-### Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IReplicationProtectedItem
+### Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IProtectionContainer
 
 ## NOTES
 
 ALIASES
+
+COMPLEX PARAMETER PROPERTIES
+
+To create the parameters described below, construct a hash table containing the appropriate properties. For information on hash tables, run Get-Help about_Hash_Tables.
+
+
+`PROTECTIONCONTAINER <IProtectionContainer>`: 
+  - `[Location <String>]`: Resource Location
+  - `[FabricFriendlyName <String>]`: Fabric friendly name.
+  - `[FabricType <String>]`: The fabric type.
+  - `[FriendlyName <String>]`: The name.
+  - `[PairingStatus <String>]`: The pairing status of this cloud.
+  - `[ProtectedItemCount <Int32?>]`: Number of protected PEs.
+  - `[Role <String>]`: The role of this cloud.
 
 ## RELATED LINKS
 

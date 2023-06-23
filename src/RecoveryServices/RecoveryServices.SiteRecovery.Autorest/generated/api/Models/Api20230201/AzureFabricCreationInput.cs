@@ -19,16 +19,16 @@ namespace Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201
         /// </summary>
         private Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IFabricSpecificCreationInput __fabricSpecificCreationInput = new Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.FabricSpecificCreationInput();
 
+        /// <summary>Gets the class type.</summary>
+        [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Origin(Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.PropertyOrigin.Inherited)]
+        public string InstanceType { get => ((Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IFabricSpecificCreationInputInternal)__fabricSpecificCreationInput).InstanceType; set => ((Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IFabricSpecificCreationInputInternal)__fabricSpecificCreationInput).InstanceType = value ; }
+
         /// <summary>Backing field for <see cref="Location" /> property.</summary>
         private string _location;
 
         /// <summary>The Location.</summary>
         [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Origin(Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.PropertyOrigin.Owned)]
         public string Location { get => this._location; set => this._location = value; }
-
-        /// <summary>Gets the class type.</summary>
-        [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Origin(Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.PropertyOrigin.Inherited)]
-        public string ReplicationScenario { get => ((Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IFabricSpecificCreationInputInternal)__fabricSpecificCreationInput).ReplicationScenario; set => ((Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IFabricSpecificCreationInputInternal)__fabricSpecificCreationInput).ReplicationScenario = value ; }
 
         /// <summary>Creates an new <see cref="AzureFabricCreationInput" /> instance.</summary>
         public AzureFabricCreationInput()

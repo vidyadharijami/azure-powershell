@@ -1,9 +1,11 @@
-### Example 1: Remove a replication protection container mapping
+### Example 1: Remove a protection container mapping.
 ```powershell
-$fabric=Get-AzRecoveryServicesReplicationFabric -ResourceGroupName "a2arecoveryrg" -ResourceName "a2arecoveryvault" -FabricName "A2Aprimaryfabric"
-$protectioncontainer=Get-AzRecoveryServicesReplicationProtectionContainer -ResourceGroupName "a2arecoveryrg" -ResourceName "a2arecoveryvault" -Fabric $fabric -ProtectionContainer "demoprotectioncontainerA2A"
-$pcmapping=Get-AzRecoveryServicesReplicationProtectionContainerMapping -ResourceGroupName "a2arecoveryrg" -ResourceName "a2arecoveryvault" -ProtectionContainer $protectioncontainer -MappingName "A2ARecoveryToPrimary"
-Remove-AzRecoveryServicesReplicationProtectionContainerMapping -ProtectionContainerMapping $pcmapping -ResourceGroupName "a2arecoveryrg" -ResourceName "a2arecoveryvault"
+Remove-AzRecoveryServicesReplicationProtectionContainerMapping -ResourceGroupName "ASRTesting" -ResourceName "HyperV2AzureVault" -FabricName "HyperV2AzureSite" -MappingName "h2apolicyMapping" -ProtectionContainerName "HyperV2AzureSite" 
 ```
 
-Removes a replication protection container mapping in a recovery services vault.
+```output
+
+```
+
+Removes a replicated protected item by name.
+

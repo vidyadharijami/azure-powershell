@@ -16,7 +16,7 @@ The operation to create a protection container mapping.
 New-AzRecoveryServicesReplicationProtectionContainerMapping -MappingName <String>
  -PrimaryProtectionContainer <IProtectionContainer> -ResourceGroupName <String> -ResourceName <String>
  -Policy <IPolicy> -ProviderSpecificInput <IReplicationProviderSpecificContainerMappingInput>
- -RecoveryProtectionContainer <IProtectionContainer> [-SubscriptionId <String>] [-DefaultProfile <PSObject>]
+ [-SubscriptionId <String>] [-RecoveryProtectionContainer <IProtectionContainer>] [-DefaultProfile <PSObject>]
  [-AsJob] [-NoWait] [-Confirm] [-WhatIf] [<CommonParameters>]
 ```
 
@@ -25,25 +25,23 @@ The operation to create a protection container mapping.
 
 ## EXAMPLES
 
-### Example 1: Create a new replication protection container mapping
+### Example 1: {{ Add title here }}
 ```powershell
-$policy=Get-AzRecoveryServicesReplicationPolicy -ResourceGroupName "a2arecoveryrg" -ResourceName "a2arecoveryvault" -PolicyName "A2APolicy"
-$mappingInput=[Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.A2AContainerMappingInput]::new()
-$mappingInput.ReplicationScenario="ReplicateAzureToAzure"
-$primaryfabric=Get-AzRecoveryServicesReplicationFabric -ResourceGroupName "a2arecoveryrg" -ResourceName "a2arecoveryvault" -FabricName "A2Ademo-EastUS"
-$primaryprotectioncontainer=Get-AzRecoveryServicesReplicationProtectionContainer -ResourceGroupName "a2arecoveryrg" -ResourceName "a2arecoveryvault" -Fabric $primaryfabric -ProtectionContainer "A2AEastUSProtectionContainer"
-$recoveryfabric=Get-AzRecoveryServicesReplicationFabric -ResourceGroupName "a2arecoveryrg" -ResourceName "a2arecoveryvault" -FabricName "A2Aprimaryfabric"
-$recoveryprotectioncontainer=Get-AzRecoveryServicesReplicationProtectionContainer -ResourceGroupName "a2arecoveryrg" -ResourceName "a2arecoveryvault" -Fabric $recoveryfabric -ProtectionContainer "demoProtectionContainer"
-New-AzRecoveryServicesReplicationProtectionContainerMapping -MappingName "demomap" -PrimaryProtectionContainer $primaryprotectioncontainer -ResourceName "a2arecoveryvault" -ResourceGroupName "a2arecoveryrg" -ProviderSpecificInput $mappingInput -Policy $policy -RecoveryProtectionContainer $recoveryprotectioncontainer
+PS C:\> {{ Add code here }}
+
+{{ Add output here }}
 ```
 
-```output
-Id                                                                                                                                                                                                                                                                                                 Location Name    Type
---                                                                                                                                                                                                                                                                                                 -------- ----    ----
-/Subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/a2arecoveryrg/providers/Microsoft.RecoveryServices/vaults/a2arecoveryvault/replicationFabrics/A2Ademo-EastUS/replicationProtectionContainers/A2AEastUSProtectionContainer/replicationProtectionContainerMappings/testmappingcmd			demomap	Microsoft.RecoveryServices/vaults/replicationFabrics/replicationProtectionContainers/replicationProtectionContainerMappings
+{{ Add description here }}
+
+### Example 2: {{ Add title here }}
+```powershell
+PS C:\> {{ Add code here }}
+
+{{ Add output here }}
 ```
 
-Creates a New azure protection container mapping in a recovery services vault.
+{{ Add description here }}
 
 ## PARAMETERS
 
@@ -164,7 +162,7 @@ Type: Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IPr
 Parameter Sets: (All)
 Aliases:
 
-Required: True
+Required: False
 Position: Named
 Default value: None
 Accept pipeline input: False
@@ -280,7 +278,7 @@ To create the parameters described below, construct a hash table containing the 
   - `[Role <String>]`: The role of this cloud.
 
 `PROVIDERSPECIFICINPUT <IReplicationProviderSpecificContainerMappingInput>`: Provider specific input for pairing.
-  - `ReplicationScenario <String>`: The class type.
+  - `InstanceType <String>`: The class type.
 
 `RECOVERYPROTECTIONCONTAINER <IProtectionContainer>`: The target unique protection container object.
   - `[Location <String>]`: Resource Location

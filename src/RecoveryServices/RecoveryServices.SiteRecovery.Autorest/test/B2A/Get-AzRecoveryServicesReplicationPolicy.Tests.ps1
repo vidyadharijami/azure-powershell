@@ -17,7 +17,6 @@ if(($null -eq $TestName) -or ($TestName -contains 'Get-AzRecoveryServicesReplica
 Describe 'Get-AzRecoveryServicesReplicationPolicy' {
     It 'List' {
         $policies = Get-AzRecoveryServicesReplicationPolicy -ResourceGroupName $env.asrResourceGroup -ResourceName $env.asrResourceName
-        $value = 0
         $policies.Count | Should Not BeNullOrEmpty
     }
 
