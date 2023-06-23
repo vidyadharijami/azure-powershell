@@ -29,7 +29,7 @@ The operation to create an ASR replication protected item (Enable replication).
 ```powershell
 $protectionInput=[Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.A2AEnableProtectionInput]::new()
 $protectionInput.FabricObjectId="/subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/abhinav_test/providers/Microsoft.Compute/virtualMachines/a2avmtest"
-$protectionInput.ReplicationScenario="A2A"
+$protectionInput.ReplicationScenario="ReplicateAzureToAzure"
 $protectionInput.RecoveryResourceGroupId="/subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/a2avmrecoveryrg"
 $fabric=Get-AzRecoveryServicesReplicationFabric -ResourceGroupName "a2arecoveryrg" -ResourceName "a2arecoveryvault" -FabricName "A2Ademo-EastUS"
 $protectioncontainer=Get-AzRecoveryServicesReplicationProtectionContainer -ResourceGroupName "a2arecoveryrg" -ResourceName "a2arecoveryvault" -Fabric $fabric -ProtectionContainer "A2AEastUSProtectionContainer"

@@ -37,3 +37,5 @@
   * `AzRecoveryServicesUnplannedReplicationProtectedItemFailover`
   * `AzRecoveryServicesCommitReplicationProtectedItemFailover`
   * `AzRecoveryServicesReplicationProtectedItemApplyRecoveryPoint`
+  * `AzRecoveryServicesReplicationVMNicConfig`
+  * `AzRecoveryServicesReplicationVMNicIPConfig`

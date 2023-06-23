@@ -33,7 +33,7 @@ $fabric=Get-AzRecoveryServicesReplicationFabric -ResourceGroupName "a2arecoveryr
 $protectioncontainer=Get-AzRecoveryServicesReplicationProtectionContainer -ResourceGroupName "a2arecoveryrg" -ResourceName "a2arecoveryvault" -Fabric $fabric -ProtectionContainer "A2AEastUSProtectionContainer"
 $replicatedItem=Get-AzRecoveryServicesReplicationProtectedItem -ResourceGroupName "a2arecoveryrg" -ResourceName "a2arecoveryvault" -ProtectionContainer $protectioncontainer -ReplicatedProtectedItemName "replicatedvmtest"
 $providerSpecificinput=[Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.A2AUpdateReplicationProtectedItemInput]::new()
-$providerSpecificinput.ReplicationScenario="A2A"
+$providerSpecificinput.ReplicationScenario="ReplicateAzureToAzure"
 Update-AzRecoveryServicesReplicationProtectedItem -ReplicatedProtectedItem $replicatedItem -ResourceName "a2arecoveryvault" -ResourceGroupName "a2arecoveryrg" -ProviderSpecificDetail $providerSpecificinput
 ```
 

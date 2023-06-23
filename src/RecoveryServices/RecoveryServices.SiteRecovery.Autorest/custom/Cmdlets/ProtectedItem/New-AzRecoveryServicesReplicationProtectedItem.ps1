@@ -168,7 +168,7 @@ function New-AzRecoveryServicesReplicationProtectedItem {
 
             $replicationscenario = $ProviderSpecificDetail.ReplicationScenario
             if($replicationscenario -eq "ReplicateAzureToAzure") {
-                $ProviderSpecificInput.ReplicationScenario = "A2A"
+                $ProviderSpecificDetail.ReplicationScenario = "A2A"
             }
             else {
                 throw "Provided replication scenario is not supported. Only ReplicateAzureToAzure is supported."

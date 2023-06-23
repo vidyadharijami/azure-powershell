@@ -17,8 +17,8 @@ $protectioncontainer=Get-AzRecoveryServicesReplicationProtectionContainer -Resou
 $protectedItem=Get-AzRecoveryServicesReplicationProtectedItem -ResourceGroupName "a2arecoveryrg" -ResourceName "a2arecoveryvault" -ProtectionContainer $protectioncontainer -ReplicatedProtectedItemName "replicatedvmtest"
 $providerSpecificinput=[Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.A2AUnplannedFailoverInput]::new()
 $providerSpecificinput.CloudServiceCreationOption="AutoCreateCloudService"
-$providerSpecificinput.ReplicationScenario="A2A"
-Invoke-AzRecoveryServicesUnplannedReplicationProtectedItemFailover -ReplicatedProtectedItem $protectedItem -ResourceName "a2arecoveryvault" -ResourceGroupName "a2arecoveryrg" -ProviderSpecificDetail $providerSpecificinput -debug
+$providerSpecificinput.ReplicationScenario="ReplicateAzureToAzure"
+Invoke-AzRecoveryServicesUnplannedReplicationProtectedItemFailover -ReplicatedProtectedItem $protectedItem -ResourceName "a2arecoveryvault" -ResourceGroupName "a2arecoveryrg" -ProviderSpecificDetail $providerSpecificinput
 
 .Outputs
 Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IReplicationProtectedItem

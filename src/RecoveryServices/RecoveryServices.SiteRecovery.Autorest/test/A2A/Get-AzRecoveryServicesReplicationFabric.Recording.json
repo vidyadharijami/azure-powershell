@@ -7,7 +7,7 @@
       "isContentBase64": false,
       "Headers": {
         "x-ms-unique-id": [ "1" ],
-        "x-ms-client-request-id": [ "7bde6d4d-a0b0-4225-a7e7-a26b367a6884" ],
+        "x-ms-client-request-id": [ "dfe24f24-302c-471d-b2ac-5ac49caa46ca" ],
         "CommandName": [ "Get-AzRecoveryServicesReplicationFabric" ],
         "FullCommandName": [ "Get-AzRecoveryServicesReplicationFabric_List" ],
         "ParameterSetName": [ "__AllParameterSets" ],
@@ -23,14 +23,14 @@
         "Cache-Control": [ "no-cache" ],
         "Pragma": [ "no-cache" ],
         "Strict-Transport-Security": [ "max-age=31536000; includeSubDomains" ],
-        "x-ms-request-id": [ "7bde6d4d-a0b0-4225-a7e7-a26b367a6884 6/16/2023 1:30:23 PM" ],
+        "x-ms-request-id": [ "dfe24f24-302c-471d-b2ac-5ac49caa46ca 6/23/2023 7:45:51 PM" ],
         "X-Content-Type-Options": [ "nosniff" ],
-        "x-ms-client-request-id": [ "7bde6d4d-a0b0-4225-a7e7-a26b367a6884" ],
+        "x-ms-client-request-id": [ "dfe24f24-302c-471d-b2ac-5ac49caa46ca" ],
         "Server": [ "Kestrel" ],
         "x-ms-ratelimit-remaining-subscription-reads": [ "11999" ],
-        "x-ms-correlation-request-id": [ "1f3ec85c-8cc3-4430-ac75-a9c4c32760b9" ],
-        "x-ms-routing-request-id": [ "JAPANEAST:20230616T133023Z:1f3ec85c-8cc3-4430-ac75-a9c4c32760b9" ],
-        "Date": [ "Fri, 16 Jun 2023 13:30:22 GMT" ]
+        "x-ms-correlation-request-id": [ "3da37165-1685-4b97-ba94-29a4482dd060" ],
+        "x-ms-routing-request-id": [ "SOUTHINDIA:20230623T194551Z:3da37165-1685-4b97-ba94-29a4482dd060" ],
+        "Date": [ "Fri, 23 Jun 2023 19:45:50 GMT" ]
       },
       "ContentHeaders": {
         "Content-Length": [ "1338" ],
@@ -49,7 +49,7 @@
       "isContentBase64": false,
       "Headers": {
         "x-ms-unique-id": [ "2" ],
-        "x-ms-client-request-id": [ "98f76d7b-57c0-4092-aea9-096edbb2aaa8" ],
+        "x-ms-client-request-id": [ "ce7f5311-211f-4020-9128-e07471fd37a4" ],
         "CommandName": [ "Get-AzRecoveryServicesReplicationFabric" ],
         "FullCommandName": [ "Get-AzRecoveryServicesReplicationFabric_Get" ],
         "ParameterSetName": [ "__AllParameterSets" ],
@@ -65,14 +65,14 @@
         "Cache-Control": [ "no-cache" ],
         "Pragma": [ "no-cache" ],
         "Strict-Transport-Security": [ "max-age=31536000; includeSubDomains" ],
-        "x-ms-request-id": [ "98f76d7b-57c0-4092-aea9-096edbb2aaa8 6/16/2023 1:30:24 PM" ],
+        "x-ms-request-id": [ "ce7f5311-211f-4020-9128-e07471fd37a4 6/23/2023 7:45:52 PM" ],
         "X-Content-Type-Options": [ "nosniff" ],
-        "x-ms-client-request-id": [ "98f76d7b-57c0-4092-aea9-096edbb2aaa8" ],
+        "x-ms-client-request-id": [ "ce7f5311-211f-4020-9128-e07471fd37a4" ],
         "Server": [ "Kestrel" ],
         "x-ms-ratelimit-remaining-subscription-reads": [ "11998" ],
-        "x-ms-correlation-request-id": [ "a0667864-824c-4f30-a9c3-1ef85f0775bf" ],
-        "x-ms-routing-request-id": [ "JAPANEAST:20230616T133024Z:a0667864-824c-4f30-a9c3-1ef85f0775bf" ],
-        "Date": [ "Fri, 16 Jun 2023 13:30:23 GMT" ]
+        "x-ms-correlation-request-id": [ "c815622d-f556-4d08-942f-3d6978677902" ],
+        "x-ms-routing-request-id": [ "SOUTHINDIA:20230623T194552Z:c815622d-f556-4d08-942f-3d6978677902" ],
+        "Date": [ "Fri, 23 Jun 2023 19:45:52 GMT" ]
       },
       "ContentHeaders": {
         "Content-Length": [ "1900" ],

@@ -38,8 +38,10 @@ function setupEnv() {
     $env.mapPolicy = "A2APolicy"
     $env.replicatedProtectedItem = "replicatedvmtest"
     $env.protectedItemtemp = "replicatedvmtest3"
-    $env.protectedItemtest = "replicatedvmtest2"
+    $env.protectedItemtest = "replicatedvmtestcheckfail"
     $env.testNetworkType = "VmNetworkAsInput"
+    $env.recoverypoint = "fdb30f02-20dd-4499-9b5f-fdcf70a20830"
+    $env.unplannedfailvm = "replicatedvmtestcheck"
 
     $envFile = 'env.json'
     if ($TestMode -eq 'live') {

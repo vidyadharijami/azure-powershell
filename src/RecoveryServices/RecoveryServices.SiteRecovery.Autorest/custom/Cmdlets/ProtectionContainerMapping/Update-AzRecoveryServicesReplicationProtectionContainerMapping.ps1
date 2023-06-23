@@ -140,6 +140,14 @@ function Update-AzRecoveryServicesReplicationProtectionContainerMapping {
 
     process {
         try {
+            $replicationscenario = $ProviderSpecificInput.ReplicationScenario
+            if($replicationscenario -eq "ReplicateAzureToAzure") {
+                $ProviderSpecificInput.ReplicationScenario = "A2A"
+            }
+            else {
+                throw "Provided replication scenario is not supported. Only ReplicateAzureToAzure is supported."
+            }
+
             $protectionContainerString = $PrimaryProtectionContainer.id.Split("/")
             $protectionContainerName = $protectionContainerString[-1]
             $fabricName = $protectionContainerString[-3]

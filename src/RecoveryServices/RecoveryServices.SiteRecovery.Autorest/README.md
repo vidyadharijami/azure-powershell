@@ -105,6 +105,15 @@ directive:
       variant: ^Create$|^Delete$|^Update$
     remove: true
   - where:
+      verb: Remove
+      subject: ReplicationProtectionContainerMapping
+      variant: Delete
+    remove: true
+  - where:
+      verb: Clear
+      subject: ReplicationProtectionContainerMapping
+    remove: true
+  - where:
       verb: Test
       subject: ^ReplicationProtectedItemFailover$|^ReplicationProtectedItemFailoverCleanup$
       variant: Test
@@ -176,7 +185,7 @@ directive:
     hide: true
   - where:
       verb: Remove
-      subject: ^ReplicationFabric$|^ReplicationProtectedItem$
+      subject: ^ReplicationFabric$|^ReplicationProtectedItem$|^ReplicationProtectionContainerMapping$
     hide: true
   - where:
       verb: ^Clear$|^New$|^Update$
@@ -203,9 +212,13 @@ directive:
       verb: Add
       subject: ReplicationProtectedItemRecoveryPoint
     hide: true
+  - where:
+      verb: New
+      subject: ReplicationFabric
+    hide: true
   # Rename some model properties
   - where:
-      model-name: ^A2APolicyCreationInput$|^PolicyProviderSpecificInput$|^A2ACrossClusterMigrationPolicyCreationInput$|^InMagePolicyInput$|^HyperVReplicaAzurePolicyInput$|^HyperVReplicaBluePolicyInput$|^HyperVReplicaPolicyInput$|^InMageRcmFailbackPolicyCreationInput$|^InMageRcmPolicyCreationInput$|^InMageAzureV2PolicyInput$|^VMwareCbtPolicyCreationInput$|^EnableProtectionProviderSpecificInput$|^A2ACrossClusterMigrationEnableProtectionInput$|^A2AEnableProtectionInput$|^HyperVReplicaAzureEnableProtectionInput$|^InMageAzureV2EnableProtectionInput$|^InMageEnableProtectionInput$|^InMageRcmEnableProtectionInput$|^UpdateReplicationProtectedItemProviderInput$|^A2AUpdateReplicationProtectedItemInput$|^HyperVReplicaAzureUpdateReplicationProtectedItemInput$|^InMageAzureV2UpdateReplicationProtectedItemInput$|^InMageRcmUpdateReplicationProtectedItemInput$|^TestFailoverProviderSpecificInput$|^A2ATestFailoverInput$|^HyperVReplicaAzureTestFailoverInput$|^InMageAzureV2TestFailoverInput$|^InMageRcmTestFailoverInput$|^InMageTestFailoverInput$|^UnplannedFailoverProviderSpecificInput$|^A2AUnplannedFailoverInput$|^HyperVReplicaAzureUnplannedFailoverInput$|^InMageAzureV2UnplannedFailoverInput$|^InMageRcmUnplannedFailoverInput$|^InMageUnplannedFailoverInput$
+      model-name: ^A2APolicyCreationInput$|^PolicyProviderSpecificInput$|^A2ACrossClusterMigrationPolicyCreationInput$|^InMagePolicyInput$|^HyperVReplicaAzurePolicyInput$|^HyperVReplicaBluePolicyInput$|^HyperVReplicaPolicyInput$|^InMageRcmFailbackPolicyCreationInput$|^InMageRcmPolicyCreationInput$|^InMageAzureV2PolicyInput$|^VMwareCbtPolicyCreationInput$|^FabricSpecificCreationInput$|^AzureFabricCreationInput$|^InMageRcmFabricCreationInput$|^VMwareV2FabricCreationInput$|^ReplicationProviderSpecificContainerCreationInput$|^A2AContainerCreationInput$|^A2ACrossClusterMigrationContainerCreationInput$|^VMwareCbtContainerCreationInput$|^ReplicationProviderSpecificContainerMappingInput$|^A2AContainerMappingInput$|^VMwareCbtContainerMappingInput$|^EnableProtectionProviderSpecificInput$|^A2ACrossClusterMigrationEnableProtectionInput$|^A2AEnableProtectionInput$|^HyperVReplicaAzureEnableProtectionInput$|^InMageAzureV2EnableProtectionInput$|^InMageEnableProtectionInput$|^InMageRcmEnableProtectionInput$|^UpdateReplicationProtectedItemProviderInput$|^A2AUpdateReplicationProtectedItemInput$|^HyperVReplicaAzureUpdateReplicationProtectedItemInput$|^InMageAzureV2UpdateReplicationProtectedItemInput$|^InMageRcmUpdateReplicationProtectedItemInput$|^TestFailoverProviderSpecificInput$|^A2ATestFailoverInput$|^HyperVReplicaAzureTestFailoverInput$|^InMageAzureV2TestFailoverInput$|^InMageRcmTestFailoverInput$|^InMageTestFailoverInput$|^UnplannedFailoverProviderSpecificInput$|^A2AUnplannedFailoverInput$|^HyperVReplicaAzureUnplannedFailoverInput$|^InMageAzureV2UnplannedFailoverInput$|^InMageRcmUnplannedFailoverInput$|^InMageUnplannedFailoverInput$|^ReplicationProviderSpecificUpdateContainerMappingInput$|^A2AUpdateContainerMappingInput$|^InMageRcmUpdateContainerMappingInput$
       property-name: InstanceType
     set:
       property-name: ReplicationScenario
