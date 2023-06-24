@@ -18,10 +18,6 @@
 Operation to create a protection container.
 .Description
 Operation to create a protection container.
-.Example
-{{ Add code here }}
-.Example
-{{ Add code here }}
 
 .Inputs
 Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.ICreateProtectionContainerInput
@@ -29,30 +25,39 @@ Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.ICreatePr
 Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IProtectionContainer
 .Notes
 COMPLEX PARAMETER PROPERTIES
+To create the parameters described below, construct a hash table containing the appropriate properties. For information on hash tables, run Get-Help about_Hash_Tables.
+PROVIDERSPECIFICINPUT <IReplicationProviderSpecificContainerCreationInput[]>: Provider specific inputs for container creation.
+  InstanceType <String>: The class type.
+.Link
+https://docs.microsoft.com/powershell/module/az.recoveryservices/new-azrecoveryservicesreplicationprotectioncontainer
 #>
 function New-AzRecoveryServicesReplicationProtectionContainer {
 [OutputType([Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IProtectionContainer])]
 [CmdletBinding(PositionalBinding=$false)]
 param(
     [Parameter(Mandatory)]
+    [ValidateNotNull()]
     [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Category('Path')]
     [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IFabric]
     # ASR fabric associated with the protection container.
     ${Fabric},
 
     [Parameter(Mandatory)]
+    [ValidateNotNull()]
     [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Category('Path')]
     [System.String]
     # Unique protection container ARM name.
     ${ProtectionContainerName},
 
     [Parameter(Mandatory)]
+    [ValidateNotNull()]
     [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Category('Path')]
     [System.String]
     # The name of the resource group where the recovery services vault is present.
     ${ResourceGroupName},
 
     [Parameter(Mandatory)]
+    [ValidateNotNull()]
     [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Category('Path')]
     [System.String]
     # The name of the recovery services vault.
@@ -133,9 +138,18 @@ param(
 )
 process {
         try {
+            $replicationscenario = $ProviderSpecificInput.ReplicationScenario
+            if($replicationscenario -eq "ReplicateAzureToAzure") {
+                $ProviderSpecificInput.ReplicationScenario = "A2A"
+            }
+            else {
+                throw "Provided replication scenario is not supported. Only ReplicateAzureToAzure is supported."
+            }
+
             $fabricName = $Fabric.Name
             $null = $PSBoundParameters.Remove("Fabric")
             $null = $PSBoundParameters.Add("FabricName", $fabricName)
+
             return Az.RecoveryServices.internal\New-AzRecoveryServicesReplicationProtectionContainer @PSBoundParameters
         } catch {
             throw

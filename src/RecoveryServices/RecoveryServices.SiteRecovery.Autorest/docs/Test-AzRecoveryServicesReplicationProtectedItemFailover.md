@@ -25,18 +25,7 @@ Operation to perform a test failover of the replication protected item.
 
 ## EXAMPLES
 
-### Example 1: {{ Add title here }}
-```powershell
-{{ Add code here }}
-```
-
-```output
-{{ Add output here }}
-```
-
-{{ Add description here }}
-
-### Example 2: {{ Add title here }}
+### Example 1: Test Failover
 ```powershell
 $fab = Get-AzRecoveryServicesReplicationFabric -ResourceGroupName "ASRTesting" -ResourceName "HyperV2AzureVault" -FabricName "HyperV2AzureSite"
 $pc = Get-AzRecoveryServicesReplicationProtectionContainer -ResourceGroupName "ASRTesting" -ResourceName "HyperV2AzureVault" -Fabric $fab
@@ -53,7 +42,7 @@ Id
 /Subscriptions/7c943c1b-5122-4097-90c8-861411bdd574/resourceGroups/ASRTesting/providers/Microsoft.RecoveryServices/vaults/HyperV2AzureVault/replicationFabrics/HyperV2AzureSite/replicationProtectionContainers/c…
 ```
 
-{{ Add description here }}
+Invokes a test failover of the protected item to Microsoft azure.
 
 ## PARAMETERS
 

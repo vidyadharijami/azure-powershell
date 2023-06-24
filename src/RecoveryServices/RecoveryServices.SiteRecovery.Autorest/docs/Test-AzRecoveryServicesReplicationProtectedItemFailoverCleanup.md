@@ -23,18 +23,7 @@ Operation to clean up the test failover of a replication protected item.
 
 ## EXAMPLES
 
-### Example 1: {{ Add title here }}
-```powershell
-{{ Add code here }}
-```
-
-```output
-{{ Add output here }}
-```
-
-{{ Add description here }}
-
-### Example 2: {{ Add title here }}
+### Example 1: Test Failover Cleanup
 ```powershell
 $fab = Get-AzRecoveryServicesReplicationFabric -ResourceGroupName "ASRTesting" -ResourceName "HyperV2AzureVault" -FabricName "HyperV2AzureSite"
 $pcm = Get-AzRecoveryServicesReplicationProtectionContainerMapping -ResourceGroupName "ASRTesting" -ResourceName "HyperV2AzureVault"
@@ -49,7 +38,7 @@ Id
 /Subscriptions/7c943c1b-5122-4097-90c8-861411bdd574/resourceGroups/ASRTesting/providers/Microsoft.RecoveryServices/vaults/HyperV…
 ```
 
-{{ Add description here }}
+Cleans up the resources and VM created during the Test Failover command.
 
 ## PARAMETERS
 

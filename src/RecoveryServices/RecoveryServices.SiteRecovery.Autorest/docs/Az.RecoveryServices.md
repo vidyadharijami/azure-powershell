@@ -227,7 +227,7 @@ Operation to remove disk(s) from the replication protected item.
 Operation to remove a protection container.
 
 ### [Remove-AzRecoveryServicesReplicationProtectionContainerMapping](Remove-AzRecoveryServicesReplicationProtectionContainerMapping.md)
-The operation to delete or remove a protection container mapping.
+The operation to  purge(force delete) a protection container mapping.
 
 ### [Remove-AzRecoveryServicesReplicationRecoveryPlan](Remove-AzRecoveryServicesReplicationRecoveryPlan.md)
 Delete a recovery plan.

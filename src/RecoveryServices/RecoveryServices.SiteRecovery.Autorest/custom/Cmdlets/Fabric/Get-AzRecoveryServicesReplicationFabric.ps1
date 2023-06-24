@@ -22,11 +22,10 @@ The operation to create a replication policy.
 .Example
 {{ Add code here }}
 .Outputs
-Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IPolicy
+Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IFabric
 .Notes
 COMPLEX PARAMETER PROPERTIES
 #>
-
 function Get-AzRecoveryServicesReplicationFabric {
     [OutputType([Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IFabric])]
     [CmdletBinding( PositionalBinding=$false, SupportsShouldProcess, ConfirmImpact='Medium')]
@@ -38,12 +37,14 @@ function Get-AzRecoveryServicesReplicationFabric {
         ${FriendlyName},
 
         [Parameter(Mandatory, HelpMessage='The name of the resource group where the recovery services vault is present.')]
+        [ValidateNotNullOrEmpty()]
         [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Category('Path')]
         [System.String]
         # The name of the resource group where the recovery services vault is present.
         ${ResourceGroupName},
 
         [Parameter(Mandatory, HelpMessage='The name of the recovery services vault.')]
+        [ValidateNotNullOrEmpty()]
         [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Category('Path')]
         [System.String]
         # The name of the recovery services vault.

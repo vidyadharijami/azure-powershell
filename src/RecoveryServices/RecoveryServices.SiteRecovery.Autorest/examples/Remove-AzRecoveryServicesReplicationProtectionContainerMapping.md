@@ -1,11 +1,22 @@
-### Example 1: Remove a protection container mapping.
+### Example 1: {{ Add title here }}
 ```powershell
-Remove-AzRecoveryServicesReplicationProtectionContainerMapping -ResourceGroupName "ASRTesting" -ResourceName "HyperV2AzureVault" -FabricName "HyperV2AzureSite" -MappingName "h2apolicyMapping" -ProtectionContainerName "HyperV2AzureSite" 
+{{ Add code here }}
 ```
 
 ```output
-
+{{ Add output here }}
 ```
 
-Removes a replicated protected item by name.
+{{ Add description here }}
+
+### Example 2: {{ Add title here }}
+```powershell
+{{ Add code here }}
+```
+
+```output
+{{ Add output here }}
+```
+
+{{ Add description here }}
 

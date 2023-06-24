@@ -13,15 +13,13 @@
 # ----------------------------------------------------------------------------------
 <#
 .Synopsis
-The operation to create a replication policy.
+The operation to delete or remove an Azure Site Recovery fabric.
 .Description
-The operation to create a replication policy.
-.Example
-{{ Add code here }}
-.Example
-{{ Add code here }}
+The operation to delete or remove an Azure Site Recovery fabric.
 .Outputs
-Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IPolicy
+System.Boolean
+.Link
+https://docs.microsoft.com/powershell/module/az.recoveryservices/remove-azrecoveryservicesreplicationfabric
 .Notes
 COMPLEX PARAMETER PROPERTIES
 #>
@@ -30,18 +28,21 @@ function Remove-AzRecoveryServicesReplicationFabric {
 [CmdletBinding(DefaultParameterSetName='Delete', PositionalBinding=$false, SupportsShouldProcess, ConfirmImpact='Medium')]
 param(
     [Parameter(Mandatory)]
+    [ValidateNotNull()]
     [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Category('Path')]
     [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IFabric]
     # ASR fabric to delete.
     ${Fabric},
 
     [Parameter(Mandatory)]
+    [ValidateNotNull()]
     [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Category('Path')]
     [System.String]
     # The name of the resource group where the recovery services vault is present.
     ${ResourceGroupName},
 
     [Parameter(Mandatory)]
+    [ValidateNotNull()]
     [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Category('Path')]
     [System.String]
     # The name of the recovery services vault.

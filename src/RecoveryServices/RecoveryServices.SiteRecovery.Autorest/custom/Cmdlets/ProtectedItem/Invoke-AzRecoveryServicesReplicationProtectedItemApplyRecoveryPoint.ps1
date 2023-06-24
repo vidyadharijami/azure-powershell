@@ -11,10 +11,6 @@
 The operation to change the recovery point of a failed over replication protected item.
 .Description
 The operation to change the recovery point of a failed over replication protected item.
-.Example
-{{ Add code here }}
-.Example
-{{ Add code here }}
 
 .Outputs
 Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IReplicationProtectedItem

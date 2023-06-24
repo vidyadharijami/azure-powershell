@@ -24,18 +24,7 @@ The operation to change the recovery point of a failed over replication protecte
 
 ## EXAMPLES
 
-### Example 1: {{ Add title here }}
-```powershell
-{{ Add code here }}
-```
-
-```output
-{{ Add output here }}
-```
-
-{{ Add description here }}
-
-### Example 2: {{ Add title here }}
+### Example 2: Apply recovery point to a failover replicated protected item.
 ```powershell
 $fab = Get-AzRecoveryServicesReplicationFabric -ResourceGroupName "ASRTesting" -ResourceName "HyperV2AzureVault" -FabricName "HyperV2AzureSite"
 $pc = Get-AzRecoveryServicesReplicationProtectionContainer -ResourceGroupName "ASRTesting" -ResourceName "HyperV2AzureVault" -Fabric $fab
@@ -50,6 +39,17 @@ Invoke-AzRecoveryServicesReplicationProtectedItemApplyRecoveryPoint -RecoveryPoi
 Id
 --
 /Subscriptions/7c943c1b-5122-4097-90c8-861411bdd574/resourceGroups/ASRTesting/providers/Microsoft.RecoveryServices/vaults/HyperV2AzureVault/replicationJobs/…
+```
+
+Applies a recvery point to the already failed over protected item.
+
+### Example 1: {{ Add title here }}
+```powershell
+{{ Add code here }}
+```
+
+```output
+{{ Add output here }}
 ```
 
 {{ Add description here }}

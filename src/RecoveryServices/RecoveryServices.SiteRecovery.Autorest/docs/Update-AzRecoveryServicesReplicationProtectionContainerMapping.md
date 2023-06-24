@@ -15,7 +15,7 @@ The operation to update protection container mapping.
 ```
 Update-AzRecoveryServicesReplicationProtectionContainerMapping -MappingName <String>
  -PrimaryProtectionContainer <IProtectionContainer> -ResourceGroupName <String> -ResourceName <String>
- [-SubscriptionId <String>] [-ProviderSpecificInput <IReplicationProviderSpecificUpdateContainerMappingInput>]
+ -ProviderSpecificInput <IReplicationProviderSpecificUpdateContainerMappingInput> [-SubscriptionId <String>]
  [-DefaultProfile <PSObject>] [-AsJob] [-NoWait] [-Confirm] [-WhatIf] [<CommonParameters>]
 ```
 
@@ -133,7 +133,7 @@ Type: Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IRe
 Parameter Sets: (All)
 Aliases:
 
-Required: False
+Required: True
 Position: Named
 Default value: None
 Accept pipeline input: False

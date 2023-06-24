@@ -15,7 +15,7 @@ Hyper-V site).
 
 ```
 New-AzRecoveryServicesReplicationFabric -FabricName <String> -ResourceGroupName <String>
- -ResourceName <String> [-SubscriptionId <String>] [-CustomDetail <IFabricSpecificCreationInput>]
+ -ResourceName <String> -ProviderDetail <IFabricSpecificCreationInput> [-SubscriptionId <String>]
  [-DefaultProfile <PSObject>] [-AsJob] [-NoWait] [-Confirm] [-WhatIf] [<CommonParameters>]
 ```
 
@@ -25,7 +25,7 @@ Hyper-V site).
 
 ## EXAMPLES
 
-### Example 1: Create a new Azure to Azure replication fabric in a specific recovery services vault
+### Example 1: Create a new replication fabric in a specific recovery services vault
 ```powershell
 $fabric = [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.AzureFabricCreationInput]::new()
 $fabric.ReplicationScenario="ReplicateAzureToAzure"
@@ -41,20 +41,20 @@ Id                                                                              
 
 Creates a new replication fabric in a specified recovery services vault for a replicateAzuretoAzure instance type.
 
-### Example 2: Create a new HyperV to Azure replication fabric in a specific recovery services vault
+### Example 2: Create a new replication fabric in a specific recovery services vault
 ```powershell
-$fabric = [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.FabricSpecificCreationInput]::new()
-$fabric.instanceType = "HyperVSite"
-New-AzRecoveryServicesReplicationFabric -FabricName "hyperv2azurereplicafabric" -ResourceGroupName "ASRTesting" -ResourceName "HyperV2AzureVault" -CustomDetail $fabric
+$fabr = [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.FabricSpecificCreationInput]::new()
+$fabr.ReplicationScenario = "FabricSpecificCreationInput"
+New-AzRecoveryServicesReplicationFabric -FabricName "hyperv2azure2replicafabric" -ResourceGroupName "ASRTesting" -ResourceName "HyperV2AzureVault" -ProviderDetail $fabr
 ```
 
 ```output
-Location Name                      Type
--------- ----                      ----
-         hyperv2azurereplicafabric Microsoft.RecoveryServices/vaults/replicationFabrics
+Id
+--
+/Subscriptions/7c943c1b-5122-4097-90c8-861411bdd574/resourceGroups/ASRTesting/providers/Microsoft.RecoveryServices/vaults/HyperV2AzureVault/replicationFabri…
 ```
 
-Creates a new replication fabric in a specified recovery services vault for a replicate HyperV to Azure instance type.
+Creates a new replication fabric in a specified recovery services vault for a replicateHyperV to Azure instance type.
 
 ## PARAMETERS
 
@@ -63,22 +63,6 @@ Run the command as a job
 
 ```yaml
 Type: System.Management.Automation.SwitchParameter
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -CustomDetail
-Fabric provider specific creation input.
-To construct, see NOTES section for CUSTOMDETAIL properties and create a hash table.
-
-```yaml
-Type: Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IFabricSpecificCreationInput
 Parameter Sets: (All)
 Aliases:
 
@@ -129,6 +113,23 @@ Parameter Sets: (All)
 Aliases:
 
 Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -ProviderDetail
+Fabric provider specific creation input.
+To construct, see NOTES section for CUSTOMDETAIL properties and create a hash table.
+To construct, see NOTES section for PROVIDERDETAIL properties and create a hash table.
+
+```yaml
+Type: Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IFabricSpecificCreationInput
+Parameter Sets: (All)
+Aliases:
+
+Required: True
 Position: Named
 Default value: None
 Accept pipeline input: False
@@ -229,8 +230,8 @@ COMPLEX PARAMETER PROPERTIES
 To create the parameters described below, construct a hash table containing the appropriate properties. For information on hash tables, run Get-Help about_Hash_Tables.
 
 
-`CUSTOMDETAIL <IFabricSpecificCreationInput>`: Fabric provider specific creation input.
-  - `InstanceType <String>`: Gets the class type.
+`PROVIDERDETAIL <IFabricSpecificCreationInput>`: Fabric provider specific creation input. To construct, see NOTES section for CUSTOMDETAIL properties and create a hash table.
+  - `ReplicationScenario <String>`: Gets the class type.
 
 ## RELATED LINKS
 

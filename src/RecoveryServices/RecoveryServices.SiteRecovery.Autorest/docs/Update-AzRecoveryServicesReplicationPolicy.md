@@ -14,9 +14,8 @@ The operation to update a replication policy.
 
 ```
 Update-AzRecoveryServicesReplicationPolicy -Policy <IPolicy> -ResourceGroupName <String>
- -ResourceName <String> [-SubscriptionId <String>]
- [-ReplicationProviderSetting <IPolicyProviderSpecificInput>] [-DefaultProfile <PSObject>] [-AsJob] [-NoWait]
- [-Confirm] [-WhatIf] [<CommonParameters>]
+ -ResourceName <String> -ReplicationProviderSetting <IPolicyProviderSpecificInput> [-SubscriptionId <String>]
+ [-DefaultProfile <PSObject>] [-AsJob] [-NoWait] [-Confirm] [-WhatIf] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -134,7 +133,7 @@ Type: Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IPo
 Parameter Sets: (All)
 Aliases:
 
-Required: False
+Required: True
 Position: Named
 Default value: None
 Accept pipeline input: False

@@ -16,10 +16,6 @@
 The operation to create a replication policy.
 .Description
 The operation to create a replication policy.
-.Example
-{{ Add code here }}
-.Example
-{{ Add code here }}
 .Outputs
 Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IPolicy
 .Notes
@@ -29,25 +25,30 @@ function Get-AzRecoveryServicesReplicationProtectionContainer {
 [OutputType([Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IProtectionContainer])]
 [CmdletBinding(PositionalBinding=$false)]
 param(
+    [Parameter(ParameterSetName='List',Mandatory)]
     [Parameter(ParameterSetName='Get',Mandatory)]
+    [ValidateNotNull()]
     [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Category('Path')]
     [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IFabric]
     # ASR fabric.
     ${Fabric},
 
-    [Parameter(ParameterSetName='Get')]
+    [Parameter(ParameterSetName='Get',Mandatory)]
+    [ValidateNotNull()]
     [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Category('Path')]
     [System.String]
     # Protection container name.
     ${ProtectionContainerName},
 
     [Parameter(Mandatory)]
+    [ValidateNotNull()]
     [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Category('Path')]
     [System.String]
     # The name of the resource group where the recovery services vault is present.
     ${ResourceGroupName},
 
     [Parameter(Mandatory)]
+    [ValidateNotNullOrEmpty()]
     [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Category('Path')]
     [System.String]
     # The name of the recovery services vault.

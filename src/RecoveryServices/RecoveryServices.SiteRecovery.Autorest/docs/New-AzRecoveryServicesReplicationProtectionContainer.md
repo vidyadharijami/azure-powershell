@@ -26,8 +26,10 @@ Operation to create a protection container.
 
 ### Example 1: {{ Add title here }}
 ```powershell
-PS C:\> {{ Add code here }}
+{{ Add code here }}
+```
 
+```output
 {{ Add output here }}
 ```
 
@@ -35,8 +37,10 @@ PS C:\> {{ Add code here }}
 
 ### Example 2: {{ Add title here }}
 ```powershell
-PS C:\> {{ Add code here }}
+{{ Add code here }}
+```
 
+```output
 {{ Add output here }}
 ```
 
@@ -246,7 +250,7 @@ To create the parameters described below, construct a hash table containing the 
   - `[RolloverEncryptionDetailKekState <String>]`: The key encryption key state for the Vmm.
 
 `PROVIDERSPECIFICINPUT <IReplicationProviderSpecificContainerCreationInput[]>`: Provider specific inputs for container creation.
-  - `InstanceType <String>`: The class type.
+  - `ReplicationScenario <String>`: The class type.
 
 ## RELATED LINKS
 

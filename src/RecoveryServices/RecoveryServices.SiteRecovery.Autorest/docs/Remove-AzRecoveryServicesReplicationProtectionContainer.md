@@ -13,10 +13,9 @@ Operation to remove a protection container.
 ## SYNTAX
 
 ```
-Remove-AzRecoveryServicesReplicationProtectionContainer -Fabric <IFabric>
- -ProtectionContainer <IProtectionContainer> -ResourceGroupName <String> -ResourceName <String>
- [-SubscriptionId <String>] [-DefaultProfile <PSObject>] [-AsJob] [-NoWait] [-PassThru] [-Confirm] [-WhatIf]
- [<CommonParameters>]
+Remove-AzRecoveryServicesReplicationProtectionContainer -ProtectionContainer <IProtectionContainer>
+ -ResourceGroupName <String> -ResourceName <String> [-SubscriptionId <String>] [-DefaultProfile <PSObject>]
+ [-AsJob] [-NoWait] [-PassThru] [-Confirm] [-WhatIf] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -24,27 +23,14 @@ Operation to remove a protection container.
 
 ## EXAMPLES
 
-### Example 1: {{ Add title here }}
+### Example 1: Remove a Protection Container from the Vault.
 ```powershell
-{{ Add code here }}
+$fab = Get-AzRecoveryServicesReplicationFabric -ResourceGroupName "ASRTesting" -ResourceName "HyperV2AzureVault" -FabricName "HyperV2AzureSite"
+$pc = Get-AzRecoveryServicesReplicationProtectionContainer -ResourceGroupName "ASRTesting" -ResourceName "HyperV2AzureVault" -Fabric $fab -ProtectionContainerName "cloud_50c02c4e-3f5a-5e54-a971-8874f186019b" 
+Remove-AzRecoveryServicesReplicationProtectionContainer -fabric $fab -ProtectionContainer $pc -ResourceGroupName "ASRTesting" -ResourceName "HyperV2AzureVault"
 ```
 
-```output
-{{ Add output here }}
-```
-
-{{ Add description here }}
-
-### Example 2: {{ Add title here }}
-```powershell
-{{ Add code here }}
-```
-
-```output
-{{ Add output here }}
-```
-
-{{ Add description here }}
+Removes a specified protection container from the given vault.
 
 ## PARAMETERS
 
@@ -72,22 +58,6 @@ Parameter Sets: (All)
 Aliases: AzureRMContext, AzureCredential
 
 Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -Fabric
-ASR fabric associated with the protection container.
-To construct, see NOTES section for FABRIC properties and create a hash table.
-
-```yaml
-Type: Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IFabric
-Parameter Sets: (All)
-Aliases:
-
-Required: True
 Position: Named
 Default value: None
 Accept pipeline input: False
@@ -233,50 +203,6 @@ COMPLEX PARAMETER PROPERTIES
 
 To create the parameters described below, construct a hash table containing the appropriate properties. For information on hash tables, run Get-Help about_Hash_Tables.
 
-
-`FABRIC <IFabric>`: ASR fabric associated with the protection container.
-  - `[Location <String>]`: Resource Location
-  - `[BcdrState <String>]`: BCDR state of the fabric.
-  - `[CustomDetailInstanceType <String>]`: Gets the class type. Overridden in derived classes.
-  - `[EncryptionDetailKekCertExpiryDate <DateTime?>]`: The key encryption key certificate expiry date.
-  - `[EncryptionDetailKekCertThumbprint <String>]`: The key encryption key certificate thumbprint.
-  - `[EncryptionDetailKekState <String>]`: The key encryption key state for the Vmm.
-  - `[FriendlyName <String>]`: Friendly name of the fabric.
-  - `[Health <String>]`: Health of fabric.
-  - `[HealthErrorDetail <IHealthError[]>]`: Fabric health error details.
-    - `[CreationTimeUtc <DateTime?>]`: Error creation time (UTC).
-    - `[CustomerResolvability <HealthErrorCustomerResolvability?>]`: Value indicating whether the health error is customer resolvable.
-    - `[EntityId <String>]`: ID of the entity.
-    - `[ErrorCategory <String>]`: Category of error.
-    - `[ErrorCode <String>]`: Error code.
-    - `[ErrorId <String>]`: The health error unique id.
-    - `[ErrorLevel <String>]`: Level of error.
-    - `[ErrorMessage <String>]`: Error message.
-    - `[ErrorSource <String>]`: Source of error.
-    - `[ErrorType <String>]`: Type of error.
-    - `[InnerHealthError <IInnerHealthError[]>]`: The inner health errors. HealthError having a list of HealthError as child errors is problematic. InnerHealthError is used because this will prevent an infinite loop of structures when Hydra tries to auto-generate the contract. We are exposing the related health errors as inner health errors and all API consumers can utilize this in the same fashion as Exception -&gt; InnerException.
-      - `[CreationTimeUtc <DateTime?>]`: Error creation time (UTC).
-      - `[CustomerResolvability <HealthErrorCustomerResolvability?>]`: Value indicating whether the health error is customer resolvable.
-      - `[EntityId <String>]`: ID of the entity.
-      - `[ErrorCategory <String>]`: Category of error.
-      - `[ErrorCode <String>]`: Error code.
-      - `[ErrorId <String>]`: The health error unique id.
-      - `[ErrorLevel <String>]`: Level of error.
-      - `[ErrorMessage <String>]`: Error message.
-      - `[ErrorSource <String>]`: Source of error.
-      - `[ErrorType <String>]`: Type of error.
-      - `[PossibleCaus <String>]`: Possible causes of error.
-      - `[RecommendedAction <String>]`: Recommended action to resolve error.
-      - `[RecoveryProviderErrorMessage <String>]`: DRA error message.
-      - `[SummaryMessage <String>]`: Summary message of the entity.
-    - `[PossibleCaus <String>]`: Possible causes of error.
-    - `[RecommendedAction <String>]`: Recommended action to resolve error.
-    - `[RecoveryProviderErrorMessage <String>]`: DRA error message.
-    - `[SummaryMessage <String>]`: Summary message of the entity.
-  - `[InternalIdentifier <String>]`: Dra Registration Id.
-  - `[RolloverEncryptionDetailKekCertExpiryDate <DateTime?>]`: The key encryption key certificate expiry date.
-  - `[RolloverEncryptionDetailKekCertThumbprint <String>]`: The key encryption key certificate thumbprint.
-  - `[RolloverEncryptionDetailKekState <String>]`: The key encryption key state for the Vmm.
 
 `PROTECTIONCONTAINER <IProtectionContainer>`: Unique protection container ARM.
   - `[Location <String>]`: Resource Location

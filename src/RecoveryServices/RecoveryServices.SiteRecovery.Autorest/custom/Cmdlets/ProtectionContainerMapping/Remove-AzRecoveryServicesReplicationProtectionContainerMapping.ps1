@@ -15,31 +15,34 @@
 
 <#
 .Synopsis
-The operation to purge(force delete) a protection container mapping.
+The operation to  purge(force delete) a protection container mapping.
 .Description
-The operation to purge(force delete) a protection container mapping.
+The operation to  purge(force delete) a protection container mapping.
 .Outputs
 System.Boolean
 .Link
-https://docs.microsoft.com/powershell/module/az.recoveryservices/clear-azrecoveryservicesreplicationprotectioncontainermapping
+https://docs.microsoft.com/powershell/module/az.recoveryservices/remove-azrecoveryservicesreplicationprotectioncontainermapping
 #>
-function Clear-AzRecoveryServicesReplicationProtectionContainerMapping {
+function Remove-AzRecoveryServicesReplicationProtectionContainerMapping {
     [OutputType([System.Boolean])]
-    [CmdletBinding(DefaultParameterSetName='Purge', PositionalBinding=$false, SupportsShouldProcess, ConfirmImpact='Medium')]
+    [CmdletBinding(DefaultParameterSetName='DeleteExpanded', PositionalBinding=$false, SupportsShouldProcess, ConfirmImpact='Medium')]
     param(
         [Parameter(Mandatory)]
+        [ValidateNotNull()]
         [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Category('Path')]
         [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IProtectionContainerMapping]
         # Protection container mapping object.
         ${ProtectionContainerMapping},
 
         [Parameter(Mandatory)]
+        [ValidateNotNull()]
         [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Category('Path')]
         [System.String]
         # The name of the resource group where the recovery services vault is present.
         ${ResourceGroupName},
 
         [Parameter(Mandatory)]
+        [ValidateNotNull()]
         [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Category('Path')]
         [System.String]
         # The name of the recovery services vault.
@@ -57,7 +60,8 @@ function Clear-AzRecoveryServicesReplicationProtectionContainerMapping {
         [ValidateNotNull()]
         [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Category('Azure')]
         [System.Management.Automation.PSObject]
-        # The credentials, account, tenant, and subscription used for communication with Azure.
+        # The DefaultProfile parameter is not functional.
+        # Use the SubscriptionId parameter when available if executing the cmdlet against a different subscription.
         ${DefaultProfile},
 
         [Parameter()]
@@ -130,7 +134,7 @@ function Clear-AzRecoveryServicesReplicationProtectionContainerMapping {
             $null = $PSBoundParameters.Add("FabricName", $fabricName)
             $null = $PSBoundParameters.Add("ProtectionContainerName", $protectionContainerName)
 
-            return Az.RecoveryServices.internal\Clear-AzRecoveryServicesReplicationProtectionContainerMapping @PSBoundParameters
+            return Az.RecoveryServices.internal\Remove-AzRecoveryServicesReplicationProtectionContainerMapping @PSBoundParameters
         } catch {
             throw
         }

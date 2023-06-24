@@ -18,14 +18,6 @@
 The operation to create an ASR replication protected item (Enable replication).
 .Description
 The operation to create an ASR replication protected item (Enable replication).
-.Example
-PS C:\> {{ Add code here }}
-
-{{ Add output here }}
-.Example
-PS C:\> {{ Add code here }}
-
-{{ Add output here }}
 
 .Outputs
 Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IReplicationProtectedItem

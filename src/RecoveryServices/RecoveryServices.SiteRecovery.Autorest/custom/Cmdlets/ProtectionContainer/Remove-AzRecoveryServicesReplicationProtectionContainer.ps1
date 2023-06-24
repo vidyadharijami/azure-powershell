@@ -18,10 +18,6 @@
 Operation to remove a protection container.
 .Description
 Operation to remove a protection container.
-.Example
-{{ Add code here }}
-.Example
-{{ Add code here }}
 
 .Outputs
 System.Boolean
@@ -33,18 +29,14 @@ function Remove-AzRecoveryServicesReplicationProtectionContainer {
 [CmdletBinding(DefaultParameterSetName='Delete', PositionalBinding=$false, SupportsShouldProcess, ConfirmImpact='Medium')]
 param(
     [Parameter(Mandatory)]
-    [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Category('Path')]
-    [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IFabric]
-    # ASR fabric associated with the protection container.
-    ${Fabric},
-
-    [Parameter(Mandatory)]
+    [ValidateNotNull()]
     [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Category('Path')]
     [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IProtectionContainer]
     # Unique protection container ARM.
     ${ProtectionContainer},
 
     [Parameter(Mandatory)]
+    [ValidateNotNull()]
     [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Category('Path')]
     [System.String]
     # The name of the resource group where the recovery services vault is present.
@@ -132,9 +124,10 @@ param(
 
 process {
         try {
-            $fabricName = $Fabric.Name
-            $protectionContainerName = $ProtectionContainer.Name
-            $null = $PSBoundParameters.Remove("Fabric")
+            $protectionContainerString = $ProtectionContainer.id.Split("/")
+            $protectionContainerName = $protectionContainerString[-1]
+            $fabricName = $protectionContainerString[-3]
+
             $null = $PSBoundParameters.Add("FabricName", $fabricName)
             $null = $PSBoundParameters.Remove("ProtectionContainer")
             $null = $PSBoundParameters.Add("ProtectionContainerName", $protectionContainerName)

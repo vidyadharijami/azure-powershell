@@ -20,9 +20,15 @@ Get-AzRecoveryServicesReplicationProtectionContainer -ResourceGroupName <String>
 
 ### Get
 ```
+Get-AzRecoveryServicesReplicationProtectionContainer -Fabric <IFabric> -ProtectionContainerName <String>
+ -ResourceGroupName <String> -ResourceName <String> [-SubscriptionId <String[]>] [-DefaultProfile <PSObject>]
+ [<CommonParameters>]
+```
+
+### List
+```
 Get-AzRecoveryServicesReplicationProtectionContainer -Fabric <IFabric> -ResourceGroupName <String>
- -ResourceName <String> [-ProtectionContainerName <String>] [-SubscriptionId <String[]>]
- [-DefaultProfile <PSObject>] [<CommonParameters>]
+ -ResourceName <String> [-SubscriptionId <String[]>] [-DefaultProfile <PSObject>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -95,7 +101,7 @@ To construct, see NOTES section for FABRIC properties and create a hash table.
 
 ```yaml
 Type: Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IFabric
-Parameter Sets: Get
+Parameter Sets: Get, List
 Aliases:
 
 Required: True
@@ -113,7 +119,7 @@ Type: System.String
 Parameter Sets: Get
 Aliases:
 
-Required: False
+Required: True
 Position: Named
 Default value: None
 Accept pipeline input: False

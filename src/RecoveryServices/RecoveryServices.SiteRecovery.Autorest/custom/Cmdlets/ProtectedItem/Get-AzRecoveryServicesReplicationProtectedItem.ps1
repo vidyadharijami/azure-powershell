@@ -16,10 +16,7 @@
 The operation to create a replication policy.
 .Description
 The operation to create a replication policy.
-.Example
-{{ Add code here }}
-.Example
-{{ Add code here }}
+
 .Outputs
 Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IPolicy
 .Notes

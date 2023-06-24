@@ -12,8 +12,6 @@ The operation to delete or remove an Azure Site Recovery fabric.
 .Description
 The operation to delete or remove an Azure Site Recovery fabric.
 .Example
-{{ Add code here }}
-.Example
 $fab = Get-AzRecoveryServicesReplicationFabric -ResourceGroupName "ASRTesting" -ResourceName "HyperV2AzureVault" -FabricName "hyperv2azurereplicafabric"
 Remove-AzRecoveryServicesReplicationFabric -ResourceGroupName "ASRTesting" -ResourceName "HyperV2AzureVault" -Fabric $fab
 

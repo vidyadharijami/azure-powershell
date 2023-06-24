@@ -11,8 +11,7 @@
 
 ### Example 2: {{ Add title here }}
 ```powershell
-$map = Get-AzRecoveryServicesReplicationProtectionContainerMapping -ResourceGroupName "ASRTesting" -ResourceName "HyperV2AzureVault"
-Clear-AzRecoveryServicesReplicationProtectionContainerMapping -InputObject $map -ResourceGroupName "ASRTesting" -ResourceName "HyperV2AzureVault"
+{{ Add code here }}
 ```
 
 ```output
@@ -20,3 +19,4 @@ Clear-AzRecoveryServicesReplicationProtectionContainerMapping -InputObject $map 
 ```
 
 {{ Add description here }}
+

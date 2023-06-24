@@ -148,8 +148,8 @@ directive:
       variant: ^UpdateViaIdentity$|^UpdateViaIdentityExpanded$|^RefreshViaIdentity$
     remove: true
   - where:
-      verb: ^New$|^Remove$|^Update$|
-      subject: ^ReplicationProtectedItem$
+      verb: ^New$|^Remove$|^Update$
+      subject: ^ReplicationProtectedItem$|^ReplicationProtectionContainerMapping$
       variant: ^Create$|^Delete$|^Update$
     remove: true
   - where:
@@ -178,11 +178,7 @@ directive:
       subject: ^ReplicationPolicy$|^ReplicationProtectionContainer$
     hide: true
   - where:
-      verb: Remove
-      subject: ReplicationFabric
-    hide: true
-  - where:
-      verb: ^Clear$|^New$|^Update$
+      verb: ^Remove$|^New$|^Update$
       subject: ReplicationProtectionContainerMapping
     hide: true
   - where:
@@ -197,7 +193,7 @@ directive:
     hide: true
   - where:
       verb: ^New$|^Remove$
-      subject: ^ReplicationProtectedItem$
+      subject: ^ReplicationProtectedItem$|^ReplicationFabric$
     hide: true
   - where:
       verb: ^Invoke$
@@ -226,14 +222,10 @@ directive:
     hide: true
   # Rename some model properties
   - where:
-      model-name: ^A2APolicyCreationInput$|^PolicyProviderSpecificInput$|^A2ACrossClusterMigrationPolicyCreationInput$|^InMagePolicyInput$|^HyperVReplicaAzurePolicyInput$|^HyperVReplicaBluePolicyInput$|^HyperVReplicaPolicyInput$|^InMageRcmFailbackPolicyCreationInput$|^InMageRcmPolicyCreationInput$|^InMageAzureV2PolicyInput$|^VMwareCbtPolicyCreationInput$
+      model-name: ^A2APolicyCreationInput$|^PolicyProviderSpecificInput$|^A2ACrossClusterMigrationPolicyCreationInput$|^InMagePolicyInput$|^HyperVReplicaAzurePolicyInput$|^HyperVReplicaBluePolicyInput$|^HyperVReplicaPolicyInput$|^InMageRcmFailbackPolicyCreationInput$|^InMageRcmPolicyCreationInput$|^InMageAzureV2PolicyInput$|^VMwareCbtPolicyCreationInput$|^FabricSpecificCreationInput$|^AzureFabricCreationInput$|^InMageRcmFabricCreationInput$|^VMwareV2FabricCreationInput$|^ReplicationProviderSpecificContainerCreationInput$|^A2AContainerCreationInput$|^A2ACrossClusterMigrationContainerCreationInput$|^VMwareCbtContainerCreationInput$|^ReplicationProviderSpecificContainerMappingInput$|^A2AContainerMappingInput$|^VMwareCbtContainerMappingInput$
       property-name: InstanceType
     set:
       property-name: ReplicationScenario
-  - where:
-      model-name: HyperVReplicaAzurePolicyInput
-    set:
-      model-name: H2APolicyCreationInput
 ```
 ## Alternate settings
 This section is only activated if the `--make-it-rain` switch is added to the command line

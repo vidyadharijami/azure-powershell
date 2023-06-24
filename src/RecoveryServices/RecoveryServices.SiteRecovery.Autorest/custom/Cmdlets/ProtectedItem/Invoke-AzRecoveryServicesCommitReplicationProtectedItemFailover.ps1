@@ -11,10 +11,6 @@
 Operation to commit the failover of the replication protected item.
 .Description
 Operation to commit the failover of the replication protected item.
-.Example
-{{ Add code here }}
-.Example
-{{ Add code here }}
 
 .Outputs
 Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IReplicationProtectedItem

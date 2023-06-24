@@ -11,10 +11,6 @@
 Operation to clean up the test failover of a replication protected item.
 .Description
 Operation to clean up the test failover of a replication protected item.
-.Example
-{{ Add code here }}
-.Example
-{{ Add code here }}
 
 .Outputs
 Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IReplicationProtectedItem

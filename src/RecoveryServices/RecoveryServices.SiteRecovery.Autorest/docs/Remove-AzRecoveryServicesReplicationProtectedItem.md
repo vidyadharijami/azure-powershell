@@ -26,18 +26,7 @@ This will also remove the item.
 
 ## EXAMPLES
 
-### Example 1: {{ Add title here }}
-```powershell
-{{ Add code here }}
-```
-
-```output
-{{ Add output here }}
-```
-
-{{ Add description here }}
-
-### Example 2: {{ Add title here }}
+### Example 1: Disable Protection
 ```powershell
 $fab = Get-AzRecoveryServicesReplicationFabric -ResourceGroupName "ASRTesting" -ResourceName "HyperV2AzureVault" -FabricName "HyperV2AzureSite"
 $pc = Get-AzRecoveryServicesReplicationProtectionContainer -ResourceGroupName "ASRTesting" -ResourceName "HyperV2AzureVault" -Fabric $fab
@@ -47,7 +36,7 @@ $rrpi.InstanceType = "DisableProtectionProviderSpecificInput"
 Remove-AzRecoveryServicesReplicationProtectedItem -ProtectedItem $pi -ResourceGroupName "ASRTesting" -ResourceName "HyperV2AzureVault" -ReplicationProviderInput $rrpi
 ```
 
-{{ Add description here }}
+Disables the protection for the specified replicated protected item in the given vault.
 
 ## PARAMETERS
 

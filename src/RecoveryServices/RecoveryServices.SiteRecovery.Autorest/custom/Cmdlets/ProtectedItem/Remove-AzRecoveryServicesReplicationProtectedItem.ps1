@@ -13,10 +13,6 @@ This will also remove the item.
 .Description
 The operation to disable replication on a replication protected item.
 This will also remove the item.
-.Example
-{{ Add code here }}
-.Example
-{{ Add code here }}
 
 .Inputs
 Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IDisableProtectionInput
