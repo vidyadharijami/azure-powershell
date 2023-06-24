@@ -100,17 +100,13 @@ namespace Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201
             {
                 ((Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IDisableProtectionInputInternal)this).Property = (Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IDisableProtectionInputProperties) content.GetValueForProperty("Property",((Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IDisableProtectionInputInternal)this).Property, Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.DisableProtectionInputPropertiesTypeConverter.ConvertFrom);
             }
-            if (content.Contains("ReplicationProviderInput"))
-            {
-                ((Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IDisableProtectionInputInternal)this).ReplicationProviderInput = (Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IDisableProtectionProviderSpecificInput) content.GetValueForProperty("ReplicationProviderInput",((Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IDisableProtectionInputInternal)this).ReplicationProviderInput, Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.DisableProtectionProviderSpecificInputTypeConverter.ConvertFrom);
-            }
             if (content.Contains("DisableProtectionReason"))
             {
                 ((Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IDisableProtectionInputInternal)this).DisableProtectionReason = (Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Support.DisableProtectionReason?) content.GetValueForProperty("DisableProtectionReason",((Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IDisableProtectionInputInternal)this).DisableProtectionReason, Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Support.DisableProtectionReason.CreateFrom);
             }
-            if (content.Contains("ReplicationProviderInputInstanceType"))
+            if (content.Contains("ReplicationProviderInput"))
             {
-                ((Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IDisableProtectionInputInternal)this).ReplicationProviderInputInstanceType = (string) content.GetValueForProperty("ReplicationProviderInputInstanceType",((Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IDisableProtectionInputInternal)this).ReplicationProviderInputInstanceType, global::System.Convert.ToString);
+                ((Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IDisableProtectionInputInternal)this).ReplicationProviderInput = (Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IDisableProtectionProviderSpecificInput) content.GetValueForProperty("ReplicationProviderInput",((Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IDisableProtectionInputInternal)this).ReplicationProviderInput, Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.DisableProtectionProviderSpecificInputTypeConverter.ConvertFrom);
             }
             AfterDeserializeDictionary(content);
         }
@@ -133,17 +129,13 @@ namespace Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201
             {
                 ((Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IDisableProtectionInputInternal)this).Property = (Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IDisableProtectionInputProperties) content.GetValueForProperty("Property",((Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IDisableProtectionInputInternal)this).Property, Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.DisableProtectionInputPropertiesTypeConverter.ConvertFrom);
             }
-            if (content.Contains("ReplicationProviderInput"))
-            {
-                ((Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IDisableProtectionInputInternal)this).ReplicationProviderInput = (Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IDisableProtectionProviderSpecificInput) content.GetValueForProperty("ReplicationProviderInput",((Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IDisableProtectionInputInternal)this).ReplicationProviderInput, Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.DisableProtectionProviderSpecificInputTypeConverter.ConvertFrom);
-            }
             if (content.Contains("DisableProtectionReason"))
             {
                 ((Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IDisableProtectionInputInternal)this).DisableProtectionReason = (Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Support.DisableProtectionReason?) content.GetValueForProperty("DisableProtectionReason",((Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IDisableProtectionInputInternal)this).DisableProtectionReason, Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Support.DisableProtectionReason.CreateFrom);
             }
-            if (content.Contains("ReplicationProviderInputInstanceType"))
+            if (content.Contains("ReplicationProviderInput"))
             {
-                ((Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IDisableProtectionInputInternal)this).ReplicationProviderInputInstanceType = (string) content.GetValueForProperty("ReplicationProviderInputInstanceType",((Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IDisableProtectionInputInternal)this).ReplicationProviderInputInstanceType, global::System.Convert.ToString);
+                ((Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IDisableProtectionInputInternal)this).ReplicationProviderInput = (Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IDisableProtectionProviderSpecificInput) content.GetValueForProperty("ReplicationProviderInput",((Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IDisableProtectionInputInternal)this).ReplicationProviderInput, Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.DisableProtectionProviderSpecificInputTypeConverter.ConvertFrom);
             }
             AfterDeserializePSObject(content);
         }

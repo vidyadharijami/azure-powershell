@@ -12,9 +12,9 @@ Operation to remove a protection container.
 .Description
 Operation to remove a protection container.
 .Example
-$fabric=Get-AzRecoveryServicesReplicationFabric -ResourceGroupName "a2arecoveryrg" -ResourceName "a2arecoveryvault" -FabricName "demofabric"
-$protectionConatiner=Get-AzRecoveryServicesReplicationProtectionContainer -ResourceGroupName "a2arecoveryrg" -ResourceName "a2arecoveryvault" -Fabric $fabric -ProtectionContainer "demoProtectionContainer"
-Remove-AzRecoveryServicesReplicationProtectionContainer -ProtectionContainer $protectionConatiner -ResourceGroupName "a2arecoveryrg" -ResourceName "a2arecoveryvault"
+$fab = Get-AzRecoveryServicesReplicationFabric -ResourceGroupName "ASRTesting" -ResourceName "HyperV2AzureVault" -FabricName "HyperV2AzureSite"
+$pc = Get-AzRecoveryServicesReplicationProtectionContainer -ResourceGroupName "ASRTesting" -ResourceName "HyperV2AzureVault" -Fabric $fab -ProtectionContainerName "cloud_50c02c4e-3f5a-5e54-a971-8874f186019b" 
+Remove-AzRecoveryServicesReplicationProtectionContainer -fabric $fab -ProtectionContainer $pc -ResourceGroupName "ASRTesting" -ResourceName "HyperV2AzureVault"
 
 .Outputs
 System.Boolean

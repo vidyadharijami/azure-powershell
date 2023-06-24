@@ -15,8 +15,8 @@ Operation to create a protection container.
 ```
 New-AzRecoveryServicesReplicationProtectionContainer -Fabric <IFabric> -ProtectionContainerName <String>
  -ResourceGroupName <String> -ResourceName <String>
- -ProviderSpecificInput <IReplicationProviderSpecificContainerCreationInput> [-SubscriptionId <String>]
- [-DefaultProfile <PSObject>] [-AsJob] [-NoWait] [-Confirm] [-WhatIf] [<CommonParameters>]
+ -ProviderSpecificInput <IReplicationProviderSpecificContainerCreationInput[]> [-SubscriptionId <String>]
+ [-DefaultProfile <PSObject>] [-AsJob] [-NoWait] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -24,21 +24,27 @@ Operation to create a protection container.
 
 ## EXAMPLES
 
-### Example 1: Create a replication protection container in a fabric.
+### Example 1: {{ Add title here }}
 ```powershell
-$fabric=Get-AzRecoveryServicesReplicationFabric -ResourceGroupName "a2arecoveryrg" -ResourceName "a2arecoveryvault" -FabricName "A2Aprimaryfabric"
-$protectioncontainer=[Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.A2AContainerCreationInput]::new()
-$protectioncontainer.ReplicationScenario="ReplicateAzureToAzure"
-New-AzRecoveryServicesReplicationProtectionContainer -Fabric $fabric -ProtectionContainerName "testcontainercmd" -ResourceGroupName "a2arecoveryrg" -ResourceName "a2arecoveryvault" -ProviderSpecificInput $protectioncontainer
+{{ Add code here }}
 ```
 
 ```output
-Id                                                                                                                                                                                                                                 Location Name             Type
---                                                                                                                                                                                                                                 -------- ----             ----
-/Subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/a2arecoveryrg/providers/Microsoft.RecoveryServices/vaults/a2arecoveryvault/replicationFabrics/A2Aprimaryfabric/replicationProtectionContainers/testcontainercmd          testcontainercmd Microsoft.RecoveryServices/vaults/replicationFabrics/replicationProtectionContainers
+{{ Add output here }}
 ```
 
-Creates a replication protection container in a fabric in a specific recovery services vault.
+{{ Add description here }}
+
+### Example 2: {{ Add title here }}
+```powershell
+{{ Add code here }}
+```
+
+```output
+{{ Add output here }}
+```
+
+{{ Add description here }}
 
 ## PARAMETERS
 
@@ -73,7 +79,7 @@ Accept wildcard characters: False
 ```
 
 ### -Fabric
-Fabric Object.
+ASR fabric associated with the protection container.
 To construct, see NOTES section for FABRIC properties and create a hash table.
 
 ```yaml
@@ -123,7 +129,7 @@ Provider specific inputs for container creation.
 To construct, see NOTES section for PROVIDERSPECIFICINPUT properties and create a hash table.
 
 ```yaml
-Type: Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IReplicationProviderSpecificContainerCreationInput
+Type: Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IReplicationProviderSpecificContainerCreationInput[]
 Parameter Sets: (All)
 Aliases:
 
@@ -179,41 +185,12 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -Confirm
-Prompts you for confirmation before running the cmdlet.
-
-```yaml
-Type: System.Management.Automation.SwitchParameter
-Parameter Sets: (All)
-Aliases: cf
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -WhatIf
-Shows what would happen if the cmdlet runs.
-The cmdlet is not run.
-
-```yaml
-Type: System.Management.Automation.SwitchParameter
-Parameter Sets: (All)
-Aliases: wi
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
+
+### Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.ICreateProtectionContainerInput
 
 ## OUTPUTS
 
@@ -228,7 +205,7 @@ COMPLEX PARAMETER PROPERTIES
 To create the parameters described below, construct a hash table containing the appropriate properties. For information on hash tables, run Get-Help about_Hash_Tables.
 
 
-`FABRIC <IFabric>`: Fabric Object.
+`FABRIC <IFabric>`: ASR fabric associated with the protection container.
   - `[Location <String>]`: Resource Location
   - `[BcdrState <String>]`: BCDR state of the fabric.
   - `[CustomDetailInstanceType <String>]`: Gets the class type. Overridden in derived classes.
@@ -272,7 +249,7 @@ To create the parameters described below, construct a hash table containing the 
   - `[RolloverEncryptionDetailKekCertThumbprint <String>]`: The key encryption key certificate thumbprint.
   - `[RolloverEncryptionDetailKekState <String>]`: The key encryption key state for the Vmm.
 
-`PROVIDERSPECIFICINPUT <IReplicationProviderSpecificContainerCreationInput>`: Provider specific inputs for container creation.
+`PROVIDERSPECIFICINPUT <IReplicationProviderSpecificContainerCreationInput[]>`: Provider specific inputs for container creation.
   - `ReplicationScenario <String>`: The class type.
 
 ## RELATED LINKS

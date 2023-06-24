@@ -17,7 +17,6 @@
 ## Upcoming Release
 
 ## Version 2.0.0
-* Added a feature of remove and update replication policy using a policy object.
 * Added a feature of remove replication fabric using a fabric object.
 * Added a feature of searching a fabric using fabric friendly name.
 * Added a feature of getting list of replication protection containers using a fabric object.
@@ -26,6 +25,8 @@
 * Fixed the IFabrciCreationInput object to receive fabric specifications using an object.
 * Fixed the IProtectionContainerCreationInput to receive protection container specifications using an object.
 * Changed the Input InstanceType to ReplicationScenario for better understanding of the user.
+* Added and Updated Enable Replication, Disable Replication, Test Failover and Test Failover Cleanup Command.
+* Added the feautre to update replicated protected ,invoke unplanned failover , Apply Recovery Point, Commit Failover.
 * Added help examples and test recordings
   * `AzRecoveryServicesReplicationPolicy`
   * `AzRecoveryServicesReplicationFabric`

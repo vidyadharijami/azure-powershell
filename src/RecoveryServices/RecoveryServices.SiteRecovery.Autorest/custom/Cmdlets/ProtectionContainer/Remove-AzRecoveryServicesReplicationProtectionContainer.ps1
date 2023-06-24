@@ -1,3 +1,4 @@
+
 # ----------------------------------------------------------------------------------
 #
 # Copyright Microsoft Corporation
@@ -24,115 +25,115 @@ System.Boolean
 https://docs.microsoft.com/powershell/module/az.recoveryservices/remove-azrecoveryservicesreplicationprotectioncontainer
 #>
 function Remove-AzRecoveryServicesReplicationProtectionContainer {
-    [OutputType([System.Boolean])]
-    [CmdletBinding(DefaultParameterSetName='Delete', PositionalBinding=$false, SupportsShouldProcess, ConfirmImpact='Medium')]
-    param(
-        [Parameter(Mandatory)]
-        [ValidateNotNull()]
-        [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Category('Path')]
-        [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IProtectionContainer]
-        # Unique Protection Container Object
-        ${ProtectionContainer},
+[OutputType([System.Boolean])]
+[CmdletBinding(DefaultParameterSetName='Delete', PositionalBinding=$false, SupportsShouldProcess, ConfirmImpact='Medium')]
+param(
+    [Parameter(Mandatory)]
+    [ValidateNotNull()]
+    [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Category('Path')]
+    [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IProtectionContainer]
+    # Unique protection container ARM.
+    ${ProtectionContainer},
 
-        [Parameter(Mandatory)]
-        [ValidateNotNullOrEmpty()]
-        [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Category('Path')]
-        [System.String]
-        # The name of the resource group where the recovery services vault is present.
-        ${ResourceGroupName},
+    [Parameter(Mandatory)]
+    [ValidateNotNull()]
+    [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Category('Path')]
+    [System.String]
+    # The name of the resource group where the recovery services vault is present.
+    ${ResourceGroupName},
 
-        [Parameter(Mandatory)]
-        [ValidateNotNullOrEmpty()]
-        [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Category('Path')]
-        [System.String]
-        # The name of the recovery services vault.
-        ${ResourceName},
+    [Parameter(Mandatory)]
+    [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Category('Path')]
+    [System.String]
+    # The name of the recovery services vault.
+    ${ResourceName},
 
-        [Parameter()]
-        [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Category('Path')]
-        [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Runtime.DefaultInfo(Script='(Get-AzContext).Subscription.Id')]
-        [System.String]
-        # The subscription Id.
-        ${SubscriptionId},
+    [Parameter()]
+    [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Category('Path')]
+    [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Runtime.DefaultInfo(Script='(Get-AzContext).Subscription.Id')]
+    [System.String]
+    # The subscription Id.
+    ${SubscriptionId},
 
-        [Parameter()]
-        [Alias('AzureRMContext', 'AzureCredential')]
-        [ValidateNotNull()]
-        [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Category('Azure')]
-        [System.Management.Automation.PSObject]
-        # The credentials, account, tenant, and subscription used for communication with Azure.
-        ${DefaultProfile},
+    [Parameter()]
+    [Alias('AzureRMContext', 'AzureCredential')]
+    [ValidateNotNull()]
+    [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Category('Azure')]
+    [System.Management.Automation.PSObject]
+    # The credentials, account, tenant, and subscription used for communication with Azure.
+    ${DefaultProfile},
 
-        [Parameter()]
-        [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Category('Runtime')]
-        [System.Management.Automation.SwitchParameter]
-        # Run the command as a job
-        ${AsJob},
+    [Parameter()]
+    [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Category('Runtime')]
+    [System.Management.Automation.SwitchParameter]
+    # Run the command as a job
+    ${AsJob},
 
-        [Parameter(DontShow)]
-        [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Category('Runtime')]
-        [System.Management.Automation.SwitchParameter]
-        # Wait for .NET debugger to attach
-        ${Break},
+    [Parameter(DontShow)]
+    [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Category('Runtime')]
+    [System.Management.Automation.SwitchParameter]
+    # Wait for .NET debugger to attach
+    ${Break},
 
-        [Parameter(DontShow)]
-        [ValidateNotNull()]
-        [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Category('Runtime')]
-        [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Runtime.SendAsyncStep[]]
-        # SendAsync Pipeline Steps to be appended to the front of the pipeline
-        ${HttpPipelineAppend},
+    [Parameter(DontShow)]
+    [ValidateNotNull()]
+    [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Category('Runtime')]
+    [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Runtime.SendAsyncStep[]]
+    # SendAsync Pipeline Steps to be appended to the front of the pipeline
+    ${HttpPipelineAppend},
 
-        [Parameter(DontShow)]
-        [ValidateNotNull()]
-        [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Category('Runtime')]
-        [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Runtime.SendAsyncStep[]]
-        # SendAsync Pipeline Steps to be prepended to the front of the pipeline
-        ${HttpPipelinePrepend},
+    [Parameter(DontShow)]
+    [ValidateNotNull()]
+    [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Category('Runtime')]
+    [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Runtime.SendAsyncStep[]]
+    # SendAsync Pipeline Steps to be prepended to the front of the pipeline
+    ${HttpPipelinePrepend},
 
-        [Parameter()]
-        [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Category('Runtime')]
-        [System.Management.Automation.SwitchParameter]
-        # Run the command asynchronously
-        ${NoWait},
+    [Parameter()]
+    [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Category('Runtime')]
+    [System.Management.Automation.SwitchParameter]
+    # Run the command asynchronously
+    ${NoWait},
 
-        [Parameter()]
-        [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Category('Runtime')]
-        [System.Management.Automation.SwitchParameter]
-        # Returns true when the command succeeds
-        ${PassThru},
+    [Parameter()]
+    [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Category('Runtime')]
+    [System.Management.Automation.SwitchParameter]
+    # Returns true when the command succeeds
+    ${PassThru},
 
-        [Parameter(DontShow)]
-        [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Category('Runtime')]
-        [System.Uri]
-        # The URI for the proxy server to use
-        ${Proxy},
+    [Parameter(DontShow)]
+    [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Category('Runtime')]
+    [System.Uri]
+    # The URI for the proxy server to use
+    ${Proxy},
 
-        [Parameter(DontShow)]
-        [ValidateNotNull()]
-        [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Category('Runtime')]
-        [System.Management.Automation.PSCredential]
-        # Credentials for a proxy server to use for the remote call
-        ${ProxyCredential},
+    [Parameter(DontShow)]
+    [ValidateNotNull()]
+    [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Category('Runtime')]
+    [System.Management.Automation.PSCredential]
+    # Credentials for a proxy server to use for the remote call
+    ${ProxyCredential},
 
-        [Parameter(DontShow)]
-        [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Category('Runtime')]
-        [System.Management.Automation.SwitchParameter]
-        # Use the default credentials for the proxy
-        ${ProxyUseDefaultCredentials}
-    )
+    [Parameter(DontShow)]
+    [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Category('Runtime')]
+    [System.Management.Automation.SwitchParameter]
+    # Use the default credentials for the proxy
+    ${ProxyUseDefaultCredentials}
+)
 
-    process {
+
+process {
         try {
             $protectionContainerString = $ProtectionContainer.id.Split("/")
             $protectionContainerName = $protectionContainerString[-1]
             $fabricName = $protectionContainerString[-3]
 
-            $null = $PSBoundParameters.Remove("ProtectionContainer")
             $null = $PSBoundParameters.Add("FabricName", $fabricName)
+            $null = $PSBoundParameters.Remove("ProtectionContainer")
             $null = $PSBoundParameters.Add("ProtectionContainerName", $protectionContainerName)
-
             return Az.RecoveryServices.internal\Remove-AzRecoveryServicesReplicationProtectionContainer @PSBoundParameters
-        } catch {
+        } 
+        catch {
             throw
         }
     }

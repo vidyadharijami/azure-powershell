@@ -1,4 +1,3 @@
-
 # ----------------------------------------------------------------------------------
 #
 # Copyright Microsoft Corporation
@@ -18,14 +17,11 @@
 The operation to create a protection container mapping.
 .Description
 The operation to create a protection container mapping.
-
 .Outputs
 Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IProtectionContainerMapping
 .Notes
 COMPLEX PARAMETER PROPERTIES
-
 To create the parameters described below, construct a hash table containing the appropriate properties. For information on hash tables, run Get-Help about_Hash_Tables.
-
 PROVIDERSPECIFICINPUT <IReplicationProviderSpecificContainerMappingInput>: Provider specific input for pairing.
   InstanceType <String>: The class type.
 .Link
@@ -43,7 +39,7 @@ function New-AzRecoveryServicesReplicationProtectionContainerMapping {
         ${MappingName},
 
         [Parameter(Mandatory)]
-        [ValidateNotNull()]
+        [ValidateNotNullOrEmpty()]
         [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Category('Path')]
         [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IProtectionContainer]
         # Primary protection container object.
@@ -71,22 +67,21 @@ function New-AzRecoveryServicesReplicationProtectionContainerMapping {
         ${SubscriptionId},
 
         [Parameter(Mandatory)]
-        [ValidateNotNull()]
+        [ValidateNotNullOrEmpty()]
         [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Category('Body')]
         [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IPolicy]
         # Applicable policy object.
         ${Policy},
 
         [Parameter(Mandatory)]
-        [ValidateNotNull()]
+        [ValidateNotNullOrEmpty()]
         [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Category('Body')]
         [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IReplicationProviderSpecificContainerMappingInput]
         # Provider specific input for pairing.
         # To construct, see NOTES section for PROVIDERSPECIFICINPUT properties and create a hash table.
         ${ProviderSpecificInput},
 
-        [Parameter(Mandatory)]
-        [ValidateNotNull()]
+        [Parameter()]
         [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Category('Body')]
         [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IProtectionContainer]
         # The target unique protection container object.
@@ -155,23 +150,27 @@ function New-AzRecoveryServicesReplicationProtectionContainerMapping {
     process {
         try {
             $replicationscenario = $ProviderSpecificInput.ReplicationScenario
-            if($replicationscenario -eq "ReplicateAzureToAzure") {
+            if($replicationscenario -eq "A2A")
+            {
                 $ProviderSpecificInput.ReplicationScenario = "A2A"
+                $TargetProtectionContainerId = $RecoveryProtectionContainer.Id
+                
             }
-            else {
-                throw "Provided replication scenario is not supported. Only ReplicateAzureToAzure is supported."
+            elseif($replicationscenario -eq "ReplicationProviderSpecificContainerMappingInput")
+            {
+                $TargetProtectionContainerId = "Microsoft Azure"
             }
 
-            $TargetProtectionContainerId = $RecoveryProtectionContainer.Id
             $PolicyId = $Policy.Id
             $protectionContainerString = $PrimaryProtectionContainer.id.Split("/")
             $protectionContainerName = $protectionContainerString[-1]
             $fabricName = $protectionContainerString[-3]
+            $null = $PSBoundParameters.Add("FabricName", $fabricName)
 
             $null = $PSBoundParameters.Remove("PrimaryProtectionContainer")
             $null = $PSBoundParameters.Remove("Policy")
             $null = $PSBoundParameters.Remove("RecoveryProtectionContainer")
-            $null = $PSBoundParameters.Add("FabricName", $fabricName)
+            
             $null = $PSBoundParameters.Add("ProtectionContainerName", $protectionContainerName)
             $null = $PSBoundParameters.Add("PolicyId", $PolicyId)
             $null = $PSBoundParameters.Add("TargetProtectionContainerId", $TargetProtectionContainerId)

@@ -23,14 +23,14 @@ Operation to remove a protection container.
 
 ## EXAMPLES
 
-### Example 1: Remove a replication protection container in a fabric
+### Example 1: Remove a Protection Container from the Vault.
 ```powershell
-$fabric=Get-AzRecoveryServicesReplicationFabric -ResourceGroupName "a2arecoveryrg" -ResourceName "a2arecoveryvault" -FabricName "demofabric"
-$protectionConatiner=Get-AzRecoveryServicesReplicationProtectionContainer -ResourceGroupName "a2arecoveryrg" -ResourceName "a2arecoveryvault" -Fabric $fabric -ProtectionContainer "demoProtectionContainer"
-Remove-AzRecoveryServicesReplicationProtectionContainer -ProtectionContainer $protectionConatiner -ResourceGroupName "a2arecoveryrg" -ResourceName "a2arecoveryvault"
+$fab = Get-AzRecoveryServicesReplicationFabric -ResourceGroupName "ASRTesting" -ResourceName "HyperV2AzureVault" -FabricName "HyperV2AzureSite"
+$pc = Get-AzRecoveryServicesReplicationProtectionContainer -ResourceGroupName "ASRTesting" -ResourceName "HyperV2AzureVault" -Fabric $fab -ProtectionContainerName "cloud_50c02c4e-3f5a-5e54-a971-8874f186019b" 
+Remove-AzRecoveryServicesReplicationProtectionContainer -fabric $fab -ProtectionContainer $pc -ResourceGroupName "ASRTesting" -ResourceName "HyperV2AzureVault"
 ```
 
-Removes a replication protection container using a protection container object fetched using fabric object in a recovery services vault.
+Removes a specified protection container from the given vault.
 
 ## PARAMETERS
 
@@ -95,7 +95,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProtectionContainer
-Unique Protection Container Object
+Unique protection container ARM.
 To construct, see NOTES section for PROTECTIONCONTAINER properties and create a hash table.
 
 ```yaml
@@ -204,7 +204,7 @@ COMPLEX PARAMETER PROPERTIES
 To create the parameters described below, construct a hash table containing the appropriate properties. For information on hash tables, run Get-Help about_Hash_Tables.
 
 
-`PROTECTIONCONTAINER <IProtectionContainer>`: Unique Protection Container Object
+`PROTECTIONCONTAINER <IProtectionContainer>`: Unique protection container ARM.
   - `[Location <String>]`: Resource Location
   - `[FabricFriendlyName <String>]`: Fabric friendly name.
   - `[FabricType <String>]`: The fabric type.

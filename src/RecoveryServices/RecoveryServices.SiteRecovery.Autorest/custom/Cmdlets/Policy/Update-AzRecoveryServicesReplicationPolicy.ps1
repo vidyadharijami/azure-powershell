@@ -43,14 +43,14 @@ function Update-AzRecoveryServicesReplicationPolicy {
         ${Policy},
 
         [Parameter(Mandatory)]
-        [ValidateNotNullOrEmpty()]
+        [ValidateNotNull()]
         [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Category('Path')]
         [System.String]
         # The name of the resource group where the recovery services vault is present.
         ${ResourceGroupName},
 
         [Parameter(Mandatory)]
-        [ValidateNotNullOrEmpty()]
+        [ValidateNotNull()]
         [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Category('Path')]
         [System.String]
         # The name of the recovery services vault.

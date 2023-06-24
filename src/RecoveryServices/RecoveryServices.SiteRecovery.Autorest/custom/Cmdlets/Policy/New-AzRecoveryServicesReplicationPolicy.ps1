@@ -17,7 +17,6 @@
 The operation to create a replication policy.
 .Description
 The operation to create a replication policy.
-
 .Outputs
 Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IPolicy
 .Notes
@@ -26,7 +25,7 @@ COMPLEX PARAMETER PROPERTIES
 
 function New-AzRecoveryServicesReplicationPolicy {
     [OutputType([Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IPolicy])]
-    [CmdletBinding(DefaultParameterSetName='CreateExpanded', PositionalBinding=$false, SupportsShouldProcess, ConfirmImpact='Medium')]
+    [CmdletBinding(DefaultParameterSetName='CreateExpanded',PositionalBinding=$false, SupportsShouldProcess, ConfirmImpact='Medium')]
     param(
         [Parameter(Mandatory, HelpMessage='Specific replication policy name.')]
         [ValidateNotNullOrEmpty()]
@@ -56,8 +55,7 @@ function New-AzRecoveryServicesReplicationPolicy {
         # The subscription Id.
         ${SubscriptionId},
 
-        [Parameter(Mandatory)]
-        [ValidateNotNull()]
+        [Parameter()]
         [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Category('Body')]
         [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IPolicyProviderSpecificInput]
         # The ReplicationProviderSettings.

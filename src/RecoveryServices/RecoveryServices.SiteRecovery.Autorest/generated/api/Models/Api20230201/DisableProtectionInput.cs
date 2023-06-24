@@ -20,9 +20,6 @@ namespace Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201
         /// <summary>Internal Acessors for Property</summary>
         Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IDisableProtectionInputProperties Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IDisableProtectionInputInternal.Property { get => (this._property = this._property ?? new Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.DisableProtectionInputProperties()); set { {_property = value;} } }
 
-        /// <summary>Internal Acessors for ReplicationProviderInput</summary>
-        Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IDisableProtectionProviderSpecificInput Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IDisableProtectionInputInternal.ReplicationProviderInput { get => ((Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IDisableProtectionInputPropertiesInternal)Property).ReplicationProviderInput; set => ((Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IDisableProtectionInputPropertiesInternal)Property).ReplicationProviderInput = value; }
-
         /// <summary>Backing field for <see cref="Property" /> property.</summary>
         private Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IDisableProtectionInputProperties _property;
 
@@ -30,9 +27,9 @@ namespace Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201
         [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Origin(Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.PropertyOrigin.Owned)]
         internal Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IDisableProtectionInputProperties Property { get => (this._property = this._property ?? new Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.DisableProtectionInputProperties()); set => this._property = value; }
 
-        /// <summary>The class type.</summary>
+        /// <summary>Replication provider specific input.</summary>
         [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Origin(Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.PropertyOrigin.Inlined)]
-        public string ReplicationProviderInputInstanceType { get => ((Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IDisableProtectionInputPropertiesInternal)Property).ReplicationProviderInputInstanceType; set => ((Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IDisableProtectionInputPropertiesInternal)Property).ReplicationProviderInputInstanceType = value ?? null; }
+        public Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IDisableProtectionProviderSpecificInput ReplicationProviderInput { get => ((Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IDisableProtectionInputPropertiesInternal)Property).ReplicationProviderInput; set => ((Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IDisableProtectionInputPropertiesInternal)Property).ReplicationProviderInput = value ?? null /* model class */; }
 
         /// <summary>Creates an new <see cref="DisableProtectionInput" /> instance.</summary>
         public DisableProtectionInput()
@@ -52,14 +49,14 @@ namespace Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201
         SerializedName = @"disableProtectionReason",
         PossibleTypes = new [] { typeof(Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Support.DisableProtectionReason) })]
         Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Support.DisableProtectionReason? DisableProtectionReason { get; set; }
-        /// <summary>The class type.</summary>
+        /// <summary>Replication provider specific input.</summary>
         [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Runtime.Info(
         Required = false,
         ReadOnly = false,
-        Description = @"The class type.",
-        SerializedName = @"instanceType",
-        PossibleTypes = new [] { typeof(string) })]
-        string ReplicationProviderInputInstanceType { get; set; }
+        Description = @"Replication provider specific input.",
+        SerializedName = @"replicationProviderInput",
+        PossibleTypes = new [] { typeof(Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IDisableProtectionProviderSpecificInput) })]
+        Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IDisableProtectionProviderSpecificInput ReplicationProviderInput { get; set; }
 
     }
     /// Disable protection input.
@@ -72,8 +69,6 @@ namespace Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201
         Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IDisableProtectionInputProperties Property { get; set; }
         /// <summary>Replication provider specific input.</summary>
         Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IDisableProtectionProviderSpecificInput ReplicationProviderInput { get; set; }
-        /// <summary>The class type.</summary>
-        string ReplicationProviderInputInstanceType { get; set; }
 
     }
 }

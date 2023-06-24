@@ -27,11 +27,8 @@ For information on how to develop for `Az.RecoveryServices`, see [how-to.md](how
 <!-- endregion -->
 
 # My API 
-
 This file contains the configuration for generating My API from the OpenAPI specification.
-
 > see https://aka.ms/autorest
-
 ``` yaml
 # it's the same options as command line options, just drop the double-dash!
 branch: c94569d116a82ee11a94c5dfb190650dd675a1bf
@@ -45,8 +42,15 @@ directive:
   - no-inline:
     - PolicyProviderSpecificInput
     - FabricSpecificCreationInput
+    - ReplicationProviderSpecificContainerCreationInput
     - ReplicationProviderSpecificContainerMappingInput
     - ReplicationProviderSpecificUpdateContainerMappingInput
+    - EnableProtectionProviderSpecificInput
+    - DisableProtectionProviderSpecificInput
+    - UpdateReplicationProtectedItemProviderInput
+    - TestFailoverProviderSpecificInput
+    - UnplannedFailoverProviderSpecificInput
+    - ApplyRecoveryPointProviderSpecificInput
   # Remove variants not in scope
   - where:
       verb: Add
@@ -92,15 +96,6 @@ directive:
       verb: ^New$|^Update$
       subject: ^ReplicationPolicy$|^ReplicationFabric$|^ReplicationProtectionContainer$|^ReplicationProtectionContainerMapping$
       variant: ^Create$|^Update$
-    remove: true
-  - where:
-      verb: Remove
-      subject: ReplicationProtectionContainerMapping
-      variant: Delete
-    remove: true
-  - where:
-      verb: Clear
-      subject: ReplicationProtectionContainerMapping
     remove: true
   - where:
       verb: Remove
@@ -152,17 +147,38 @@ directive:
       subject: ^ReplicationMigrationItem$|^ReplicationNetworkMapping$|^ReplicationPolicy$|^ReplicationProtectedItem$|^ReplicationProtectedItemAppliance$|^ReplicationProtectedItemMobilityService$|^ReplicationProtectionContainerMapping$|^ReplicationRecoveryPlan$|^ReplicationRecoveryServicesProvider$|^ReplicationVaultHealth$|^ReplicationvCenter$
       variant: ^UpdateViaIdentity$|^UpdateViaIdentityExpanded$|^RefreshViaIdentity$
     remove: true
+  - where:
+      verb: ^New$|^Remove$|^Update$
+      subject: ^ReplicationProtectedItem$|^ReplicationProtectionContainerMapping$
+      variant: ^Create$|^Delete$|^Update$
+    remove: true
+  - where:
+      verb: Test
+      subject: ReplicationProtectedItemFailover
+      variant: Test
+    remove: true
+  - where:
+      verb: Test
+      subject: ReplicationProtectedItemFailoverCleanup
+      variant: Test
+    remove: true
+  - where:
+      verb: Invoke
+      subject: UnplannedReplicationProtectedItemFailover
+      variant: Unplanned
+    remove: true
+  - where:
+      verb: Add
+      subject: ReplicationProtectedItemRecoveryPoint
+      variant: Apply
+    remove: true
   # Hide some commands that require some edits
   - where:
       verb: ^Remove$|^New$|^Update$
       subject: ^ReplicationPolicy$|^ReplicationProtectionContainer$
     hide: true
   - where:
-      verb: Remove
-      subject: ^ReplicationFabric$|^ReplicationProtectionContainerMapping$
-    hide: true
-  - where:
-      verb: ^Clear$|^New$|^Update$
+      verb: ^Remove$|^New$|^Update$
       subject: ReplicationProtectionContainerMapping
     hide: true
   - where:
@@ -171,8 +187,38 @@ directive:
       variant: ^Get$|^List$
     hide: true
   - where:
-      verb: New
-      subject: ReplicationFabric
+      verb: ^Get$
+      subject: ^ReplicationProtectedItem$
+      variant: ^Get$|^List$|^List1$
+    hide: true
+  - where:
+      verb: ^New$|^Remove$
+      subject: ^ReplicationProtectedItem$|^ReplicationFabric$
+    hide: true
+  - where:
+      verb: ^Invoke$
+      subject: ^CommitReplicationProtectedItemFailover$
+      variant: ^Commit$
+    hide: true
+  - where:
+      verb: ^Update$
+      subject: ^ReplicationProtectedItem$
+    hide: true
+  - where:
+      verb: Test
+      subject: ReplicationProtectedItemFailover
+    hide: true
+  - where:
+      verb: Test
+      subject: ReplicationProtectedItemFailoverCleanup
+    hide: true
+  - where:
+      verb: Invoke
+      subject: UnplannedReplicationProtectedItemFailover
+    hide: true
+  - where:
+      verb: Add
+      subject: ReplicationProtectedItemRecoveryPoint
     hide: true
   # Rename some model properties
   - where:
@@ -181,11 +227,8 @@ directive:
     set:
       property-name: ReplicationScenario
 ```
-
 ## Alternate settings
-
 This section is only activated if the `--make-it-rain` switch is added to the command line
-
 ``` yaml $(make-it-rain)
 namespace: MyCompany.Special.Rest
 ```

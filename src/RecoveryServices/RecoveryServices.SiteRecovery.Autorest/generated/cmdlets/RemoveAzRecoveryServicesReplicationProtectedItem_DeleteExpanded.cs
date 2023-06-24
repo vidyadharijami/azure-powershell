@@ -14,6 +14,7 @@ namespace Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Cmdlets
     /// <remarks>
     /// [OpenAPI] Delete=>POST:"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{resourceName}/replicationFabrics/{fabricName}/replicationProtectionContainers/{protectionContainerName}/replicationProtectedItems/{replicatedProtectedItemName}/remove"
     /// </remarks>
+    [global::Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.InternalExport]
     [global::System.Management.Automation.Cmdlet(global::System.Management.Automation.VerbsCommon.Remove, @"AzRecoveryServicesReplicationProtectedItem_DeleteExpanded", SupportsShouldProcess = true)]
     [global::System.Management.Automation.OutputType(typeof(bool))]
     [global::Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Description(@"The operation to disable replication on a replication protected item. This will also remove the item.")]
@@ -174,16 +175,16 @@ namespace Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Cmdlets
         [global::Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Category(global::Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.ParameterCategory.Path)]
         public string ReplicatedProtectedItemName { get => this._replicatedProtectedItemName; set => this._replicatedProtectedItemName = value; }
 
-        /// <summary>The class type.</summary>
-        [global::System.Management.Automation.Parameter(Mandatory = false, HelpMessage = "The class type.")]
+        /// <summary>Replication provider specific input.</summary>
+        [global::System.Management.Automation.Parameter(Mandatory = false, HelpMessage = "Replication provider specific input.")]
         [global::Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Category(global::Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.ParameterCategory.Body)]
         [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Runtime.Info(
         Required = false,
         ReadOnly = false,
-        Description = @"The class type.",
-        SerializedName = @"instanceType",
-        PossibleTypes = new [] { typeof(string) })]
-        public string ReplicationProviderInputInstanceType { get => _disableProtectionInputBody.ReplicationProviderInputInstanceType ?? null; set => _disableProtectionInputBody.ReplicationProviderInputInstanceType = value; }
+        Description = @"Replication provider specific input.",
+        SerializedName = @"replicationProviderInput",
+        PossibleTypes = new [] { typeof(Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IDisableProtectionProviderSpecificInput) })]
+        public Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IDisableProtectionProviderSpecificInput ReplicationProviderInput { get => _disableProtectionInputBody.ReplicationProviderInput ?? null /* object */; set => _disableProtectionInputBody.ReplicationProviderInput = value; }
 
         /// <summary>Backing field for <see cref="ResourceGroupName" /> property.</summary>
         private string _resourceGroupName;

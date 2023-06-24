@@ -43,7 +43,7 @@ Id                                                                              
 /Subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/a2arecoveryrg/providers/Microsoft.RecoveryServices/vaults/a2arecoveryvault/replicationPolicies/A2APolicy            A2APolicy   Microsoft.RecoveryServices/vaults/replicationPolicies
 ```
 
-Lists all the replication policies in the specified vault in the specified resource group.
+Gets all the replication policies in the specified vault in the specified resource group.
 
 ### Example 2: Get info for a specific replication policy
 ```powershell

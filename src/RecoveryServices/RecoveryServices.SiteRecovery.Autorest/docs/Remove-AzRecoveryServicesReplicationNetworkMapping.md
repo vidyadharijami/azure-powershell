@@ -23,7 +23,7 @@ The operation to delete a network mapping.
 
 ## EXAMPLES
 
-### Example 1: {{ Add title here }}
+### Example 1: Remove a replication fabric using a fabric object input
 ```powershell
 {{ Add code here }}
 ```

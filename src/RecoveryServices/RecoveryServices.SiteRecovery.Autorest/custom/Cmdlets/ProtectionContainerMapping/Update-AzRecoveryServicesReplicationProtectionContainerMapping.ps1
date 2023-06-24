@@ -1,4 +1,3 @@
-
 # ----------------------------------------------------------------------------------
 #
 # Copyright Microsoft Corporation
@@ -18,14 +17,11 @@
 The operation to update protection container mapping.
 .Description
 The operation to update protection container mapping.
-
 .Outputs
 Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IProtectionContainerMapping
 .Notes
 COMPLEX PARAMETER PROPERTIES
-
 To create the parameters described below, construct a hash table containing the appropriate properties. For information on hash tables, run Get-Help about_Hash_Tables.
-
 PROVIDERSPECIFICINPUT <IReplicationProviderSpecificUpdateContainerMappingInput>: Provider specific input for updating protection container mapping.
   InstanceType <String>: The class type.
 .Link
@@ -43,7 +39,7 @@ function Update-AzRecoveryServicesReplicationProtectionContainerMapping {
         ${MappingName},
 
         [Parameter(Mandatory)]
-        [ValidateNotNull()]
+        [ValidateNotNullOrEmpty()]
         [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Category('Path')]
         [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IProtectionContainer]
         # Primary protection container object.
@@ -71,7 +67,7 @@ function Update-AzRecoveryServicesReplicationProtectionContainerMapping {
         ${SubscriptionId},
 
         [Parameter(Mandatory)]
-        [ValidateNotNull()]
+        [ValidateNotNullOrEmpty()]
         [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Category('Body')]
         [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IReplicationProviderSpecificUpdateContainerMappingInput]
         # Provider specific input for updating protection container mapping.

@@ -16,7 +16,7 @@ The operation to create a protection container mapping.
 New-AzRecoveryServicesReplicationProtectionContainerMapping -MappingName <String>
  -PrimaryProtectionContainer <IProtectionContainer> -ResourceGroupName <String> -ResourceName <String>
  -Policy <IPolicy> -ProviderSpecificInput <IReplicationProviderSpecificContainerMappingInput>
- -RecoveryProtectionContainer <IProtectionContainer> [-SubscriptionId <String>] [-DefaultProfile <PSObject>]
+ [-SubscriptionId <String>] [-RecoveryProtectionContainer <IProtectionContainer>] [-DefaultProfile <PSObject>]
  [-AsJob] [-NoWait] [-Confirm] [-WhatIf] [<CommonParameters>]
 ```
 
@@ -27,23 +27,21 @@ The operation to create a protection container mapping.
 
 ### Example 1: Create a new replication protection container mapping
 ```powershell
-$policy=Get-AzRecoveryServicesReplicationPolicy -ResourceGroupName "a2arecoveryrg" -ResourceName "a2arecoveryvault" -PolicyName "A2APolicy"
-$mappingInput=[Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.A2AContainerMappingInput]::new()
-$mappingInput.ReplicationScenario="ReplicateAzureToAzure"
-$primaryfabric=Get-AzRecoveryServicesReplicationFabric -ResourceGroupName "a2arecoveryrg" -ResourceName "a2arecoveryvault" -FabricName "A2Ademo-EastUS"
-$primaryprotectioncontainer=Get-AzRecoveryServicesReplicationProtectionContainer -ResourceGroupName "a2arecoveryrg" -ResourceName "a2arecoveryvault" -Fabric $primaryfabric -ProtectionContainer "A2AEastUSProtectionContainer"
-$recoveryfabric=Get-AzRecoveryServicesReplicationFabric -ResourceGroupName "a2arecoveryrg" -ResourceName "a2arecoveryvault" -FabricName "A2Aprimaryfabric"
-$recoveryprotectioncontainer=Get-AzRecoveryServicesReplicationProtectionContainer -ResourceGroupName "a2arecoveryrg" -ResourceName "a2arecoveryvault" -Fabric $recoveryfabric -ProtectionContainer "demoProtectionContainer"
-New-AzRecoveryServicesReplicationProtectionContainerMapping -MappingName "demomap" -PrimaryProtectionContainer $primaryprotectioncontainer -ResourceName "a2arecoveryvault" -ResourceGroupName "a2arecoveryrg" -ProviderSpecificInput $mappingInput -Policy $policy -RecoveryProtectionContainer $recoveryprotectioncontainer
+$psi = [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.ReplicationProviderSpecificContainerMappingInput]::new()
+$psi.InstanceType = "ReplicationProviderSpecificContainerMappingInput"
+$ppc = Get-AzRecoveryServicesReplicationProtectionContainer -ResourceGroupName "ASRTesting" -ResourceName "HyperV2AzureVault" -Fabric $fabric -ProtectionContainerName "cloud_50c02c4e-3f5a-5e54-a971-8874f186019b"
+$fabric = Get-AzRecoveryServicesReplicationFabric -ResourceGroupName "ASRTesting" -ResourceName "HyperV2AzureVault" -FabricName "HyperV2AzureSite"
+$policy = Get-AzRecoveryServicesReplicationPolicy -ResourceGroupName "ASRTesting" -ResourceName "HyperV2AzureVault" -PolicyName "replicapolicyh2a"
+New-AzRecoveryServicesReplicationProtectionContainerMapping -ResourceGroupName "ASRTesting" -ResourceName "HyperV2AzureVault" -PrimaryProtectionContainer $ppc  -Policy $policy -MappingName "hyperv2azurenm" -ProviderSpecificInput $psi
 ```
 
 ```output
-Id                                                                                                                                                                                                                                                                                                 Location Name    Type
---                                                                                                                                                                                                                                                                                                 -------- ----    ----
-/Subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/a2arecoveryrg/providers/Microsoft.RecoveryServices/vaults/a2arecoveryvault/replicationFabrics/A2Ademo-EastUS/replicationProtectionContainers/A2AEastUSProtectionContainer/replicationProtectionContainerMappings/testmappingcmd			demomap	Microsoft.RecoveryServices/vaults/replicationFabrics/replicationProtectionContainers/replicationProtectionContainerMappings
+Location Name           Type
+-------- ----           ----
+         hyperv2azurenm Microsoft.RecoveryServices/vaults/replicationFabrics/replicationProtectionContainers/replicationProtectionContainerMappings
 ```
 
-Creates a New azure protection container mapping in a recovery services vault.
+Creates a New Hyper-V to Azure protection container mapping in a recovery services vault.
 
 ## PARAMETERS
 
@@ -164,7 +162,7 @@ Type: Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IPr
 Parameter Sets: (All)
 Aliases:
 
-Required: True
+Required: False
 Position: Named
 Default value: None
 Accept pipeline input: False

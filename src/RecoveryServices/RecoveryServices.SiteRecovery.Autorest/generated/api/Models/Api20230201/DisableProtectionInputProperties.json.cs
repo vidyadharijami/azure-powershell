@@ -65,8 +65,8 @@ namespace Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201
             {
                 return;
             }
-            {_replicationProviderInput = If( json?.PropertyT<Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Runtime.Json.JsonObject>("replicationProviderInput"), out var __jsonReplicationProviderInput) ? Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.DisableProtectionProviderSpecificInput.FromJson(__jsonReplicationProviderInput) : ReplicationProviderInput;}
             {_disableProtectionReason = If( json?.PropertyT<Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Runtime.Json.JsonString>("disableProtectionReason"), out var __jsonDisableProtectionReason) ? (string)__jsonDisableProtectionReason : (string)DisableProtectionReason;}
+            {_replicationProviderInput = If( json?.PropertyT<Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Runtime.Json.JsonObject>("replicationProviderInput"), out var __jsonReplicationProviderInput) ? Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.DisableProtectionProviderSpecificInput.FromJson(__jsonReplicationProviderInput) : ReplicationProviderInput;}
             AfterFromJson(json);
         }
 
@@ -101,8 +101,8 @@ namespace Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201
             {
                 return container;
             }
-            AddIf( null != this._replicationProviderInput ? (Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Runtime.Json.JsonNode) this._replicationProviderInput.ToJson(null,serializationMode) : null, "replicationProviderInput" ,container.Add );
             AddIf( null != (((object)this._disableProtectionReason)?.ToString()) ? (Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Runtime.Json.JsonNode) new Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Runtime.Json.JsonString(this._disableProtectionReason.ToString()) : null, "disableProtectionReason" ,container.Add );
+            AddIf( null != this._replicationProviderInput ? (Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Runtime.Json.JsonNode) this._replicationProviderInput.ToJson(null,serializationMode) : null, "replicationProviderInput" ,container.Add );
             AfterToJson(ref container);
             return container;
         }

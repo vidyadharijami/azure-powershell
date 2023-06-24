@@ -12,10 +12,9 @@ Operation to create a protection container.
 .Description
 Operation to create a protection container.
 .Example
-$fabric=Get-AzRecoveryServicesReplicationFabric -ResourceGroupName "a2arecoveryrg" -ResourceName "a2arecoveryvault" -FabricName "A2Aprimaryfabric"
-$protectioncontainer=[Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.A2AContainerCreationInput]::new()
-$protectioncontainer.ReplicationScenario="ReplicateAzureToAzure"
-New-AzRecoveryServicesReplicationProtectionContainer -Fabric $fabric -ProtectionContainerName "testcontainercmd" -ResourceGroupName "a2arecoveryrg" -ResourceName "a2arecoveryvault" -ProviderSpecificInput $protectioncontainer
+{{ Add code here }}
+.Example
+{{ Add code here }}
 
 .Outputs
 Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IProtectionContainer

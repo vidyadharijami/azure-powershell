@@ -8,56 +8,33 @@ schema: 2.0.0
 # Remove-AzRecoveryServicesReplicationFabric
 
 ## SYNOPSIS
-The operation to delete or remove an Azure Site Recovery fabric.
+
 
 ## SYNTAX
 
 ```
 Remove-AzRecoveryServicesReplicationFabric -Fabric <IFabric> -ResourceGroupName <String>
- -ResourceName <String> [-SubscriptionId <String>] [-DefaultProfile <PSObject>] [-AsJob] [-NoWait] [-PassThru]
+ -ResourceName <String> [-SubscriptionId <String>] [-DefaultProfile <PSObject>] [-NoWait] [-PassThru]
  [-Confirm] [-WhatIf] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The operation to delete or remove an Azure Site Recovery fabric.
+
 
 ## EXAMPLES
 
-### Example 1: Remove a replication fabric using a fabric object input
+### Example 1: Remov the fabric passed as parameter.
 ```powershell
-$fabric=Get-AzRecoveryServicesReplicationFabric -ResourceGroupName "a2arecoveryrg" -ResourceName "a2arecoveryvault" -FabricName "A2Aprimaryfabric"
-Remove-AzRecoveryServicesReplicationFabric -ResourceGroupName "a2arecoveryrg" -ResourceName "a2arecoveryvault" -Fabric $fabric
+$fab = Get-AzRecoveryServicesReplicationFabric -ResourceGroupName "ASRTesting" -ResourceName "HyperV2AzureVault" -FabricName "hyperv2azurereplicafabric"
+Remove-AzRecoveryServicesReplicationFabric -ResourceGroupName "ASRTesting" -ResourceName "HyperV2AzureVault" -Fabric $fab
 ```
 
-Removes a replication fabric using a fabric object input fetched using fabric name.
-
-### Example 2: Remove a replication fabric using a fabric object input
-```powershell
-$fabric=Get-AzRecoveryServicesReplicationFabric -ResourceGroupName "a2arecoveryrg" -ResourceName "a2arecoveryvault" -FriendlyName "West US 2"
-Remove-AzRecoveryServicesReplicationFabric -ResourceGroupName "a2arecoveryrg" -ResourceName "a2arecoveryvault" -Fabric $fabric
-```
-
-Removes a replication fabric using a fabric object input fetched using friendly name.
+Removes the replication fabric passed as parameter.
 
 ## PARAMETERS
 
-### -AsJob
-Run the command as a job
-
-```yaml
-Type: System.Management.Automation.SwitchParameter
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### -DefaultProfile
-The credentials, account, tenant, and subscription used for communication with Azure.
+
 
 ```yaml
 Type: System.Management.Automation.PSObject
@@ -72,7 +49,6 @@ Accept wildcard characters: False
 ```
 
 ### -Fabric
-ASR fabric to delete.
 To construct, see NOTES section for FABRIC properties and create a hash table.
 
 ```yaml
@@ -88,7 +64,7 @@ Accept wildcard characters: False
 ```
 
 ### -NoWait
-Run the command asynchronously
+
 
 ```yaml
 Type: System.Management.Automation.SwitchParameter
@@ -103,7 +79,7 @@ Accept wildcard characters: False
 ```
 
 ### -PassThru
-Returns true when the command succeeds
+
 
 ```yaml
 Type: System.Management.Automation.SwitchParameter
@@ -118,7 +94,7 @@ Accept wildcard characters: False
 ```
 
 ### -ResourceGroupName
-The name of the resource group where the recovery services vault is present.
+
 
 ```yaml
 Type: System.String
@@ -133,7 +109,7 @@ Accept wildcard characters: False
 ```
 
 ### -ResourceName
-The name of the recovery services vault.
+
 
 ```yaml
 Type: System.String
@@ -148,7 +124,7 @@ Accept wildcard characters: False
 ```
 
 ### -SubscriptionId
-The subscription Id.
+
 
 ```yaml
 Type: System.String
@@ -211,7 +187,7 @@ COMPLEX PARAMETER PROPERTIES
 To create the parameters described below, construct a hash table containing the appropriate properties. For information on hash tables, run Get-Help about_Hash_Tables.
 
 
-`FABRIC <IFabric>`: ASR fabric to delete.
+`FABRIC <IFabric>`: 
   - `[Location <String>]`: Resource Location
   - `[BcdrState <String>]`: BCDR state of the fabric.
   - `[CustomDetailInstanceType <String>]`: Gets the class type. Overridden in derived classes.

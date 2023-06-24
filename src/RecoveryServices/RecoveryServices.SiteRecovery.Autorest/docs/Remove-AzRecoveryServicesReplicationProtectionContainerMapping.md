@@ -8,31 +8,43 @@ schema: 2.0.0
 # Remove-AzRecoveryServicesReplicationProtectionContainerMapping
 
 ## SYNOPSIS
-The operation to delete or remove a protection container mapping.
+The operation to  purge(force delete) a protection container mapping.
 
 ## SYNTAX
 
 ```
 Remove-AzRecoveryServicesReplicationProtectionContainerMapping
  -ProtectionContainerMapping <IProtectionContainerMapping> -ResourceGroupName <String> -ResourceName <String>
- [-SubscriptionId <String>] [-ProviderSpecificInputInstanceType <String>] [-DefaultProfile <PSObject>]
- [-AsJob] [-NoWait] [-PassThru] [-Confirm] [-WhatIf] [<CommonParameters>]
+ [-SubscriptionId <String>] [-DefaultProfile <PSObject>] [-AsJob] [-NoWait] [-PassThru] [-Confirm] [-WhatIf]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The operation to delete or remove a protection container mapping.
+The operation to  purge(force delete) a protection container mapping.
 
 ## EXAMPLES
 
-### Example 1: Remove a replication protection container mapping
+### Example 1: {{ Add title here }}
 ```powershell
-$fabric=Get-AzRecoveryServicesReplicationFabric -ResourceGroupName "a2arecoveryrg" -ResourceName "a2arecoveryvault" -FabricName "A2Aprimaryfabric"
-$protectioncontainer=Get-AzRecoveryServicesReplicationProtectionContainer -ResourceGroupName "a2arecoveryrg" -ResourceName "a2arecoveryvault" -Fabric $fabric -ProtectionContainer "demoprotectioncontainerA2A"
-$pcmapping=Get-AzRecoveryServicesReplicationProtectionContainerMapping -ResourceGroupName "a2arecoveryrg" -ResourceName "a2arecoveryvault" -ProtectionContainer $protectioncontainer -MappingName "A2ARecoveryToPrimary"
-Remove-AzRecoveryServicesReplicationProtectionContainerMapping -ProtectionContainerMapping $pcmapping -ResourceGroupName "a2arecoveryrg" -ResourceName "a2arecoveryvault"
+{{ Add code here }}
 ```
 
-Removes a replication protection container mapping in a recovery services vault.
+```output
+{{ Add output here }}
+```
+
+{{ Add description here }}
+
+### Example 2: {{ Add title here }}
+```powershell
+{{ Add code here }}
+```
+
+```output
+{{ Add output here }}
+```
+
+{{ Add description here }}
 
 ## PARAMETERS
 
@@ -107,21 +119,6 @@ Parameter Sets: (All)
 Aliases:
 
 Required: True
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -ProviderSpecificInputInstanceType
-The class type.
-
-```yaml
-Type: System.String
-Parameter Sets: (All)
-Aliases:
-
-Required: False
 Position: Named
 Default value: None
 Accept pipeline input: False
