@@ -138,6 +138,15 @@ function Invoke-AzRecoveryServicesReplicationProtectedItemApplyRecoveryPoint {
 
     process {
         try {
+            $replicationscenario = $ProviderSpecificDetail.ReplicationScenario
+            if($replicationscenario -eq "ReplicateAzureToAzure") {
+                $ProviderSpecificDetail.ReplicationScenario = "A2A"
+            }
+            else {
+                throw "Provided replication scenario is not supported. Only ReplicateAzureToAzure is supported."
+            }
+
+
             $replictaedItem = $ReplicatedProtectedItem.id.Split("/")
             $replicatedItemName = $replictaedItem[-1]
             $protectionContainerName = $replictaedItem[-3]

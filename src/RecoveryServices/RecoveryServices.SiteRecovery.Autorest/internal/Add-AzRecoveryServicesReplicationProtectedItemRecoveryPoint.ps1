@@ -24,7 +24,7 @@ COMPLEX PARAMETER PROPERTIES
 To create the parameters described below, construct a hash table containing the appropriate properties. For information on hash tables, run Get-Help about_Hash_Tables.
 
 PROVIDERSPECIFICDETAIL <IApplyRecoveryPointProviderSpecificInput>: Provider specific input for applying recovery point.
-  InstanceType <String>: The class type.
+  ReplicationScenario <String>: The class type.
 .Link
 https://docs.microsoft.com/powershell/module/az.recoveryservices/add-azrecoveryservicesreplicationprotecteditemrecoverypoint
 #>

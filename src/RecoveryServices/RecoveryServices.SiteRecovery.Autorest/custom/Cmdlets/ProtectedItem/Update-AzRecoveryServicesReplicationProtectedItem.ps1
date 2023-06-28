@@ -28,33 +28,6 @@ To create the parameters described below, construct a hash table containing the 
 
 PROVIDERSPECIFICDETAIL <IUpdateReplicationProtectedItemProviderInput>: The provider specific input to update replication protected item.
   InstanceType <String>: The class type.
-
-VMNIC <IVMNicInputDetails[]>: The list of VM nic details.
-  [EnableAcceleratedNetworkingOnRecovery <Boolean?>]: Whether the NIC has accelerated networking enabled.
-  [EnableAcceleratedNetworkingOnTfo <Boolean?>]: Whether the test NIC has accelerated networking enabled.
-  [IPConfig <IIPConfigInputDetails[]>]: The IP configurations to be used by NIC during test failover and failover.
-    [IPConfigName <String>]: 
-    [IsPrimary <Boolean?>]: 
-    [IsSeletedForFailover <Boolean?>]: 
-    [RecoveryLbBackendAddressPoolId <String[]>]: 
-    [RecoveryPublicIPAddressId <String>]: 
-    [RecoveryStaticIPAddress <String>]: 
-    [RecoverySubnetName <String>]: 
-    [TfoLbBackendAddressPoolId <String[]>]: 
-    [TfoPublicIPAddressId <String>]: 
-    [TfoStaticIPAddress <String>]: 
-    [TfoSubnetName <String>]: 
-  [NicId <String>]: The nic Id.
-  [RecoveryNetworkSecurityGroupId <String>]: The id of the NSG associated with the NIC.
-  [RecoveryNicName <String>]: The name of the NIC to be used when creating target NICs.
-  [RecoveryNicResourceGroupName <String>]: The resource group of the NIC to be used when creating target NICs.
-  [ReuseExistingNic <Boolean?>]: A value indicating whether an existing NIC is allowed to be reused during failover subject to availability.
-  [SelectionType <String>]: Selection type for failover.
-  [TargetNicName <String>]: Target NIC name.
-  [TfoNetworkSecurityGroupId <String>]: The NSG to be used by NIC during test failover.
-  [TfoNicName <String>]: The name of the NIC to be used when creating target NICs in TFO.
-  [TfoNicResourceGroupName <String>]: The resource group of the NIC to be used when creating target NICs in TFO.
-  [TfoReuseExistingNic <Boolean?>]: A value indicating whether an existing NIC is allowed to be reused during test failover subject to availability.
 .Link
 https://docs.microsoft.com/powershell/module/az.recoveryservices/update-azrecoveryservicesreplicationprotecteditem
 #>

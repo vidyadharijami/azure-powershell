@@ -28,7 +28,7 @@ The operation to change the recovery point of a failed over replication protecte
 ### Example 1: Change the recovery point of a failed over replication protected item.
 ```powershell
 $providerSpecificinput=[Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.A2AApplyRecoveryPointInput]::new()
-$providerSpecificinput.InstanceType="A2A"
+$providerSpecificinput.ReplicationScenario="ReplicateAzureToAzure"
 $fabric=Get-AzRecoveryServicesReplicationFabric -ResourceGroupName "a2arecoveryrg" -ResourceName "a2arecoveryvault" -FabricName "A2Ademo-EastUS"
 $protectioncontainer=Get-AzRecoveryServicesReplicationProtectionContainer -ResourceGroupName "a2arecoveryrg" -ResourceName "a2arecoveryvault" -Fabric $fabric -ProtectionContainer "A2AEastUSProtectionContainer"
 $protectedItem=Get-AzRecoveryServicesReplicationProtectedItem -ResourceGroupName "a2arecoveryrg" -ResourceName "a2arecoveryvault" -ProtectionContainer $protectioncontainer -ReplicatedProtectedItemName "replicatedvmtestcheck"
@@ -233,7 +233,7 @@ To create the parameters described below, construct a hash table containing the 
 
 
 `PROVIDERSPECIFICDETAIL <IApplyRecoveryPointProviderSpecificInput>`: Provider specific input for applying recovery point.
-  - `InstanceType <String>`: The class type.
+  - `ReplicationScenario <String>`: The class type.
 
 `REPLICATEDPROTECTEDITEM <IReplicationProtectedItem>`: Replication protected item Object.
   - `[Location <String>]`: Resource Location
