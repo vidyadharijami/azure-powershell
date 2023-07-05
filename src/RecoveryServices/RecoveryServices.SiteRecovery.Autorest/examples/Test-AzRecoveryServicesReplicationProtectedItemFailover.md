@@ -7,7 +7,7 @@ $protectedItem=Get-AzRecoveryServicesReplicationProtectedItem -ResourceGroupName
 $providerSpecificinput=[Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.A2ATestFailoverInput]::new()
 $providerSpecificinput.ReplicationScenario="ReplicateAzureToAzure"
 $providerSpecificinput.CloudServiceCreationOption="AutoCreateCloudService"
-Test-AzRecoveryServicesReplicationProtectedItemFailover -ReplicatedProtectedItem $protectedItem -ResourceName "a2arecoveryvault" -ResourceGroupName "a2arecoveryrg" -ProviderSpecificDetail $providerSpecificinput -NetworkId "/subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/a2avmrecoveryrg/providers/Microsoft.Network/virtualNetworks/testVmnetwork" -NetworkType "VmNetworkAsInput"
+Test-AzRecoveryServicesReplicationProtectedItemFailover -ReplicatedProtectedItem $protectedItem -ResourceName "a2arecoveryvault" -ResourceGroupName "a2arecoveryrg" -ProviderSpecificDetail $providerSpecificinput -NetworkId "/subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/a2avmrecoveryrg/providers/Microsoft.Network/virtualNetworks/testVmnetwork" -NetworkType "VmNetworkAsInput" -FailoverDirection "PrimaryToRecovery"
 ```
 
 ```output

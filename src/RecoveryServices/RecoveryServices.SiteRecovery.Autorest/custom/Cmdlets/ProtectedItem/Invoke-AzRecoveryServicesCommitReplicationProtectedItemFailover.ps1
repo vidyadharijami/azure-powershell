@@ -11,10 +11,6 @@
 Operation to commit the failover of the replication protected item.
 .Description
 Operation to commit the failover of the replication protected item.
-.Example
-{{ Add code here }}
-.Example
-{{ Add code here }}
 
 .Outputs
 Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IJob
@@ -116,10 +112,16 @@ function Invoke-AzRecoveryServicesCommitReplicationProtectedItemFailover {
 
     process {
         try {
-            $replictaedItem = $ReplicatedProtectedItem.id.Split("/")
-            $replicatedItemName = $replictaedItem[-1]
-            $protectionContainerName = $replictaedItem[-3]
-            $fabricName = $replictaedItem[-5]
+            if(-not [string]::IsNullOrEmpty($ReplicatedProtectedItem.id)) {
+                $replicatedItem = $ReplicatedProtectedItem.id.Split("/")
+            }
+            else {
+                throw 'Replicated Item does not contain an ARM Id. Please check the replicated item details'
+            }
+
+            $replicatedItemName = $replicatedItem[-1]
+            $protectionContainerName = $replicatedItem[-3]
+            $fabricName = $replicatedItem[-5]
 
             $null = $PSBoundParameters.Remove("ReplicatedProtectedItem")
             $null = $PSBoundParameters.Add("ReplicatedProtectedItemName", $replicatedItemName)
@@ -128,7 +130,13 @@ function Invoke-AzRecoveryServicesCommitReplicationProtectedItemFailover {
             $null = $PSBoundParameters.Add("NoWait", $true)
 
             $output = Az.RecoveryServices.internal\Invoke-AzRecoveryServicesCommitReplicationProtectedItemFailover @PSBoundParameters
-            $JobName = $output.Target.Split("/")[-1].Split("?")[0]
+
+            if(-not [string]::IsNullOrEmpty($output.Target)) {
+                $JobName = $output.Target.Split("/")[-1].Split("?")[0]
+            }
+            else {
+                throw 'The process has not returned any job id.'
+            }
 
             $null = $PSBoundParameters.Remove("ReplicatedProtectedItemName")
             $null = $PSBoundParameters.Remove("FabricName")

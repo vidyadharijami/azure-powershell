@@ -20,7 +20,7 @@ The operation to update the recovery settings of an ASR replication protected it
 The operation to update the recovery settings of an ASR replication protected item.
 
 .Outputs
-Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IReplicationProtectedItem
+Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IJob
 .Notes
 COMPLEX PARAMETER PROPERTIES
 
@@ -32,7 +32,7 @@ PROVIDERSPECIFICDETAIL <IUpdateReplicationProtectedItemProviderInput>: The provi
 https://docs.microsoft.com/powershell/module/az.recoveryservices/update-azrecoveryservicesreplicationprotecteditem
 #>
 function Update-AzRecoveryServicesReplicationProtectedItem {
-    [OutputType([Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IReplicationProtectedItem])]
+    [OutputType([Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IJob])]
     [CmdletBinding(DefaultParameterSetName='UpdateExpanded', PositionalBinding=$false, SupportsShouldProcess, ConfirmImpact='Medium')]
     param(
         [Parameter(Mandatory)]
@@ -190,78 +190,84 @@ function Update-AzRecoveryServicesReplicationProtectedItem {
 
     process {
         try {
-            $PSDetails = $ReplicatedProtectedItem.ProviderSpecificDetail
+            $ProviderSpecificDetails = $ReplicatedProtectedItem.ProviderSpecificDetail
 
             $replicationscenario = $ProviderSpecificDetail.ReplicationScenario
 
-            if($replicationscenario -eq "ReplicateAzureToAzure" -and $PSDetails.InstanceType -eq "A2A") {
+            if($replicationscenario -eq "ReplicateAzureToAzure" -and $ProviderSpecificDetails.InstanceType -eq "A2A") {
                 $ProviderSpecificDetail.ReplicationScenario = "A2A"
             }
             else {
                 throw "Provided replication scenario is not supported. Only ReplicateAzureToAzure is supported."
             }
 
-            $replictaedItem = $ReplicatedProtectedItem.id.Split("/")
-            $replictaedItemName = $replictaedItem[-1]
-            $protectionContainerName = $replictaedItem[-3]
-            $fabricName = $replictaedItem[-5]
+            if(-not [string]::IsNullOrEmpty($ReplicatedProtectedItem.id)) {
+                $replicatedItem = $ReplicatedProtectedItem.id.Split("/")
+            }
+            else {
+                throw 'Replicated Item does not contain an ARM Id. Please check the replicated item details'
+            }
 
-            if($PSDetails.InstanceType -ne "A2A" -and $VMNic -ne $null) {
+            $replictaedItemName = $replicatedItem[-1]
+            $protectionContainerName = $replicatedItem[-3]
+            $fabricName = $replicatedItem[-5]
+
+            if($ProviderSpecificDetails.InstanceType -ne "A2A" -and $VMNic -ne $null) {
                 throw "Unsupported Replication Scenario for Asr VM Nic Config"
             }
 
-            if($PSDetails.InstanceType -eq "A2A") {
+            if($ProviderSpecificDetails.InstanceType -eq "A2A") {
 
                 if ([string]::IsNullOrEmpty($ProviderSpecificDetail.RecoveryResourceGroupId)) {
-                    $ProviderSpecificDetail.RecoveryResourceGroupId = $PSDetails.RecoveryAzureResourceGroupId
+                    $ProviderSpecificDetail.RecoveryResourceGroupId = $ProviderSpecificDetails.RecoveryAzureResourceGroupId
                 }
 
                 $availabilitySetId = if($PSBoundParameters.ContainsKey('RecoveryAvailabilitySetId')) {
                     $RecoveryAvailabilitySetId
                 }
-                elseif(-not [string]::IsNullOrEmpty($PSDetails.RecoveryAvailabilitySet)) {
-                    $PSDetails.RecoveryAvailabilitySet
+                elseif(-not [string]::IsNullOrEmpty($ProviderSpecificDetails.RecoveryAvailabilitySet)) {
+                    $ProviderSpecificDetails.RecoveryAvailabilitySet
                 }
 
                 if(-not $PSBoundParameters.ContainsKey('SelectedRecoveryAzureNetworkId')) {
-                    $SelectedRecoveryAzureNetworkId = $PSDetails.SelectedRecoveryAzureNetworkId
+                    $SelectedRecoveryAzureNetworkId = $ProviderSpecificDetails.SelectedRecoveryAzureNetworkId
                 }
 
                 $proximityPlacementGroupId = if(-not [string]::IsNullOrEmpty($ProviderSpecificDetail.RecoveryProximityPlacementGroupId)) {
                     $ProviderSpecificDetail.RecoveryProximityPlacementGroupId
                 }
-                elseif(-not [string]::IsNullOrEmpty($PSDetails.RecoveryProximityPlacementGroupId)) {
-                    $PSDetails.RecoveryProximityPlacementGroupId
+                elseif(-not [string]::IsNullOrEmpty($ProviderSpecificDetails.RecoveryProximityPlacementGroupId)) {
+                    $ProviderSpecificDetails.RecoveryProximityPlacementGroupId
                 }
 
                 $virtualMachineScaleSetId = if(-not [string]::IsNullOrEmpty($ProviderSpecificDetail.RecoveryVirtualMachineScaleSetId)) {
                     $ProviderSpecificDetail.RecoveryVirtualMachineScaleSetId
                 }
-                elseif(-not [string]::IsNullOrEmpty($PSDetails.RecoveryVirtualMachineScaleSetId)) {
-                    $PSDetails.RecoveryVirtualMachineScaleSetId
+                elseif(-not [string]::IsNullOrEmpty($ProviderSpecificDetails.RecoveryVirtualMachineScaleSetId)) {
+                    $ProviderSpecificDetails.RecoveryVirtualMachineScaleSetId
                 }
 
                 $capacityReservationGroupId = if(-not [string]::IsNullOrEmpty($ProviderSpecificDetail.RecoveryCapacityReservationGroupId)) {
                     $ProviderSpecificDetail.RecoveryCapacityReservationGroupId
                 }
-                elseif(-not [string]::IsNullOrEmpty($PSDetails.RecoveryCapacityReservationGroupId)) {
-                    $PSDetails.RecoveryCapacityReservationGroupId
+                elseif(-not [string]::IsNullOrEmpty($ProviderSpecificDetails.RecoveryCapacityReservationGroupId)) {
+                    $ProviderSpecificDetails.RecoveryCapacityReservationGroupId
                 }
 
-                if([string]::IsNullOrEmpty($ProviderSpecificDetail.RecoveryCloudService) -and -not [string]::IsNullOrEmpty($PSDetails.RecoveryCloudService)) {
-                    $ProviderSpecificDetail.RecoveryCloudServiceId = $PSDetails.RecoveryCloudService
+                if([string]::IsNullOrEmpty($ProviderSpecificDetail.RecoveryCloudService) -and -not [string]::IsNullOrEmpty($ProviderSpecificDetails.RecoveryCloudService)) {
+                    $ProviderSpecificDetail.RecoveryCloudServiceId = $ProviderSpecificDetails.RecoveryCloudService
                 }
 
-                if([string]::IsNullOrEmpty($ProviderSpecificDetail.RecoveryBootDiagStorageAccountId) -and -not [string]::IsNullOrEmpty($PSDetails.RecoveryBootDiagStorageAccountId)) {
-                    $ProviderSpecificDetail.RecoveryBootDiagStorageAccountId = $PSDetails.RecoveryBootDiagStorageAccountId
+                if([string]::IsNullOrEmpty($ProviderSpecificDetail.RecoveryBootDiagStorageAccountId) -and -not [string]::IsNullOrEmpty($ProviderSpecificDetails.RecoveryBootDiagStorageAccountId)) {
+                    $ProviderSpecificDetail.RecoveryBootDiagStorageAccountId = $ProviderSpecificDetails.RecoveryBootDiagStorageAccountId
                 }
 
-                if([string]::IsNullOrEmpty($ProviderSpecificDetail.TfoAzureVMName) -and -not [string]::IsNullOrEmpty($PSDetails.TfoAzureVMName)) {
-                    $ProviderSpecificDetail.TfoAzureVMName = $PSDetails.TfoAzureVMName
+                if([string]::IsNullOrEmpty($ProviderSpecificDetail.TfoAzureVMName) -and -not [string]::IsNullOrEmpty($ProviderSpecificDetails.TfoAzureVMName)) {
+                    $ProviderSpecificDetail.TfoAzureVMName = $ProviderSpecificDetails.TfoAzureVMName
                 }
 
                 if(-not $PSBoundParameters.ContainsKey('RecoveryAzureVMName')) {
-                    $RecoveryAzureVMName = $PSDetails.RecoveryAzureVMName
+                    $RecoveryAzureVMName = $ProviderSpecificDetails.RecoveryAzureVMName
                 }
 
                 if($PSBoundParameters.ContainsKey('VMNic')) {
@@ -274,12 +280,12 @@ function Update-AzRecoveryServicesReplicationProtectedItem {
                     }
                 }
                 else {
-                    if(-not $PSBoundParameters.ContainsKey('SelectedTfoAzureNetworkId') -and -not [string]::IsNullOrEmpty($PSDetails.SelectedTfoAzureNetworkId)) {
-                        $SelectedTfoAzureNetworkId = $PSDetails.SelectedTfoAzureNetworkId
+                    if(-not $PSBoundParameters.ContainsKey('SelectedTfoAzureNetworkId') -and -not [string]::IsNullOrEmpty($ProviderSpecificDetails.SelectedTfoAzureNetworkId)) {
+                        $SelectedTfoAzureNetworkId = $ProviderSpecificDetails.SelectedTfoAzureNetworkId
                     }
 
-                    if(-not $PSBoundParameters.ContainsKey('SelectedRecoveryAzureNetworkId') -and -not [string]::IsNullOrEmpty($PSDetails.SelectedRecoveryAzureNetworkId)) {
-                        $SelectedRecoveryAzureNetworkId = $PSDetails.SelectedRecoveryAzureNetworkId
+                    if(-not $PSBoundParameters.ContainsKey('SelectedRecoveryAzureNetworkId') -and -not [string]::IsNullOrEmpty($ProviderSpecificDetails.SelectedRecoveryAzureNetworkId)) {
+                        $SelectedRecoveryAzureNetworkId = $ProviderSpecificDetails.SelectedRecoveryAzureNetworkId
                     }
                 }
 
@@ -311,8 +317,34 @@ function Update-AzRecoveryServicesReplicationProtectedItem {
             $null = $PSBoundParameters.Add("ReplicatedProtectedItemName", $replictaedItemName)
             $null = $PSBoundParameters.Add("FabricName", $fabricName)
             $null = $PSBoundParameters.Add("ProtectionContainerName", $protectionContainerName)
+            $null = $PSBoundParameters.Add("NoWait", $true)
 
-            return Az.RecoveryServices.internal\Update-AzRecoveryServicesReplicationProtectedItem @PSBoundParameters
+            $output = Az.RecoveryServices.internal\Update-AzRecoveryServicesReplicationProtectedItem @PSBoundParameters
+
+            if(-not [string]::IsNullOrEmpty($output.Target)) {
+                $JobName = $output.Target.Split("/")[-1].Split("?")[0]
+            }
+            else {
+                throw 'The process has not returned any job id.'
+            }
+
+            $null = $PSBoundParameters.Remove("ReplicatedProtectedItemName")
+            $null = $PSBoundParameters.Remove("FabricName")
+            $null = $PSBoundParameters.Remove("ProtectionContainerName")
+            $null = $PSBoundParameters.Remove("NoWait")
+            $null = $PSBoundParameters.Remove("VMNic")
+            $null = $PSBoundParameters.Remove("SelectedTfoAzureNetworkId")
+            $null = $PSBoundParameters.Remove("SelectedSourceNicId")
+            $null = $PSBoundParameters.Remove("SelectedRecoveryAzureNetworkId")
+            $null = $PSBoundParameters.Remove("RecoveryAzureVMSize")
+            $null = $PSBoundParameters.Remove("RecoveryAzureVMName")
+            $null = $PSBoundParameters.Remove("RecoveryAvailabilitySetId")
+            $null = $PSBoundParameters.Remove("ProviderSpecificDetail")
+            $null = $PSBoundParameters.Remove("LicenseType")
+            $null = $PSBoundParameters.Remove("EnableRdpOnTargetOption")
+            $null = $PSBoundParameters.Add("JobName", $JobName)
+
+            return Get-AzRecoveryServicesReplicationJob @PSBoundParameters
         } catch {
             throw
         }

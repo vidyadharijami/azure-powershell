@@ -164,7 +164,7 @@ function New-AzRecoveryServicesReplicationProtectedItem {
 
     process {
         try {
-            CheckResourceGraphModuleDependency
+            CheckComputeModuleDependency
 
             $replicationscenario = $ProviderSpecificDetail.ReplicationScenario
             if($replicationscenario -eq "ReplicateAzureToAzure") {
@@ -174,93 +174,110 @@ function New-AzRecoveryServicesReplicationProtectedItem {
                 throw "Provided replication scenario is not supported. Only ReplicateAzureToAzure is supported."
             }
 
-            $Vmdetails = $ProviderSpecificDetail.FabricObjectId.Split("/")
+            if($ProviderSpecificDetail.ReplicationScenario -ne $ProtectionContainerMapping.ProviderSpecificDetailInstanceType) {
+                throw "Input replication scenario and mapping replication scenario cannot be different"
+            }
+
+            if(-not [string]::IsNullOrEmpty($ProviderSpecificDetail.FabricObjectId)) {
+                $Vmdetails = $ProviderSpecificDetail.FabricObjectId.Split("/")
+            }
+            else {
+                throw 'Please provide fabric object id in provider specific detail input'
+            }
+
             $VmResouceGroup = $Vmdetails[-5]
             $VmName = $Vmdetails[-1]
             $Vm = Get-AzVM -ResourceGroupName $VmResouceGroup -Name $VmName
 
-            if($ProviderSpecificDetail.VMManagedDisk -eq $null) {
-                if ($Vm.StorageProfile.OsDisk.ManagedDisk -ne $null) {
-                    $diskInput = @()
+            if($ProviderSpecificDetail.ReplicationScenario -eq "A2A") {
+                if($ProviderSpecificDetail.VMManagedDisk -eq $null) {
+                    if ($Vm.StorageProfile.OsDisk.ManagedDisk -ne $null) {
+                        $diskInput = @()
 
-                    $osDiskInput = [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.A2AVmManagedDiskInputDetails]::new()
-                    $osDiskInput.DiskId = $Vm.StorageProfile.OsDisk.ManagedDisk.Id
-                    $osDiskInput.PrimaryStagingAzureStorageAccountId = $LogStorageAccountId
-                    $osDiskInput.RecoveryResourceGroupId = $ProviderSpecificDetail.RecoveryResourceGroupId
-                    $osDiskInput.RecoveryReplicaDiskAccountType = $Vm.StorageProfile.OsDisk.ManagedDisk.StorageAccountType
-                    $osDiskInput.RecoveryTargetDiskAccountType = $Vm.StorageProfile.OsDisk.ManagedDisk.StorageAccountType
-
-                    $diskInput += $osDiskInput
-
-                    if($Vm.StorageProfile.DataDisks.ManagedDisk -ne $null) {
-                        $Vm.StorageProfile.DataDisks.ManagedDisk | ForEach-Object {
-                            $dataDiskInput = [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.A2AVmManagedDiskInputDetails]::new()
-                            $dataDiskInput.DiskId = $_.Id
-                            $dataDiskInput.PrimaryStagingAzureStorageAccountId = $LogStorageAccountId
-                            $dataDiskInput.RecoveryResourceGroupId = $ProviderSpecificDetail.RecoveryResourceGroupId
-                            $dataDiskInput.RecoveryReplicaDiskAccountType = $_.StorageAccountType
-                            $dataDiskInput.RecoveryTargetDiskAccountType = $_.StorageAccountType
-
-                            $diskInput += $dataDiskInput
-                        }
-                    }
-
-                    $ProviderSpecificDetail.VMManagedDisk = $diskInput
-                }
-                else {
-                    if($RecoveryAzureStorageAccountId -ne $null) {
-                        $vmdiskInput = @()
-
-                        $osDiskInput = [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.A2AVmDiskInputDetails]::new()
-                        $osDiskInput.DiskUri = $vm.StorageProfile.OsDisk.Vhd.Uri
-                        $osDiskInput.PrimaryStagingAzureStorageAccountId = $LogStorageAccountId
-                        $osDiskInput.RecoveryAzureStorageAccountId = $RecoveryAzureStorageAccountId
-
-                        $vmdiskInput += $osDiskInput
-
-                        if($Vm.StorageProfile.DataDisks -ne $null) {
-                            $Vm.StorageProfile.DataDisks | ForEach-Object {
-                                $dataDiskInput = [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.A2AVmDiskInputDetails]::new()
-                                $dataDiskInput.DiskUri = $_.Vhd.Uri
-                                $dataDiskInput.PrimaryStagingAzureStorageAccountId = $LogStorageAccountId
-                                $dataDiskInput.RecoveryAzureStorageAccountId = $RecoveryAzureStorageAccountId
-
-                                $vmdiskInput += $dataDiskInput
-                            }
-                        }
-
-                        $ProviderSpecificDetail.VMDisk = $vmdiskInput
-                    }
-                    else {
-                        throw "Recovery Storage account is required for non-managed disk vm to protect"
-                    }
-                }
-            }
-            else {
-                if ($Vm.StorageProfile.OsDisk.ManagedDisk -ne $null) {
-                    $osDiskExist = $false
-
-                    $ProviderSpecificDetail.VMManagedDisk | ForEach-Object {
-                        if($_.DiskId -eq $Vm.StorageProfile.OsDisk.ManagedDisk.Id) {
-                            $osDiskExist = $true
-                        }
-                    }
-
-                    if($osDiskExist -eq $false) {
                         $osDiskInput = [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.A2AVmManagedDiskInputDetails]::new()
-                        $osDiskInput.DiskId = $vm.StorageProfile.OsDisk.ManagedDisk.Id
+                        $osDiskInput.DiskId = $Vm.StorageProfile.OsDisk.ManagedDisk.Id
                         $osDiskInput.PrimaryStagingAzureStorageAccountId = $LogStorageAccountId
                         $osDiskInput.RecoveryResourceGroupId = $ProviderSpecificDetail.RecoveryResourceGroupId
                         $osDiskInput.RecoveryReplicaDiskAccountType = $Vm.StorageProfile.OsDisk.ManagedDisk.StorageAccountType
                         $osDiskInput.RecoveryTargetDiskAccountType = $Vm.StorageProfile.OsDisk.ManagedDisk.StorageAccountType
 
-                        $Vm.StorageProfile.OsDisk.ManagedDisk += $osDiskInput
+                        $diskInput += $osDiskInput
+
+                        if($Vm.StorageProfile.DataDisks.ManagedDisk -ne $null) {
+                            $Vm.StorageProfile.DataDisks.ManagedDisk | ForEach-Object {
+                                $dataDiskInput = [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.A2AVmManagedDiskInputDetails]::new()
+                                $dataDiskInput.DiskId = $_.Id
+                                $dataDiskInput.PrimaryStagingAzureStorageAccountId = $LogStorageAccountId
+                                $dataDiskInput.RecoveryResourceGroupId = $ProviderSpecificDetail.RecoveryResourceGroupId
+                                $dataDiskInput.RecoveryReplicaDiskAccountType = $_.StorageAccountType
+                                $dataDiskInput.RecoveryTargetDiskAccountType = $_.StorageAccountType
+
+                                $diskInput += $dataDiskInput
+                            }
+                        }
+
+                        $ProviderSpecificDetail.VMManagedDisk = $diskInput
+                    }
+                    else {
+                        if($RecoveryAzureStorageAccountId -ne $null) {
+                            $vmdiskInput = @()
+
+                            $osDiskInput = [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.A2AVmDiskInputDetails]::new()
+                            $osDiskInput.DiskUri = $vm.StorageProfile.OsDisk.Vhd.Uri
+                            $osDiskInput.PrimaryStagingAzureStorageAccountId = $LogStorageAccountId
+                            $osDiskInput.RecoveryAzureStorageAccountId = $RecoveryAzureStorageAccountId
+
+                            $vmdiskInput += $osDiskInput
+
+                            if($Vm.StorageProfile.DataDisks -ne $null) {
+                                $Vm.StorageProfile.DataDisks | ForEach-Object {
+                                    $dataDiskInput = [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.A2AVmDiskInputDetails]::new()
+                                    $dataDiskInput.DiskUri = $_.Vhd.Uri
+                                    $dataDiskInput.PrimaryStagingAzureStorageAccountId = $LogStorageAccountId
+                                    $dataDiskInput.RecoveryAzureStorageAccountId = $RecoveryAzureStorageAccountId
+
+                                    $vmdiskInput += $dataDiskInput
+                                }
+                            }
+
+                            $ProviderSpecificDetail.VMDisk = $vmdiskInput
+                        }
+                        else {
+                            throw "Recovery Storage account is required for non-managed disk vm to protect"
+                        }
+                    }
+                }
+                else {
+                    if ($Vm.StorageProfile.OsDisk.ManagedDisk -ne $null) {
+                        $osDiskExist = $false
+
+                        $ProviderSpecificDetail.VMManagedDisk | ForEach-Object {
+                            if($_.DiskId -eq $Vm.StorageProfile.OsDisk.ManagedDisk.Id) {
+                                $osDiskExist = $true
+                            }
+                        }
+
+                        if($osDiskExist -eq $false) {
+                            $osDiskInput = [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.A2AVmManagedDiskInputDetails]::new()
+                            $osDiskInput.DiskId = $vm.StorageProfile.OsDisk.ManagedDisk.Id
+                            $osDiskInput.PrimaryStagingAzureStorageAccountId = $LogStorageAccountId
+                            $osDiskInput.RecoveryResourceGroupId = $ProviderSpecificDetail.RecoveryResourceGroupId
+                            $osDiskInput.RecoveryReplicaDiskAccountType = $Vm.StorageProfile.OsDisk.ManagedDisk.StorageAccountType
+                            $osDiskInput.RecoveryTargetDiskAccountType = $Vm.StorageProfile.OsDisk.ManagedDisk.StorageAccountType
+
+                            $Vm.StorageProfile.OsDisk.ManagedDisk += $osDiskInput
+                        }
                     }
                 }
             }
 
             $policyId = $ProtectionContainerMapping.PolicyId
-            $protectionContainermapString = $ProtectionContainerMapping.id.Split("/")
+            if(-not [string]::IsNullOrEmpty($ProtectionContainerMapping.id)) {
+                $protectionContainermapString = $ProtectionContainerMapping.id.Split("/")
+            }
+            else {
+                throw 'Protection container mapping does not contain an ARM Id. Please check the protection container mapping details'
+            }
             $protectionContainerName = $protectionContainermapString[-3]
             $fabricName = $protectionContainermapString[-5]
 
@@ -277,7 +294,13 @@ function New-AzRecoveryServicesReplicationProtectedItem {
             $null = $PSBoundParameters.Add("NoWait", $true)
 
             $output = Az.RecoveryServices.internal\New-AzRecoveryServicesReplicationProtectedItem @PSBoundParameters
-            $JobName = $output.Target.Split("/")[-1].Split("?")[0]
+            
+            if(-not [string]::IsNullOrEmpty($output.Target)) {
+                $JobName = $output.Target.Split("/")[-1].Split("?")[0]
+            }
+            else {
+                throw 'The process has not returned any job id.'
+            }
 
             $null = $PSBoundParameters.Remove("PolicyId")
             $null = $PSBoundParameters.Remove("FabricName")

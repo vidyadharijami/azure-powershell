@@ -20,12 +20,12 @@ Operation to clean up the test failover of a replication protected item.
 Operation to clean up the test failover of a replication protected item.
 
 .Outputs
-Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IReplicationProtectedItem
+Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IJob
 .Link
 https://docs.microsoft.com/powershell/module/az.recoveryservices/test-azrecoveryservicesreplicationprotecteditemfailovercleanup
 #>
 function Test-AzRecoveryServicesReplicationProtectedItemFailoverCleanup {
-    [OutputType([Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IReplicationProtectedItem])]
+    [OutputType([Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IJob])]
     [CmdletBinding(DefaultParameterSetName='TestExpanded', PositionalBinding=$false, SupportsShouldProcess, ConfirmImpact='Medium')]
     param(
         [Parameter(Mandatory)]
@@ -125,17 +125,40 @@ function Test-AzRecoveryServicesReplicationProtectedItemFailoverCleanup {
 
     process {
         try {
-            $replictaedItem = $CleanupTestItem.id.Split("/")
-            $replicatedItemName = $replictaedItem[-1]
-            $protectionContainerName = $replictaedItem[-3]
-            $fabricName = $replictaedItem[-5]
+            if(-not [string]::IsNullOrEmpty($CleanupTestItem.id)) {
+                $replicatedItem = $CleanupTestItem.id.Split("/")
+            }
+            else {
+                throw 'Replicated Item does not contain an ARM Id. Please check the replicated item details'
+            }
+
+            $replicatedItemName = $replicatedItem[-1]
+            $protectionContainerName = $replicatedItem[-3]
+            $fabricName = $replicatedItem[-5]
 
             $null = $PSBoundParameters.Remove("CleanupTestItem")
             $null = $PSBoundParameters.Add("ReplicatedProtectedItemName", $replicatedItemName)
             $null = $PSBoundParameters.Add("FabricName", $fabricName)
             $null = $PSBoundParameters.Add("ProtectionContainerName", $protectionContainerName)
+            $null = $PSBoundParameters.Add("NoWait", $true)
 
-            return Az.RecoveryServices.internal\Test-AzRecoveryServicesReplicationProtectedItemFailoverCleanup @PSBoundParameters
+            $output = Az.RecoveryServices.internal\Test-AzRecoveryServicesReplicationProtectedItemFailoverCleanup @PSBoundParameters
+
+            if(-not [string]::IsNullOrEmpty($output.Target)) {
+                $JobName = $output.Target.Split("/")[-1].Split("?")[0]
+            }
+            else {
+                throw 'The process has not returned any job id.'
+            }
+
+            $null = $PSBoundParameters.Remove("FabricName")
+            $null = $PSBoundParameters.Remove("ReplicatedProtectedItemName")
+            $null = $PSBoundParameters.Remove("ProtectionContainerName")
+            $null = $PSBoundParameters.Remove("NoWait")
+            $null = $PSBoundParameters.Remove("Comment")
+            $null = $PSBoundParameters.Add("JobName", $JobName)
+
+            return Get-AzRecoveryServicesReplicationJob @PSBoundParameters
         } catch {
             throw
         }

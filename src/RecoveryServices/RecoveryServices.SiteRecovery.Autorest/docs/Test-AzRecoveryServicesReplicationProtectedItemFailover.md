@@ -14,10 +14,9 @@ Operation to perform a test failover of the replication protected item.
 
 ```
 Test-AzRecoveryServicesReplicationProtectedItemFailover -ReplicatedProtectedItem <IReplicationProtectedItem>
- -ResourceGroupName <String> -ResourceName <String> -NetworkId <String> -NetworkType <String>
- -ProviderSpecificDetail <ITestFailoverProviderSpecificInput> [-SubscriptionId <String>]
- [-FailoverDirection <String>] [-DefaultProfile <PSObject>] [-AsJob] [-NoWait] [-Confirm] [-WhatIf]
- [<CommonParameters>]
+ -ResourceGroupName <String> -ResourceName <String> -FailoverDirection <String> -NetworkId <String>
+ -NetworkType <String> -ProviderSpecificDetail <ITestFailoverProviderSpecificInput> [-SubscriptionId <String>]
+ [-DefaultProfile <PSObject>] [-AsJob] [-NoWait] [-Confirm] [-WhatIf] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -33,7 +32,7 @@ $protectedItem=Get-AzRecoveryServicesReplicationProtectedItem -ResourceGroupName
 $providerSpecificinput=[Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.A2ATestFailoverInput]::new()
 $providerSpecificinput.ReplicationScenario="ReplicateAzureToAzure"
 $providerSpecificinput.CloudServiceCreationOption="AutoCreateCloudService"
-Test-AzRecoveryServicesReplicationProtectedItemFailover -ReplicatedProtectedItem $protectedItem -ResourceName "a2arecoveryvault" -ResourceGroupName "a2arecoveryrg" -ProviderSpecificDetail $providerSpecificinput -NetworkId "/subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/a2avmrecoveryrg/providers/Microsoft.Network/virtualNetworks/testVmnetwork" -NetworkType "VmNetworkAsInput"
+Test-AzRecoveryServicesReplicationProtectedItemFailover -ReplicatedProtectedItem $protectedItem -ResourceName "a2arecoveryvault" -ResourceGroupName "a2arecoveryrg" -ProviderSpecificDetail $providerSpecificinput -NetworkId "/subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/a2avmrecoveryrg/providers/Microsoft.Network/virtualNetworks/testVmnetwork" -NetworkType "VmNetworkAsInput" -FailoverDirection "PrimaryToRecovery"
 ```
 
 ```output
@@ -84,7 +83,7 @@ Type: System.String
 Parameter Sets: (All)
 Aliases:
 
-Required: False
+Required: True
 Position: Named
 Default value: None
 Accept pipeline input: False
@@ -251,7 +250,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
-### Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IReplicationProtectedItem
+### Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IJob
 
 ## NOTES
 

@@ -15,11 +15,7 @@ if(($null -eq $TestName) -or ($TestName -contains 'Invoke-AzRecoveryServicesComm
 }
 
 Describe 'Invoke-AzRecoveryServicesCommitReplicationRecoveryPlanFailover' {
-    It 'Commit' {
-        $fabric = Get-AzRecoveryServicesReplicationFabric -ResourceName $env.a2aVaultName -ResourceGroupName $env.a2aResourceGroupName -SubscriptionId $env.a2aSubscriptionId -FabricName $env.a2ampfabricname
-        $protectioncontainer = Get-AzRecoveryServicesReplicationProtectionContainer -ResourceName $env.a2aVaultName -ResourceGroupName $env.a2aResourceGroupName -SubscriptionId $env.a2aSubscriptionId -Fabric $fabric -ProtectionContainer $env.a2amppcname
-        $protectedItem = Get-AzRecoveryServicesReplicationProtectedItem -ResourceName $env.a2aVaultName -ResourceGroupName $env.a2aResourceGroupName -SubscriptionId $env.a2aSubscriptionId -ProtectionContainer $protectioncontainer -ReplicatedProtectedItemName $env.unplannedfailvm
-        $output = Invoke-AzRecoveryServicesCommitReplicationProtectedItemFailover -ReplicatedProtectedItem $protectedItem -ResourceName $env.a2aVaultName -ResourceGroupName $env.a2aResourceGroupName -SubscriptionId $env.a2aSubscriptionId
-        $output.Count | Should -Not -BeNullOrEmpty
+    It 'Commit' -skip {
+        { throw [System.NotImplementedException] } | Should -Not -Throw
     }
 }

@@ -1,4 +1,4 @@
-function CheckResourceGraphModuleDependency {
+function CheckComputeModuleDependency {
     [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.DoNotExportAttribute()]
     param() 
 

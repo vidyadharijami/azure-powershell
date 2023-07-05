@@ -20,7 +20,7 @@ Operation to perform a test failover of the replication protected item.
 Operation to perform a test failover of the replication protected item.
 
 .Outputs
-Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IReplicationProtectedItem
+Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IJob
 .Notes
 COMPLEX PARAMETER PROPERTIES
 
@@ -32,7 +32,7 @@ PROVIDERSPECIFICDETAIL <ITestFailoverProviderSpecificInput>: Provider specific s
 https://docs.microsoft.com/powershell/module/az.recoveryservices/test-azrecoveryservicesreplicationprotecteditemfailover
 #>
 function Test-AzRecoveryServicesReplicationProtectedItemFailover {
-    [OutputType([Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IReplicationProtectedItem])]
+    [OutputType([Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Models.Api20230201.IJob])]
     [CmdletBinding(DefaultParameterSetName='TestExpanded', PositionalBinding=$false, SupportsShouldProcess, ConfirmImpact='Medium')]
     param(
         [Parameter(Mandatory)]
@@ -63,8 +63,9 @@ function Test-AzRecoveryServicesReplicationProtectedItemFailover {
         # The subscription Id.
         ${SubscriptionId},
 
-        [Parameter()]
+        [Parameter(Mandatory)]
         [Microsoft.Azure.PowerShell.Cmdlets.RecoveryServices.Category('Body')]
+        [ValidateSet('PrimaryToRecovery', 'RecoveryToPrimary')]
         [System.String]
         # Test failover direction.
         ${FailoverDirection},
@@ -161,17 +162,51 @@ function Test-AzRecoveryServicesReplicationProtectedItemFailover {
                 throw "Provided replication scenario is not supported. Only ReplicateAzureToAzure is supported."
             }
 
-            $replictaedItem = $ReplicatedProtectedItem.id.Split("/")
-            $replicatedItemName = $replictaedItem[-1]
-            $protectionContainerName = $replictaedItem[-3]
-            $fabricName = $replictaedItem[-5]
+            if($ProviderSpecificDetail.ReplicationScenario -ne $ReplicatedProtectedItem.ProviderSpecificDetail.InstanceType) {
+                throw "Input replication scenario and replicated item replication scenario cannot be different"
+            }
+
+            if($FailoverDirection -ne "PrimaryToRecovery") {
+                throw "Test failover only support primary to recovery flow direction"
+            }
+
+            if(-not [string]::IsNullOrEmpty($ReplicatedProtectedItem.id)) {
+                $replicatedItem = $ReplicatedProtectedItem.id.Split("/")
+            }
+            else {
+                throw 'Replicated Item does not contain an ARM Id. Please check the replicated item details'
+            }
+
+            $replicatedItemName = $replicatedItem[-1]
+            $protectionContainerName = $replicatedItem[-3]
+            $fabricName = $replicatedItem[-5]
 
             $null = $PSBoundParameters.Remove("ReplicatedProtectedItem")
             $null = $PSBoundParameters.Add("ReplicatedProtectedItemName", $replicatedItemName)
             $null = $PSBoundParameters.Add("FabricName", $fabricName)
             $null = $PSBoundParameters.Add("ProtectionContainerName", $protectionContainerName)
+            $null = $PSBoundParameters.Add("NoWait", $true)
 
-            return Az.RecoveryServices.internal\Test-AzRecoveryServicesReplicationProtectedItemFailover @PSBoundParameters
+            $output = Az.RecoveryServices.internal\Test-AzRecoveryServicesReplicationProtectedItemFailover @PSBoundParameters
+            
+            if(-not [string]::IsNullOrEmpty($output.Target)) {
+                $JobName = $output.Target.Split("/")[-1].Split("?")[0]
+            }
+            else {
+                throw 'The process has not returned any job id.'
+            }
+
+            $null = $PSBoundParameters.Remove("FabricName")
+            $null = $PSBoundParameters.Remove("ReplicatedProtectedItemName")
+            $null = $PSBoundParameters.Remove("ProtectionContainerName")
+            $null = $PSBoundParameters.Remove("NoWait")
+            $null = $PSBoundParameters.Remove("ProviderSpecificDetail")
+            $null = $PSBoundParameters.Remove("NetworkId")
+            $null = $PSBoundParameters.Remove("NetworkType")
+            $null = $PSBoundParameters.Remove("FailoverDirection")
+            $null = $PSBoundParameters.Add("JobName", $JobName)
+
+            return Get-AzRecoveryServicesReplicationJob @PSBoundParameters
         } catch {
             throw
         }

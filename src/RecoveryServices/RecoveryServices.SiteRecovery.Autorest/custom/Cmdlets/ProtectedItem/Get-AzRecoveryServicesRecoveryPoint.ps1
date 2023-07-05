@@ -108,7 +108,13 @@ function Get-AzRecoveryServicesRecoveryPoint {
 
     process {
         try {
-            $protectedItemString = $ReplicatedProtectedItem.id.Split("/")
+            if(-not [string]::IsNullOrEmpty($ReplicatedProtectedItem.id)) {
+                $protectedItemString = $ReplicatedProtectedItem.id.Split("/")
+            }
+            else {
+                throw 'Replicated Item does not contain an ARM Id. Please check the replicated item details'
+            }
+
             $replicatedProtectedItemName = $protectedItemString[-1]
             $protectionContainerName = $protectedItemString[-3]
             $fabricName = $protectedItemString[-5]

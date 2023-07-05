@@ -140,7 +140,13 @@ function Remove-AzRecoveryServicesReplicationProtectedItem {
 
     process {
         try {
-            $protectedItemString = $ProtectedItem.id.Split("/")
+            if(-not [string]::IsNullOrEmpty($ProtectedItem.id)) {
+                $protectedItemString = $ProtectedItem.id.Split("/")
+            }
+            else {
+                throw 'Replicated Item does not contain an ARM Id. Please check the replicated item details'
+            }
+
             $replicatedProtectedItemName = $protectedItemString[-1]
             $protectionContainerName = $protectedItemString[-3]
             $fabricName = $protectedItemString[-5]
